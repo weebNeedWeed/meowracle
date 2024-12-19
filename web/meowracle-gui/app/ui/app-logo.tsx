@@ -5,7 +5,7 @@ export default function AppLogo() {
   return (
     <div className="flex gap-2">
       <Image
-        src="/navbar-logo.png"
+        src="/logo.png"
         alt="Meowracle.live logo"
         width={48}
         height={48}

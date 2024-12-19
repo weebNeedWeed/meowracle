@@ -1,14 +1,12 @@
-"use client";
-
-import { HeroText } from "@/app/ui/hero-text";
+import HeroText from "@/app/ui/hero-text";
 import Usage from "@/app/ui/usage";
-import { Footer } from "@/app/ui/footer";
-import Navbar from "@/app/ui/navbar";
+import Footer from "@/app/ui/footer";
+import Menubar from "@/app/ui/menubar";
 
 export default function Page() {
   return (
     <main>
-      <Navbar />
+      <Menubar />
       <HeroText />
       <Usage />
       <Footer />

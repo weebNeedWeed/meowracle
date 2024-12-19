@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Box,
   Burger,
@@ -8,10 +10,11 @@ import {
   ScrollArea,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import classes from "@/app/ui/header-mega-menu.module.css";
+import classes from "@/app/ui/menubar.module.css";
 import AppLogo from "@/app/ui/app-logo";
+import Link from "next/link";
 
-export default function Navbar() {
+export default function Menubar() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
 
@@ -20,7 +23,9 @@ export default function Navbar() {
       <Box>
         <header className={classes.header}>
           <Group justify="space-between" h="100%">
-            <AppLogo />
+            <Link href="/">
+              <AppLogo />
+            </Link>
 
             <Group h="100%" gap={0} visibleFrom="sm">
               <a href="#" className={classes.link}>
@@ -35,7 +40,9 @@ export default function Navbar() {
             </Group>
 
             <Group visibleFrom="sm">
-              <Button>Get started</Button>
+              <Link href="/dashboard">
+                <Button>Get started</Button>
+              </Link>
             </Group>
 
             <Burger
@@ -71,7 +78,9 @@ export default function Navbar() {
             <Divider my="sm" />
 
             <Group justify="center" grow pb="xl" px="md">
-              <Button>Get started</Button>
+              <Link href="/dashboard">
+                <Button>Get started</Button>
+              </Link>
             </Group>
           </ScrollArea>
         </Drawer>

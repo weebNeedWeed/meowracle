@@ -1,3 +1,5 @@
+"use client";
+
 import { Container, Title, Text } from "@mantine/core";
 import classes from "@/app/ui/usage.module.css";
 
@@ -9,13 +11,14 @@ export default function Usage() {
       </Text>
 
       <Title className={classes.title}>
-        Create Your AWS Certification Banner in Minutes
+        Design Your Professional Cover Images Quickly
       </Title>
 
       <Container size={560} p={0}>
         <Text size="sm" className={classes.description}>
-          Easily design a professional banner to display your AWS certification,
-          showcase your expertise, and build trust with your audience.
+          Quickly create a professional cover image to highlight your AWS
+          certification, demonstrate your skills, and gain credibility with your
+          audience.
         </Text>
       </Container>
 

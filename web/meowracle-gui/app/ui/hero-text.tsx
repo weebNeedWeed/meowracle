@@ -1,8 +1,11 @@
+"use client";
+
 import { Button, Container, Text, Title } from "@mantine/core";
 import Dots from "@/app/ui/dots";
 import classes from "@/app/ui/hero-text.module.css";
+import Link from "next/link";
 
-export function HeroText() {
+export default function HeroText() {
   return (
     <Container className={classes.wrapper} size={1400}>
       <Dots className={classes.dots} style={{ left: 0, top: 0 }} />
@@ -16,13 +19,13 @@ export function HeroText() {
           <Text component="span" className={classes.highlight} inherit>
             AWS Certs
           </Text>{" "}
-          with Stunning Banners!
+          with Stunning Cover Photos!
         </Title>
 
         <Container p={0} size={600}>
           <Text size="lg" c="dimmed" className={classes.description}>
-            Craft a professional LinkedIn banner in minutes with our easy-to-use
-            tool, and download it ready to enhance your profile.
+            Craft a professional LinkedIn Cover Photos in minutes with our
+            easy-to-use tool, and download it ready to enhance your profile.
           </Text>
         </Container>
 
@@ -37,9 +40,11 @@ export function HeroText() {
           >
             Usage
           </Button>
-          <Button className={classes.control} size="lg">
-            Try now! It&apos;s all free 😻
-          </Button>
+          <Link href="/dashboard">
+            <Button className={classes.control} size="lg">
+              Try now! It&apos;s all free 😻
+            </Button>
+          </Link>
         </div>
       </div>
     </Container>

@@ -1,6 +1,7 @@
+"use client";
+
 import { Anchor, Container, Group, Text } from "@mantine/core";
-import AppLogo from "./app-logo";
-import classes from "./footer.module.css";
+import classes from "@/app/ui/dashboard/footer-simple.module.css";
 
 const links = [
   { link: "#", label: "Contact" },
@@ -9,7 +10,7 @@ const links = [
   { link: "#", label: "Careers" },
 ];
 
-export default function Footer() {
+export default function FooterSimple() {
   const items = links.map((link) => (
     <Anchor<"a">
       c="dimmed"
@@ -25,10 +26,6 @@ export default function Footer() {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
-        <AppLogo />
-        <Group className={classes.links}>{items}</Group>
-      </Container>
-      <Container className={classes.afterFooter}>
         <Text c="dimmed" size="sm">
           © 2024 meowracle.live. All rights reserved.
         </Text>
