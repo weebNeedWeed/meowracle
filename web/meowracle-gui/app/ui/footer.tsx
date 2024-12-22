@@ -1,3 +1,5 @@
+"use client";
+
 import { Anchor, Container, Group, Text } from "@mantine/core";
 import AppLogo from "./app-logo";
 import classes from "./footer.module.css";
