@@ -12,10 +12,13 @@
     "@mantine/core": "^7.15.1",
     "@mantine/hooks": "^7.15.1",
     "clsx": "^2.1.1",
+    "konva": "^9.3.16",
     "next": "15.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-icons": "^5.4.0"
+    "react-icons": "^5.4.0",
+    "react-konva": "^19.0.1",
+    "use-image": "^1.1.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -1,12 +1,14 @@
 "use client";
 
-import { HiOutlinePhoto } from "react-icons/hi2";
 import { PiMagicWandLight } from "react-icons/pi";
 import { SiCredly } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa6";
-import { TbHexagonPlus2 } from "react-icons/tb";
+import { TbHexagonPlus2, TbDownload } from "react-icons/tb";
+
 import {
+  Box,
   Card,
+  CloseButton,
   Group,
   SimpleGrid,
   Text,
@@ -14,20 +16,54 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import classes from "@/app/ui/dashboard/card-action.module.css";
+import React, { useState } from "react";
+import Image from "next/image";
+import { useDragAndDrop } from "@/app/contexts/drag-and-drop";
 
 const mockdata = [
-  { title: "Edit Photo", icon: HiOutlinePhoto, color: "violet" },
-  { title: "Choose Template", icon: PiMagicWandLight, color: "indigo" },
-  { title: "Choose Certifications", icon: TbHexagonPlus2, color: "grape" },
-  { title: "Scan From Credly", icon: SiCredly, color: "orange" },
-  { title: "Scan From Linkedin", icon: FaLinkedin, color: "indigo" },
+  // { title: "Edit Photo", icon: HiOutlinePhoto, color: "violet" },
+  {
+    title: "Choose Template",
+    icon: PiMagicWandLight,
+    color: "indigo",
+    component: AddBadges,
+  },
+  {
+    title: "Add Badges",
+    icon: TbHexagonPlus2,
+    color: "grape",
+    component: AddBadges,
+  },
+  {
+    title: "Scan From Credly",
+    icon: SiCredly,
+    color: "orange",
+    component: AddBadges,
+  },
+  {
+    title: "Scan From Linkedin",
+    icon: FaLinkedin,
+    color: "indigo",
+    component: AddBadges,
+  },
+  {
+    title: "Preview & Export",
+    icon: TbDownload,
+    color: "dark",
+    component: AddBadges,
+  },
 ];
 
 export default function CardAction() {
   const theme = useMantineTheme();
+  const [active, setActive] = useState(-1);
 
-  const items = mockdata.map((item) => (
-    <UnstyledButton key={item.title} className={classes.item}>
+  const items = mockdata.map((item, index) => (
+    <UnstyledButton
+      onClick={() => setActive(index)}
+      key={item.title}
+      className={classes.item}
+    >
       <item.icon color={theme.colors[item.color][6]} size={32} />
       <Text size="xs" mt={7}>
         {item.title}
@@ -35,14 +71,63 @@ export default function CardAction() {
     </UnstyledButton>
   ));
 
+  const RenderItem = active > -1 ? mockdata[active].component : () => null;
+
   return (
     <Card p={0} className={classes.card}>
       <Group justify="space-between">
-        <Text className={classes.title}>Menu</Text>
+        {active === -1 ? (
+          <Text className={classes.title}>Menu</Text>
+        ) : (
+          <CloseButton onClick={() => setActive(-1)} />
+        )}
       </Group>
-      <SimpleGrid cols={3} mt="md">
-        {items}
-      </SimpleGrid>
+      {active === -1 ? (
+        <SimpleGrid cols={3} mt="md">
+          {items}
+        </SimpleGrid>
+      ) : (
+        <Box className="grow overflow-hidden">
+          <RenderItem />
+        </Box>
+      )}
     </Card>
+  );
+}
+
+const badges = [
+  {
+    title: "Solutions Architect – Professional",
+    imageUrl: "/example-badge.png",
+  },
+];
+
+function AddBadges() {
+  const { setIsDragging, setDragItem } = useDragAndDrop();
+
+  return (
+    <div className="flex h-full flex-col overflow-auto">
+      {badges.map((badge, index) => (
+        <Box p={0} mt="xs" key={index} className="w-full">
+          <div className="flex justify-center w-full">
+            <Image
+              src={badge.imageUrl}
+              draggable={true}
+              alt={"Meowracle Badge | " + badge.title}
+              width={340}
+              height={340}
+              className="w-28 h-28 mx-auto"
+              onDragStart={() => {
+                setIsDragging(true);
+                setDragItem(badge.imageUrl);
+              }}
+            />
+          </div>
+          <Text size="lg" mt="xs" ta="center">
+            {badge.title}
+          </Text>
+        </Box>
+      ))}
+    </div>
   );
 }
