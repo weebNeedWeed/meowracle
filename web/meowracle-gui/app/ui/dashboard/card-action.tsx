@@ -19,6 +19,7 @@ import classes from "@/app/ui/dashboard/card-action.module.css";
 import React, { useState } from "react";
 import Image from "next/image";
 import { useDragAndDrop } from "@/app/contexts/drag-and-drop";
+import { useBadges } from "@/app/lib/api/badges";
 
 const mockdata = [
   // { title: "Edit Photo", icon: HiOutlinePhoto, color: "violet" },
@@ -95,15 +96,15 @@ export default function CardAction() {
   );
 }
 
-const badges = [
-  {
-    title: "Solutions Architect – Professional",
-    imageUrl: "/example-badge.png",
-  },
-];
-
 function AddBadges() {
+  const {
+    data: badges,
+    isLoading: isBadgesLoading,
+    isError: isBadgesError,
+  } = useBadges();
   const { setIsDragging, setDragItem } = useDragAndDrop();
+
+  if (isBadgesLoading || isBadgesError || !badges) return <></>;
 
   return (
     <div className="flex h-full flex-col overflow-auto">
@@ -111,15 +112,15 @@ function AddBadges() {
         <Box p={0} mt="xs" key={index} className="w-full">
           <div className="flex justify-center w-full">
             <Image
-              src={badge.imageUrl}
+              src={badge.path}
               draggable={true}
               alt={"Meowracle Badge | " + badge.title}
               width={340}
               height={340}
-              className="w-28 h-28 mx-auto"
+              className="w-28 h-28 mx-auto cursor-grab active:cursor-grabbing"
               onDragStart={() => {
                 setIsDragging(true);
-                setDragItem(badge.imageUrl);
+                setDragItem(badge.path);
               }}
             />
           </div>

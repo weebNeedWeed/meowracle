@@ -8,6 +8,7 @@ import {
   MantineProvider,
 } from "@mantine/core";
 import { theme } from "@/theme";
+import ReactQueryProvider from "./ui/react-query-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -29,7 +30,9 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body suppressHydrationWarning className="antialiased">
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme}>
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+        </MantineProvider>
       </body>
     </html>
   );

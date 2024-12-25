@@ -1,12 +1,13 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 
 type DragAndDropContextType = {
   isDragging: boolean;
   dragItem: string | null;
   setIsDragging: (isDragging: boolean) => void;
   setDragItem: (dragItem: string | null) => void;
+  clearDragItem: () => void;
 };
 
 const DragAndDropContext = createContext<DragAndDropContextType | null>(null);
@@ -19,9 +20,20 @@ export function DragAndDropContextProvider({
   const [isDragging, setIsDragging] = useState(false);
   const [dragItem, setDragItem] = useState<string | null>(null);
 
+  const clearDragItem = useCallback(() => {
+    setIsDragging(false);
+    setDragItem(null);
+  }, []);
+
   return (
     <DragAndDropContext.Provider
-      value={{ isDragging, dragItem, setIsDragging, setDragItem }}
+      value={{
+        isDragging,
+        dragItem,
+        setIsDragging,
+        setDragItem,
+        clearDragItem,
+      }}
     >
       {children}
     </DragAndDropContext.Provider>

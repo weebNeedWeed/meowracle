@@ -2,9 +2,9 @@ package main
 
 import (
 	"github.com/aws/aws-cdk-go/awscdk/v2"
-	"github.com/aws/aws-cdk-go/awscdk/v2/awsdynamodb"
 	"github.com/aws/constructs-go/constructs/v10"
 	"github.com/aws/jsii-runtime-go"
+	constructs2 "github.com/weebNeedWeed/meowracle/cmd/cdk/constructs"
 )
 
 type MeowracleStackProps struct {
@@ -18,24 +18,10 @@ func NewMeowracleStack(scope constructs.Construct, id string, props *MeowracleSt
 	}
 	stack := awscdk.NewStack(scope, &id, &sprops)
 
-	// awscdklambdagoalpha.NewGoFunction(stack, jsii.String("handler"), &awscdklambdagoalpha.GoFunctionProps{
-	// 	Entry: jsii.String("functions/hello-world"),
-	// })
+	table := constructs2.NewMeowracleTable(stack, "MeowracleTable", &constructs2.DynamoDBProps{})
 
-	awsdynamodb.NewTable(stack, jsii.String("BackendTable"), &awsdynamodb.TableProps{
-		PartitionKey: &awsdynamodb.Attribute{
-			Name: jsii.String("pk"),
-			Type: awsdynamodb.AttributeType_STRING,
-		},
-		SortKey: &awsdynamodb.Attribute{
-			Name: jsii.String("sk"),
-			Type: awsdynamodb.AttributeType_STRING,
-		},
-		BillingMode:   awsdynamodb.BillingMode_PROVISIONED,
-		ReadCapacity:  jsii.Number(5),
-		WriteCapacity: jsii.Number(2),
-		// DeletionProtection:   jsii.Bool(false),
-		// RemovalPolicy:        awscdk.RemovalPolicy_DESTROY,
+	constructs2.NewApi(stack, "MeowracleAPI", &constructs2.ApiProps{
+		Table: table.Table(),
 	})
 
 	return stack
