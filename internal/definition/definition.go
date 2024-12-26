@@ -23,12 +23,12 @@ type Template struct {
 }
 
 type Slot struct {
-	TemplateId string `json:"templateId"`
-	Index      int    `json:"index"`
-	X          int    `json:"x"`
-	Y          int    `json:"y"`
-	Width      int    `json:"width"`
-	Height     int    `json:"height"`
+	TemplateId string  `json:"templateId"`
+	Index      int     `json:"index"`
+	X          float64 `json:"x"`
+	Y          float64 `json:"y"`
+	Width      float64 `json:"width"`
+	Height     float64 `json:"height"`
 }
 
 type DynamoDBBadge struct {
@@ -47,12 +47,12 @@ type DynamoDBTemplate struct {
 }
 
 type DynamoDBSlot struct {
-	Pk     string `dynamodbav:"pk"`
-	Sk     string `dynamodbav:"sk"`
-	X      int    `dynamodbav:"x"`
-	Y      int    `dynamodbav:"y"`
-	Width  int    `dynamodbav:"width"`
-	Height int    `dynamodbav:"height"`
+	Pk     string  `dynamodbav:"pk"`
+	Sk     string  `dynamodbav:"sk"`
+	X      float64 `dynamodbav:"x"`
+	Y      float64 `dynamodbav:"y"`
+	Width  float64 `dynamodbav:"width"`
+	Height float64 `dynamodbav:"height"`
 }
 
 func (b *DynamoDBBadge) ToBadge() Badge {
@@ -88,6 +88,20 @@ func (d *DynamoDBTemplate) ToTemplate() Template {
 		Title: d.Title,
 		Path:  d.Path,
 	}
+}
+
+func (d *DynamoDBTemplate) GetKey() (map[string]types.AttributeValue, error) {
+	pk, err := attributevalue.Marshal(d.Pk)
+	if err != nil {
+		return nil, err
+	}
+
+	sk, err := attributevalue.Marshal(d.Sk)
+	if err != nil {
+		return nil, err
+	}
+
+	return map[string]types.AttributeValue{"pk": pk, "sk": sk}, nil
 }
 
 func (d *DynamoDBSlot) ToSlot() Slot {

@@ -143,33 +143,47 @@ export default function Page() {
       <section className="bg-gray-50 py-16">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold mb-8 text-center">How It Works</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-white w-12 h-12 rounded-full flex items-center justify-center text-gray-800 text-xl font-bold mx-auto mb-4 shadow">
-                1
+          <div className="max-w-4xl mx-auto">
+            <div className="space-y-12">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="bg-white p-6 rounded-full w-20 h-20 flex items-center justify-center text-2xl font-bold shadow-lg">
+                  1
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-2xl font-bold mb-2">Upload Your Image</h3>
+                  <p className="text-gray-600">
+                    Select or drag and drop your base image to get started. We
+                    support all major image formats for your convenience.
+                  </p>
+                </div>
               </div>
-              <h3 className="font-semibold text-xl mb-2">Upload Your Image</h3>
-              <p className="text-gray-600">
-                Select or drag and drop your base image to get started
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="bg-white w-12 h-12 rounded-full flex items-center justify-center text-gray-800 text-xl font-bold mx-auto mb-4 shadow">
-                2
+
+              <div className="flex flex-col md:flex-row-reverse items-center gap-8">
+                <div className="bg-white p-6 rounded-full w-20 h-20 flex items-center justify-center text-2xl font-bold shadow-lg">
+                  2
+                </div>
+                <div className="flex-1 text-center md:text-right">
+                  <h3 className="text-2xl font-bold mb-2">Customize Design</h3>
+                  <p className="text-gray-600">
+                    Add text, adjust colors, and apply effects to your image.
+                    Our intuitive editor makes it easy to create professional
+                    designs.
+                  </p>
+                </div>
               </div>
-              <h3 className="font-semibold text-xl mb-2">Customize Design</h3>
-              <p className="text-gray-600">
-                Add text, adjust colors, and apply effects to your image
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="bg-white w-12 h-12 rounded-full flex items-center justify-center text-gray-800 text-xl font-bold mx-auto mb-4 shadow">
-                3
+
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="bg-white p-6 rounded-full w-20 h-20 flex items-center justify-center text-2xl font-bold shadow-lg">
+                  3
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-2xl font-bold mb-2">Download</h3>
+                  <p className="text-gray-600">
+                    Save your creation in your preferred format. Share directly
+                    to social media or download for later use.
+                  </p>
+                </div>
               </div>
-              <h3 className="font-semibold text-xl mb-2">Download</h3>
-              <p className="text-gray-600">
-                Save your creation in your preferred format
-              </p>
             </div>
           </div>
         </div>

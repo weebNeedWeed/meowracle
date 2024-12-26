@@ -7,19 +7,28 @@ import { TbHexagonPlus2, TbDownload } from "react-icons/tb";
 
 import {
   Box,
+  Button,
   Card,
   CloseButton,
   Group,
+  Modal,
   SimpleGrid,
+  Skeleton,
   Text,
+  Tooltip,
   UnstyledButton,
   useMantineTheme,
 } from "@mantine/core";
 import classes from "@/app/ui/dashboard/card-action.module.css";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { useDragAndDrop } from "@/app/contexts/drag-and-drop";
 import { useBadges } from "@/app/lib/api/badges";
+import { useTemplates } from "@/app/lib/api/templates";
+import { useChooseTemplate } from "@/app/contexts/choose-template";
+import { usePreview } from "@/app/contexts/preview";
+import { useDisclosure } from "@mantine/hooks";
+import { downloadURI } from "@/app/lib/utils";
 
 const mockdata = [
   // { title: "Edit Photo", icon: HiOutlinePhoto, color: "violet" },
@@ -27,7 +36,7 @@ const mockdata = [
     title: "Choose Template",
     icon: PiMagicWandLight,
     color: "indigo",
-    component: AddBadges,
+    component: ChooseTemplates,
   },
   {
     title: "Add Badges",
@@ -39,19 +48,19 @@ const mockdata = [
     title: "Scan From Credly",
     icon: SiCredly,
     color: "orange",
-    component: AddBadges,
+    component: () => <>Coming Soon</>,
   },
   {
     title: "Scan From Linkedin",
     icon: FaLinkedin,
     color: "indigo",
-    component: AddBadges,
+    component: () => <>Coming Soon</>,
   },
   {
     title: "Preview & Export",
     icon: TbDownload,
     color: "dark",
-    component: AddBadges,
+    component: PreviewAndExport,
   },
 ];
 
@@ -104,12 +113,17 @@ function AddBadges() {
   } = useBadges();
   const { setIsDragging, setDragItem } = useDragAndDrop();
 
+  const sortedBadges = useMemo(() => {
+    if (!badges) return [];
+    return badges.sort((a, b) => a.level - b.level);
+  }, [badges]);
+
   if (isBadgesLoading || isBadgesError || !badges) return <></>;
 
   return (
     <div className="flex h-full flex-col overflow-auto">
-      {badges.map((badge, index) => (
-        <Box p={0} mt="xs" key={index} className="w-full">
+      {sortedBadges.map((badge, index) => (
+        <Box p={0} mb="sm" key={index} className="w-full">
           <div className="flex justify-center w-full">
             <Image
               src={badge.path}
@@ -117,18 +131,121 @@ function AddBadges() {
               alt={"Meowracle Badge | " + badge.title}
               width={340}
               height={340}
-              className="w-28 h-28 mx-auto cursor-grab active:cursor-grabbing"
+              className="w-28 h-28 mx-auto cursor-grab active:cursor-grabbing transform transition-all duration-300 ease-in-out hover:scale-110 active:scale-95"
               onDragStart={() => {
                 setIsDragging(true);
                 setDragItem(badge.path);
               }}
             />
           </div>
-          <Text size="lg" mt="xs" ta="center">
+          <Text size="md" ta="center" className="text-shadow">
             {badge.title}
           </Text>
         </Box>
       ))}
     </div>
+  );
+}
+
+function ChooseTemplates() {
+  const {
+    data: templates,
+    isLoading: isTemplatesLoading,
+    isError: isTemplatesError,
+  } = useTemplates();
+
+  const { setChosenId } = useChooseTemplate();
+
+  if (isTemplatesLoading || isTemplatesError || !templates) return null;
+
+  return (
+    <Box mt="xs" className="flex flex-col">
+      {templates.map((template, index) => (
+        <Box className="flex flex-col" key={index}>
+          <Image
+            alt={"Meowracle Template - " + template.title}
+            src={template.path}
+            height={1584}
+            width={396}
+            className="w-full mx-auto cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 shadow-md hover:shadow-lg"
+            onClick={() => {
+              setChosenId(template.id);
+            }}
+          />
+          <Text size="md" mt="xs" ta="center" className="text-shadow">
+            {template.title}
+          </Text>
+        </Box>
+      ))}
+    </Box>
+  );
+}
+
+function PreviewAndExport() {
+  const { setIsPreviewActive, previewItem, isPreviewActive, clearPreviewItem } =
+    usePreview();
+
+  const [opened, { open, close }] = useDisclosure(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setIsPreviewActive(true);
+    }, 1000);
+
+    return () => {
+      clearTimeout(t);
+      clearPreviewItem();
+    };
+  }, [setIsPreviewActive, clearPreviewItem]);
+
+  const handleExport = useCallback(() => {
+    if (!previewItem) return;
+    downloadURI(previewItem!, "meowracle_exported_image.png");
+  }, [previewItem]);
+
+  return (
+    <Box mt="xs" className="flex flex-col items-center">
+      {isPreviewActive && previewItem ? (
+        <Tooltip label="Click to view full" position="top">
+          <Image
+            onClick={open}
+            src={previewItem}
+            alt="Meowracle Preview"
+            width={1584}
+            height={396}
+            className="w-full cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 shadow-md hover:shadow-lg"
+          />
+        </Tooltip>
+      ) : (
+        <Skeleton variant="rect" height={60} className="w-full" />
+      )}
+
+      <Button
+        disabled={!isPreviewActive || !previewItem}
+        fullWidth
+        rightSection={<TbDownload size={14} />}
+        mt="sm"
+        onClick={handleExport}
+      >
+        Export
+      </Button>
+
+      <Modal
+        title="Preview"
+        opened={opened}
+        onClose={close}
+        size="xl"
+        radius="md"
+      >
+        <Image
+          onClick={open}
+          src={previewItem!}
+          alt="Meowracle Preview"
+          width={1584}
+          height={396}
+          className="w-full shadow-md rounded-md"
+        />
+      </Modal>
+    </Box>
   );
 }

@@ -1,47 +1,40 @@
 "use client";
 
-import React, { useCallback, useRef, useState } from "react";
-import { Image, Layer, Rect, Stage } from "react-konva";
-import useImage from "use-image";
-import EmptySlot from "./empty-slot";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Image, Layer, Rect, Stage, Text, Label, Tag } from "react-konva";
 import { Slot } from "@/app/lib/definitions";
 import Konva from "konva";
 import { useDragAndDrop } from "@/app/contexts/drag-and-drop";
-
-const slotData: Slot[] = [
-  {
-    index: 1,
-    x: 1417,
-    y: 43,
-    width: 105,
-    height: 124,
-  },
-];
+import { Box } from "@mantine/core";
+import { useChooseTemplate } from "@/app/contexts/choose-template";
+import { useTemplate } from "@/app/lib/api/templates";
+import EmptySlot from "./empty-slot";
+import useImage from "use-image";
+import { usePreview } from "@/app/contexts/preview";
 
 export default function TemplateEditor() {
-  const [hello] = useImage("/example-template.png");
   const stageRef = useRef<Konva.Stage>(null);
+  const [slots, setSlots] = useState<Slot[]>([]);
 
   const { dragItem, isDragging, clearDragItem } = useDragAndDrop();
-  const [slots, setSlots] = useState<Slot[]>(slotData);
+  const { chosenId } = useChooseTemplate();
+  const { isPreviewActive, setPreviewItem, clearPreviewItem } = usePreview();
 
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    if (!stageRef.current) {
-      return;
+  // Generate preview image when preview is active
+  useEffect(() => {
+    if (isPreviewActive && stageRef.current) {
+      const t = setTimeout(() => {
+        setPreviewItem(
+          stageRef.current!.toDataURL({
+            mimeType: "image/jpeg",
+            pixelRatio: 3,
+            quality: 1,
+          })
+        );
+      }, 100);
+      return () => clearTimeout(t);
     }
-
-    if (!isDragging || !dragItem) {
-      return;
-    }
-
-    stageRef.current.setPointersPositions(e);
-    if (!stageRef.current.getPointerPosition()) {
-      return;
-    }
-
-    putImageOntoStage(stageRef.current.getPointerPosition()!);
-  };
+  }, [isPreviewActive, setPreviewItem, clearPreviewItem]);
 
   const putImageOntoStage = useCallback(
     (pos: Konva.Vector2d) => {
@@ -67,30 +60,96 @@ export default function TemplateEditor() {
     [dragItem, clearDragItem, slots]
   );
 
+  const handleDrop = useCallback(
+    (e: React.DragEvent<HTMLDivElement>) => {
+      e.preventDefault();
+      if (!stageRef.current) {
+        return;
+      }
+
+      if (!isDragging || !dragItem) {
+        return;
+      }
+
+      stageRef.current.setPointersPositions(e);
+      if (!stageRef.current.getPointerPosition()) {
+        return;
+      }
+
+      putImageOntoStage(stageRef.current.getPointerPosition()!);
+    },
+    [isDragging, dragItem, putImageOntoStage]
+  );
+
   return (
     <div className="overflow-x-scroll w-full h-full justify-start flex items-center">
-      <div onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
+      <Box
+        onDrop={handleDrop}
+        onDragOver={(e) => e.preventDefault()}
+        component="div"
+      >
         <Stage width={1584} height={396} ref={stageRef}>
-          <Layer>
-            <Rect x={0} y={0} width={1584} height={396} fill="#f0f0f0" />
-          </Layer>
+          {!chosenId && (
+            <Layer>
+              <Rect x={0} y={0} width={1584} height={396} fill="#f0f0f0" />
+              <Label x={10} y={10} opacity={0.9}>
+                <Tag fill="#404040" />
+                <Text
+                  text="Please click on 'Choose Template' > Select a template to start editing"
+                  fontFamily="Calibri"
+                  fontSize={24}
+                  padding={8}
+                  fill="white"
+                  fontStyle="bold"
+                />
+              </Label>
+            </Layer>
+          )}
 
-          <Layer>
-            <Image
-              alt="a"
-              x={0}
-              y={0}
-              width={1584}
-              height={396}
-              image={hello}
-            />
-
-            {slots.map((slot, index) => (
-              <EmptySlot key={index} slot={slot} />
-            ))}
-          </Layer>
+          {chosenId && (
+            <TemplateLayer templateId={chosenId} setSlots={setSlots} />
+          )}
         </Stage>
-      </div>
+      </Box>
     </div>
+  );
+}
+
+function TemplateLayer({
+  templateId,
+  setSlots,
+}: {
+  templateId: string;
+  setSlots: (slots: Slot[]) => void;
+}) {
+  const {
+    data: template,
+    isLoading: isTemplateLoading,
+    isError: isTemplateError,
+  } = useTemplate(templateId);
+  const { isPreviewActive } = usePreview();
+
+  const [image] = useImage(template?.path ?? "");
+
+  useEffect(() => {
+    if (!template || isTemplateLoading || isTemplateError) {
+      return;
+    }
+
+    setSlots(template.slots);
+  }, [template, isTemplateLoading, isTemplateError, setSlots]);
+
+  if (isTemplateLoading || isTemplateError || !template) {
+    return null;
+  }
+
+  return (
+    <Layer>
+      <Image alt="a" x={0} y={0} width={1584} height={396} image={image} />
+
+      {template.slots.map((slot, index) => (
+        <EmptySlot key={index} slot={slot} isPreviewing={isPreviewActive} />
+      ))}
+    </Layer>
   );
 }

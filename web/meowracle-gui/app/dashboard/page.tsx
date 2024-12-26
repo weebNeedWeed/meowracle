@@ -4,6 +4,8 @@ import CardAction from "@/app/ui/dashboard/card-action";
 import NoSSRTemplateEditor from "@/app/ui/dashboard/no-ssr-template-editor";
 import { Container } from "@mantine/core";
 import { DragAndDropContextProvider } from "@/app/contexts/drag-and-drop";
+import { ChooseTemplateContextProvider } from "../contexts/choose-template";
+import { PreviewContextProvider } from "../contexts/preview";
 
 const Section = ({
   children,
@@ -28,13 +30,17 @@ export default function Page() {
       <Container size="lg" className="h-full w-full grow-0 overflow-hidden">
         <div className="flex justify-start items-center gap-4 w-full h-full">
           <DragAndDropContextProvider>
-            <Section className="p-4">
-              <CardAction />
-            </Section>
+            <ChooseTemplateContextProvider>
+              <PreviewContextProvider>
+                <Section className="p-4">
+                  <CardAction />
+                </Section>
 
-            <Section className="p-5 w-3/4">
-              <NoSSRTemplateEditor />
-            </Section>
+                <Section className="p-5 w-3/4">
+                  <NoSSRTemplateEditor />
+                </Section>
+              </PreviewContextProvider>
+            </ChooseTemplateContextProvider>
           </DragAndDropContextProvider>
         </div>
       </Container>

@@ -3,10 +3,16 @@ import { getCrop } from "@/app/lib/utils";
 import { RegularPolygon, Text, Image } from "react-konva";
 import useImage from "use-image";
 
-export default function EmptySlot({ slot }: { slot: Slot }) {
+export default function EmptySlot({
+  slot,
+  isPreviewing,
+}: {
+  slot: Slot;
+  isPreviewing: boolean;
+}) {
   const [fillImage] = useImage(slot.fillImage ?? "");
-
-  if (!slot.fillImage) {
+  console.log(isPreviewing);
+  if (!slot.fillImage && !isPreviewing) {
     return (
       <>
         <RegularPolygon
@@ -50,6 +56,9 @@ export default function EmptySlot({ slot }: { slot: Slot }) {
   );
   return (
     <Image
+      onMouseOver={() => {
+        console.log("hovered");
+      }}
       alt="Meowracle Selected Badge"
       x={slot.x}
       y={slot.y}

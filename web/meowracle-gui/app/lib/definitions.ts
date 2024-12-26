@@ -1,4 +1,5 @@
 export type Slot = {
+  templateId: string;
   index: number;
   x: number;
   y: number;

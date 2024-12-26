@@ -35,7 +35,7 @@ func NewMeowracleTable(scope constructs.Construct, id string, props *DynamoDBPro
 		rmPolicy = awscdk.RemovalPolicy_RETAIN
 	}
 
-	table := awsdynamodb.NewTable(this, jsii.String("DynamoDBTable"), &awsdynamodb.TableProps{
+	table := awsdynamodb.NewTable(this, jsii.String(id), &awsdynamodb.TableProps{
 		PartitionKey: &awsdynamodb.Attribute{
 			Name: jsii.String("pk"),
 			Type: awsdynamodb.AttributeType_STRING,
