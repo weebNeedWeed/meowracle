@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Navbar />
       </header>
 
-      <div className="items-stretch grow w-full h-full overflow-y-auto pr-6 pl-4 pt-6 pb-4">
+      <div className="items-stretch grow w-full h-full overflow-y-auto pr-6 pl-4 pt-9 pb-4">
         {children}
       </div>
     </main>

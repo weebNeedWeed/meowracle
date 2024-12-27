@@ -26,6 +26,11 @@ func NewApi(scope constructs.Construct, id string, props *ApiProps) Api {
 		EndpointTypes: &[]awsapigateway.EndpointType{
 			awsapigateway.EndpointType_EDGE,
 		},
+		DefaultCorsPreflightOptions: &awsapigateway.CorsOptions{
+			AllowOrigins: awsapigateway.Cors_ALL_ORIGINS(),
+			AllowMethods: awsapigateway.Cors_ALL_METHODS(),
+			AllowHeaders: awsapigateway.Cors_DEFAULT_HEADERS(),
+		},
 	})
 
 	// badge
@@ -36,6 +41,12 @@ func NewApi(scope constructs.Construct, id string, props *ApiProps) Api {
 
 	// template
 	newTemplatesResource(this, "templates-resource", &ResourceProps{
+		Rest:  rest,
+		Table: props.Table,
+	})
+
+	// subscription
+	newSubscriptionsResource(this, "subscriptions-resource", &ResourceProps{
 		Rest:  rest,
 		Table: props.Table,
 	})

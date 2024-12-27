@@ -4,8 +4,8 @@ import CardAction from "@/app/ui/dashboard/card-action";
 import NoSSRTemplateEditor from "@/app/ui/dashboard/no-ssr-template-editor";
 import { Container } from "@mantine/core";
 import { DragAndDropContextProvider } from "@/app/contexts/drag-and-drop";
-import { ChooseTemplateContextProvider } from "../contexts/choose-template";
-import { PreviewContextProvider } from "../contexts/preview";
+import { ChooseTemplateContextProvider } from "@/app/contexts/choose-template";
+import { PreviewContextProvider } from "@/app/contexts/preview";
 
 const Section = ({
   children,
@@ -16,7 +16,7 @@ const Section = ({
 }) => (
   <section
     className={clsx(
-      "h-full bg-white shadow-lg shadow-gray-200 rounded-lg w-1/4 border border-gray-200",
+      "h-full bg-white shadow-lg shadow-gray-200 rounded-sm w-1/4 border border-gray-200",
       className
     )}
   >
@@ -27,7 +27,7 @@ const Section = ({
 export default function Page() {
   return (
     <div className="w-full h-full flex flex-col">
-      <Container size="lg" className="h-full w-full grow-0 overflow-hidden">
+      <Container size="xl" className="h-full w-full grow-0 overflow-hidden">
         <div className="flex justify-start items-center gap-4 w-full h-full">
           <DragAndDropContextProvider>
             <ChooseTemplateContextProvider>

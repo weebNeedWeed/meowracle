@@ -29,7 +29,10 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <body suppressHydrationWarning className="antialiased">
+      <body
+        suppressHydrationWarning
+        className="antialiased overflow-x-hidden scroll-smooth"
+      >
         <MantineProvider theme={theme}>
           <ReactQueryProvider>{children}</ReactQueryProvider>
         </MantineProvider>

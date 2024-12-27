@@ -1,17 +1,22 @@
 import { Slot } from "@/app/lib/definitions";
 import { getCrop } from "@/app/lib/utils";
-import { RegularPolygon, Text, Image } from "react-konva";
+import { useState } from "react";
+import { RegularPolygon, Text, Image, Circle, Group } from "react-konva";
 import useImage from "use-image";
 
 export default function EmptySlot({
   slot,
   isPreviewing,
+  onRemoveBadge,
 }: {
   slot: Slot;
   isPreviewing: boolean;
+  onRemoveBadge: () => void;
 }) {
   const [fillImage] = useImage(slot.fillImage ?? "");
-  console.log(isPreviewing);
+  const [deleteIcon] = useImage("/delete-icon.svg");
+  const [hovered, setHovered] = useState(false);
+
   if (!slot.fillImage && !isPreviewing) {
     return (
       <>
@@ -38,9 +43,9 @@ export default function EmptySlot({
           y={slot.y}
           verticalAlign="middle"
           align="center"
-          text={slot.index.toString()}
+          text={"+"}
           fill="#141414"
-          fontSize={35}
+          fontSize={40}
         />
       </>
     );
@@ -55,22 +60,64 @@ export default function EmptySlot({
     "center-middle"
   );
   return (
-    <Image
-      onMouseOver={() => {
-        console.log("hovered");
+    <Group
+      onMouseEnter={() => {
+        setHovered(true);
       }}
-      alt="Meowracle Selected Badge"
-      x={slot.x}
-      y={slot.y}
-      width={slot.width}
-      height={slot.height}
-      image={fillImage}
-      crop={{
-        x: cropX,
-        y: cropY,
-        width: cropWidth,
-        height: cropHeight,
+      onMouseLeave={() => {
+        setHovered(false);
       }}
-    />
+    >
+      <Image
+        onMouseOver={() => {
+          console.log("hovered");
+        }}
+        alt="Meowracle Selected Badge"
+        x={slot.x}
+        y={slot.y}
+        width={slot.width}
+        height={slot.height}
+        image={fillImage}
+        crop={{
+          x: cropX,
+          y: cropY,
+          width: cropWidth,
+          height: cropHeight,
+        }}
+      />
+      {hovered && !isPreviewing && (
+        <Group
+          onMouseOver={(e) => {
+            const stage = e.target.getStage();
+            if (stage) stage.container().style.cursor = "pointer";
+          }}
+          onMouseOut={(e) => {
+            const stage = e.target.getStage();
+            if (stage) stage.container().style.cursor = "default";
+          }}
+          onClick={(e) => {
+            const stage = e.target.getStage();
+            if (stage) stage.container().style.cursor = "default";
+            onRemoveBadge();
+          }}
+        >
+          <Circle
+            x={slot.x + slot.width - 10}
+            y={slot.y + 10}
+            radius={12}
+            fill="red"
+            opacity={0.5}
+          />
+          <Image
+            x={slot.x + slot.width - 17}
+            y={slot.y + 2}
+            width={15}
+            height={15}
+            image={deleteIcon}
+            alt="delete"
+          />
+        </Group>
+      )}
+    </Group>
   );
 }

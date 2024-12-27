@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Image, Layer, Rect, Stage, Text, Label, Tag } from "react-konva";
+import { Image, Layer, Rect, Stage } from "react-konva";
 import { Slot } from "@/app/lib/definitions";
 import Konva from "konva";
 import { useDragAndDrop } from "@/app/contexts/drag-and-drop";
@@ -92,17 +92,6 @@ export default function TemplateEditor() {
           {!chosenId && (
             <Layer>
               <Rect x={0} y={0} width={1584} height={396} fill="#f0f0f0" />
-              <Label x={10} y={10} opacity={0.9}>
-                <Tag fill="#404040" />
-                <Text
-                  text="Please click on 'Choose Template' > Select a template to start editing"
-                  fontFamily="Calibri"
-                  fontSize={24}
-                  padding={8}
-                  fill="white"
-                  fontStyle="bold"
-                />
-              </Label>
             </Layer>
           )}
 
@@ -110,6 +99,9 @@ export default function TemplateEditor() {
             <TemplateLayer templateId={chosenId} setSlots={setSlots} />
           )}
         </Stage>
+        <div className="text-sm text-gray-500 mt-2 fixed">
+          Tip: scroll to view the slots, drag and drop a badge to fill a slot.
+        </div>
       </Box>
     </div>
   );
@@ -128,8 +120,21 @@ function TemplateLayer({
     isError: isTemplateError,
   } = useTemplate(templateId);
   const { isPreviewActive } = usePreview();
-
   const [image] = useImage(template?.path ?? "");
+
+  const handleRemoveBadge = useCallback(
+    (slotIndex: number) => {
+      if (!template?.slots) return;
+
+      const newSlots = [...template.slots];
+      const s = newSlots.find((s) => s.index === slotIndex);
+      if (s) {
+        s.fillImage = undefined;
+        setSlots(newSlots);
+      }
+    },
+    [template?.slots, setSlots]
+  );
 
   useEffect(() => {
     if (!template || isTemplateLoading || isTemplateError) {
@@ -147,8 +152,13 @@ function TemplateLayer({
     <Layer>
       <Image alt="a" x={0} y={0} width={1584} height={396} image={image} />
 
-      {template.slots.map((slot, index) => (
-        <EmptySlot key={index} slot={slot} isPreviewing={isPreviewActive} />
+      {template.slots.map((slot) => (
+        <EmptySlot
+          key={slot.index}
+          slot={slot}
+          isPreviewing={isPreviewActive}
+          onRemoveBadge={() => handleRemoveBadge(slot.index)}
+        />
       ))}
     </Layer>
   );

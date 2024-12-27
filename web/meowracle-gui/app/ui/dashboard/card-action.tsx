@@ -118,27 +118,50 @@ function AddBadges() {
     return badges.sort((a, b) => a.level - b.level);
   }, [badges]);
 
-  if (isBadgesLoading || isBadgesError || !badges) return <></>;
+  if (isBadgesLoading || isBadgesError || !badges)
+    return (
+      <Box mt="xs" className="flex flex-col">
+        {Array.from({ length: 4 }).map((_, index) => (
+          <Box className="flex flex-col" mb="lg" key={index}>
+            <Skeleton
+              variant="rect"
+              width={112}
+              height={112}
+              className="mx-auto"
+            />
+            <Skeleton
+              mt="xs"
+              variant="rect"
+              width="90%"
+              height={20}
+              className="w-full mx-auto"
+            />
+          </Box>
+        ))}
+      </Box>
+    );
 
   return (
     <div className="flex h-full flex-col overflow-auto">
       {sortedBadges.map((badge, index) => (
         <Box p={0} mb="sm" key={index} className="w-full">
           <div className="flex justify-center w-full">
-            <Image
-              src={badge.path}
-              draggable={true}
-              alt={"Meowracle Badge | " + badge.title}
-              width={340}
-              height={340}
-              className="w-28 h-28 mx-auto cursor-grab active:cursor-grabbing transform transition-all duration-300 ease-in-out hover:scale-110 active:scale-95"
-              onDragStart={() => {
-                setIsDragging(true);
-                setDragItem(badge.path);
-              }}
-            />
+            <Tooltip label="Drag to add" position="top">
+              <Image
+                src={badge.path}
+                draggable={true}
+                alt={"Meowracle Badge | " + badge.title}
+                width={340}
+                height={340}
+                className="w-28 h-28 mx-auto cursor-grab active:cursor-grabbing transform transition-all duration-300 ease-in-out hover:scale-110 active:scale-95"
+                onDragStart={() => {
+                  setIsDragging(true);
+                  setDragItem(badge.path);
+                }}
+              />
+            </Tooltip>
           </div>
-          <Text size="md" ta="center" className="text-shadow">
+          <Text size="md" ta="center" className="text-shadow" px="md">
             {badge.title}
           </Text>
         </Box>
@@ -156,23 +179,42 @@ function ChooseTemplates() {
 
   const { setChosenId } = useChooseTemplate();
 
-  if (isTemplatesLoading || isTemplatesError || !templates) return null;
+  if (isTemplatesLoading || isTemplatesError || !templates)
+    return (
+      <Box mt="xs" className="flex flex-col">
+        {Array.from({ length: 4 }).map((_, index) => (
+          <Box className="flex flex-col" mb="lg" key={index}>
+            <Skeleton variant="rect" height={60} className="w-full" />
+            <Skeleton
+              mt="xs"
+              variant="rect"
+              width="95%"
+              height={20}
+              className="w-full mx-auto"
+            />
+          </Box>
+        ))}
+      </Box>
+    );
 
   return (
     <Box mt="xs" className="flex flex-col">
       {templates.map((template, index) => (
-        <Box className="flex flex-col" key={index}>
-          <Image
-            alt={"Meowracle Template - " + template.title}
-            src={template.path}
-            height={1584}
-            width={396}
-            className="w-full mx-auto cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 shadow-md hover:shadow-lg"
-            onClick={() => {
-              setChosenId(template.id);
-            }}
-          />
-          <Text size="md" mt="xs" ta="center" className="text-shadow">
+        <Box mb="lg" className="flex flex-col" key={index}>
+          <Tooltip label={"Click to choose"} position="top">
+            <Image
+              alt={"Meowracle Template - " + template.title}
+              src={template.path}
+              height={1584}
+              width={396}
+              className="w-full mx-auto cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 rounded-md"
+              onClick={() => {
+                setChosenId(template.id);
+              }}
+            />
+          </Tooltip>
+
+          <Text size="md" mt="xs" ta="center" className="text-shadow" px="md">
             {template.title}
           </Text>
         </Box>
