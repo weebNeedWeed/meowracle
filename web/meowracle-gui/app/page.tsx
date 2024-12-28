@@ -140,6 +140,7 @@ export default function Page() {
                 loop
                 muted
                 className="rounded-lg shadow-xl mx-auto w-full object-cover"
+                playsInline
               >
                 <source src="/demo.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
