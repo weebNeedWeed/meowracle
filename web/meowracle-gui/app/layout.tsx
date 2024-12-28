@@ -12,8 +12,10 @@ import ReactQueryProvider from "./ui/react-query-provider";
 
 export const metadata: Metadata = {
   title: {
-    default: "Meowracle.live | Create Stunning AWS Certification Banners",
-    template: "%s | Meowracle.live | Create Stunning AWS Certification Banners",
+    default:
+      "meowracle.live | Create Stunning LinkedIn Cover Images To Highlight Your AWS Certifications",
+    template:
+      "%s | meowracle.live | Create Stunning LinkedIn Cover Images To Highlight Your AWS Certifications",
   },
   description:
     "Effortlessly create stunning banners to showcase your AWS certifications. This application provides templates and tools to design professional-looking banners for social media, LinkedIn, and more, highlighting your AWS accomplishments.",

@@ -141,10 +141,7 @@ export default function Page() {
                 muted
                 className="rounded-lg shadow-xl mx-auto w-full object-cover"
               >
-                <source
-                  src="https://videocdn.cdnpk.net/videos/48264b9c-b179-507e-be6d-3142ce612ef8/horizontal/previews/clear/large.mp4?token=exp=1735308663~hmac=f8109c7e989ac3472d2213df73ef836ee03ed16a756e86d8863d447e79f85410"
-                  type="video/mp4"
-                />
+                <source src="/demo.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
