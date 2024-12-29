@@ -120,13 +120,13 @@ export default function Page() {
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center">
             <Link
               href="/dashboard"
-              className="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 transition-colors text-center"
+              className="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors text-center"
             >
               Get Started Free
             </Link>
             <a
               href="#how-it-works"
-              className="bg-gray-100 text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors text-center"
+              className="bg-gray-100 text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 transition-colors text-center"
             >
               Learn More
             </a>
