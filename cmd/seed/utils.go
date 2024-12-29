@@ -76,9 +76,9 @@ func getBagdes() (badges []definition.DynamoDBBadge) {
 		{
 			Pk:    "BADGE",
 			Sk:    "BADGE#" + uuids[8],
-			Title: "Machine Learning – Specialty",
-			Path:  "/badges/machine-learning-specialty.png",
-			Level: 3,
+			Title: "Developer – Associate",
+			Path:  "/badges/developer-associate.png",
+			Level: 1,
 		},
 		{
 			Pk:    "BADGE",
