@@ -9,6 +9,7 @@ import {
 } from "@mantine/core";
 import { theme } from "@/theme";
 import ReactQueryProvider from "./ui/react-query-provider";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   title: {
@@ -20,6 +21,8 @@ export const metadata: Metadata = {
   description:
     "Effortlessly create stunning banners to showcase your AWS certifications. This application provides templates and tools to design professional-looking banners for social media, LinkedIn, and more, highlighting your AWS accomplishments.",
 };
+
+const gaId = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 
 export default function RootLayout({
   children,
@@ -39,6 +42,7 @@ export default function RootLayout({
           <ReactQueryProvider>{children}</ReactQueryProvider>
         </MantineProvider>
       </body>
+      <GoogleAnalytics gaId={gaId!} />
     </html>
   );
 }
