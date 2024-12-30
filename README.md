@@ -1,12 +1,108 @@
-# Welcome to your CDK Go project!
+![GitHub issues](https://img.shields.io/github/issues/weebNeedWeed/meowracle)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/weebNeedWeed/meowracle)
+![GitHub](https://img.shields.io/github/license/weebNeedWeed/meowracle)
+![GitHub contributors](https://img.shields.io/github/contributors/weebNeedWeed/meowracle)
+![GitHub stars](https://img.shields.io/github/stars/weebNeedWeed/meowracle)
 
-This is a blank project for CDK development with Go.
+# Meowracle
 
-The `cdk.json` file tells the CDK toolkit how to execute your app.
+Meowracle is a tool designed to help you create stunning LinkedIn cover images to highlight your AWS certifications. This repository contains both the backend and frontend code for the Meowracle application.
 
-## Useful commands
+## Features
 
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk synth`       emits the synthesized CloudFormation template
- * `go test`         run unit tests
+- Quick and easy banner creation
+- Professional templates optimized for LinkedIn
+- AWS certification badge integration
+- High quality output in multiple formats
+- Real-time preview
+- Always free to use
+
+## Tech Stack
+
+### Backend
+
+- Go
+- AWS CDK
+- DynamoDB
+- API Gateway
+
+### Frontend
+
+- Next.js 15
+- React 19
+- Mantine UI Framework
+- Konva for canvas manipulation
+- TypeScript
+- TailwindCSS
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (18.x or higher)
+- pnpm package manager
+- Go (1.20 or higher)
+- AWS CLI configured
+
+### Installation
+
+1. Clone the repository:
+  ```bash
+  git clone <repository-url>
+  ```
+
+2. Install dependencies:
+  ```bash
+  pnpm install
+  ```
+
+3. Create environment file:
+  ```bash
+  cp .env.sample .env
+  ```
+
+### Development
+
+#### Frontend
+
+1. Start the development server:
+  ```bash
+  pnpm dev
+  ```
+
+2. Build for production:
+  ```bash
+  pnpm build
+  ```
+
+3. Start the production server:
+  ```bash
+  pnpm start
+  ```
+
+#### Backend
+
+1. Run the CDK application:
+  ```bash
+  go mod download && go run cmd/cdk/main.go
+  ```
+
+2. Seed the database:
+  ```bash
+  make seed
+  ```
+
+## Environment Variables
+
+- `NEXT_PUBLIC_BASE_URL`: Base URL for the application
+- `NEXT_PUBLIC_GA_TRACKING_ID`: Google Analytics tracking ID
+- `AWS_PROFILE`: AWS CLI profile to use
+- `ENVIRONMENT`: Deployment environment (e.g., development, production)
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contact
+
+For any inquiries or support, please open an issue in the repository.
