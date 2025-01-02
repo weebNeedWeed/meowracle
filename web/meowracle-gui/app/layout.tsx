@@ -1,5 +1,5 @@
-import "@/app/ui/globals.css";
 import "@mantine/core/styles.css";
+import "@/app/ui/globals.css";
 
 import { Metadata } from "next";
 import {
