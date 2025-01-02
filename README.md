@@ -26,7 +26,7 @@ Meowracle is a tool designed to help you create stunning LinkedIn cover images t
 - DynamoDB
 - API Gateway
 
-### Frontend
+### Frontend (see [Frontend Documentation](web/meowracle-gui))
 
 - Next.js 15
 - React 19
@@ -101,7 +101,7 @@ Meowracle is a tool designed to help you create stunning LinkedIn cover images t
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the Apache 2.0 License.
 
 ## Contact
 
