@@ -82,9 +82,9 @@ Meowracle is a tool designed to help you create stunning LinkedIn cover images t
 
 #### Backend
 
-1. Run the CDK application:
+1. Deploy the CDK stack:
   ```bash
-  go mod download && go run cmd/cdk/main.go
+  cdk bootstrap && cdk deploy
   ```
 
 2. Seed the database:
