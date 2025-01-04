@@ -131,7 +131,7 @@ export default function Page() {
             </button>
           </div>
 
-          <div className="grow w-full h-full bg-red-800"></div>
+          <div className="grow w-full h-full"></div>
 
           <div className="bg-[#27272F] w-80 h-full shrink-0"></div>
         </main>

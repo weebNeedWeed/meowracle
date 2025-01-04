@@ -26,16 +26,15 @@ type MeowracleTable interface {
 func NewMeowracleTable(scope constructs.Construct, id string, props *DynamoDBProps) MeowracleTable {
 	this := constructs.NewConstruct(scope, &id)
 
-	environment := env.GetString("ENVIRONMENT", "development")
 	delProtection := jsii.Bool(false)
 	rmPolicy := awscdk.RemovalPolicy_DESTROY
 
-	if environment == "production" {
+	if env.IsProduction() {
 		delProtection = jsii.Bool(true)
 		rmPolicy = awscdk.RemovalPolicy_RETAIN
 	}
 
-	table := awsdynamodb.NewTable(this, jsii.String(id), &awsdynamodb.TableProps{
+	table := awsdynamodb.NewTable(this, jsii.String("table"), &awsdynamodb.TableProps{
 		PartitionKey: &awsdynamodb.Attribute{
 			Name: jsii.String("pk"),
 			Type: awsdynamodb.AttributeType_STRING,

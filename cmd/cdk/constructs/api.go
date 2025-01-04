@@ -22,7 +22,7 @@ type Api interface {
 func NewApi(scope constructs.Construct, id string, props *ApiProps) Api {
 	this := constructs.NewConstruct(scope, &id)
 
-	rest := awsapigateway.NewRestApi(this, jsii.String(id), &awsapigateway.RestApiProps{
+	rest := awsapigateway.NewRestApi(this, jsii.String("rest-api"), &awsapigateway.RestApiProps{
 		EndpointTypes: &[]awsapigateway.EndpointType{
 			awsapigateway.EndpointType_EDGE,
 		},
