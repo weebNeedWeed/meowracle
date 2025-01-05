@@ -20,3 +20,18 @@ func getCertificationProgramBadges() *badgeCollection {
 
 	return c
 }
+
+func getKnowledgeBadges() *badgeCollection {
+	r, err := os.ReadFile("./assets/aws-knowledge.json")
+	if err != nil {
+		log.Fatalf("error occured when read aws-knowledge.json, %v", err)
+	}
+
+	c := new(badgeCollection)
+	err = json.Unmarshal(r, c)
+	if err != nil {
+		log.Fatalf("error occured when unmarshalling, %v", err)
+	}
+
+	return c
+}

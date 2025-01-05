@@ -1,0 +1,1822 @@
+{
+    "data": [
+        {
+            "id": "ead5b6ed-3850-43b8-9703-6ce29c812c91",
+            "description": "Earners of this badge have developed knowledge of foundational AWS Cloud concepts with a focus on AWS Compute, Storage, Networking and Database services, security, architecture, pricing, and support.",
+            "global_activity_url": "https://aws.amazon.com/training/badges/",
+            "earn_this_badge_url": null,
+            "enable_earn_this_badge": false,
+            "enable_detail_attribute_visibility": true,
+            "name": "AWS Knowledge: Cloud Essentials",
+            "public": true,
+            "recipient_type": "User",
+            "vanity_slug": "aws-knowledge-cloud-essentials",
+            "show_badge_lmi": true,
+            "show_skill_tag_links": true,
+            "settings_enable_related_badges": true,
+            "translatable": false,
+            "level": null,
+            "time_to_earn": null,
+            "cost": null,
+            "type_category": "Learning",
+            "badge_template_interest_id": null,
+            "earned": false,
+            "image": {
+                "id": "ec621e2a-c8f0-4459-806c-ae11829d372a",
+                "url": "https://images.credly.com/images/ec621e2a-c8f0-4459-806c-ae11829d372a/image.png"
+            },
+            "image_url": "https://images.credly.com/images/ec621e2a-c8f0-4459-806c-ae11829d372a/image.png",
+            "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-cloud-essentials",
+            "owner_vanity_slug": "amazon-web-services",
+            "badge_template_earnable": false,
+            "recommendable": true,
+            "issuer": {
+                "summary": "issued by Amazon Web Services Training and Certification",
+                "entities": [
+                    {
+                        "label": "Issued by",
+                        "primary": true,
+                        "entity": {
+                            "type": "Organization",
+                            "id": "7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "name": "Amazon Web Services Training and Certification",
+                            "url": "https://www.credly.com/api/v1/organizations/7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "vanity_url": "https://www.credly.com/org/amazon-web-services",
+                            "internationalize_badge_templates": false,
+                            "share_to_ziprecruiter": true,
+                            "twitter_url": "https://twitter.com/awscloud",
+                            "verified": false
+                        }
+                    }
+                ]
+            },
+            "related_badge_templates": [
+                {
+                    "id": "05d90430-f3b8-4e70-ba81-925d1386ff8d",
+                    "name": "AWS Knowledge: Architecting",
+                    "image": {
+                        "id": "519a6dba-f145-4c1a-85a2-1d173d6898d9",
+                        "url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-architecting"
+                },
+                {
+                    "id": "da15094a-7aba-4e05-884e-74c067174d57",
+                    "name": "AWS Knowledge: Compute",
+                    "image": {
+                        "id": "eba18772-5ecf-471b-b8af-dda79815b544",
+                        "url": "https://images.credly.com/images/eba18772-5ecf-471b-b8af-dda79815b544/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/eba18772-5ecf-471b-b8af-dda79815b544/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-compute"
+                },
+                {
+                    "id": "fcfb21f0-33a1-446a-ba76-875342079c9f",
+                    "name": "AWS Cloud Quest: Networking",
+                    "image": {
+                        "id": "c483e5e6-580a-4ed8-b4b6-91219526a326",
+                        "url": "https://images.credly.com/images/c483e5e6-580a-4ed8-b4b6-91219526a326/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/c483e5e6-580a-4ed8-b4b6-91219526a326/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-cloud-quest-networking"
+                }
+            ],
+            "alignments": [],
+            "badge_template_activities": [
+                {
+                    "id": "7b2b3a4b-ab2d-4a25-aab5-4a5aa314f6a6",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For customers and AWS Partners, use this link and successfully pass the Cloud Essentials Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/82/cloud-essentials-learning-plan"
+                },
+                {
+                    "id": "70034942-9a05-45ae-9cdf-2cbfdbf2e762",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For Amazon employees, use this link and successfully pass the Cloud Essentials Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/learning_plan/view/19/cloud-essentials-learning-plan-amazon"
+                }
+            ],
+            "endorsements": [],
+            "skills": [
+                {
+                    "id": "71fefbab-eb2d-46bd-add8-18eb5c6ae51e",
+                    "name": "Amazon Web Services (AWS)",
+                    "vanity_slug": "amazon-web-services-aws"
+                },
+                {
+                    "id": "682d4927-14e7-490c-96d3-c8f3ef0995de",
+                    "name": "AWS",
+                    "vanity_slug": "aws"
+                },
+                {
+                    "id": "918edc32-0894-4957-a91f-d96300b8b8d3",
+                    "name": "AWS Cloud",
+                    "vanity_slug": "aws-cloud"
+                },
+                {
+                    "id": "b1b039a0-13e7-492d-b357-0502ba27171d",
+                    "name": "AWS Compute",
+                    "vanity_slug": "aws-compute"
+                },
+                {
+                    "id": "ab8ae57e-d867-43d4-b5e8-9131eb67a895",
+                    "name": "AWS Databases",
+                    "vanity_slug": "aws-databases"
+                },
+                {
+                    "id": "ae665388-1433-4bba-8da6-ca4671c1f9fb",
+                    "name": "AWS Networking",
+                    "vanity_slug": "aws-networking"
+                },
+                {
+                    "id": "f9c17905-2b33-4c50-8cb0-2ef8ffa52728",
+                    "name": "AWS Security",
+                    "vanity_slug": "aws-security"
+                },
+                {
+                    "id": "5b62abbb-b0d4-4941-bcb0-3d290ef3690d",
+                    "name": "AWS storage",
+                    "vanity_slug": "aws-storage"
+                }
+            ]
+        },
+        {
+            "id": "05d90430-f3b8-4e70-ba81-925d1386ff8d",
+            "description": "Earners of this badge have developed technical skills and knowledge of AWS concepts and services with a focus on designing solutions on AWS using best practices.",
+            "global_activity_url": "https://aws.amazon.com/training/badges/",
+            "earn_this_badge_url": null,
+            "enable_earn_this_badge": false,
+            "enable_detail_attribute_visibility": true,
+            "name": "AWS Knowledge: Architecting",
+            "public": true,
+            "recipient_type": "User",
+            "vanity_slug": "aws-knowledge-architecting",
+            "show_badge_lmi": true,
+            "show_skill_tag_links": true,
+            "settings_enable_related_badges": true,
+            "translatable": false,
+            "level": null,
+            "time_to_earn": null,
+            "cost": null,
+            "type_category": "Learning",
+            "badge_template_interest_id": null,
+            "earned": false,
+            "image": {
+                "id": "519a6dba-f145-4c1a-85a2-1d173d6898d9",
+                "url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png"
+            },
+            "image_url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png",
+            "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-architecting",
+            "owner_vanity_slug": "amazon-web-services",
+            "badge_template_earnable": false,
+            "recommendable": true,
+            "issuer": {
+                "summary": "issued by Amazon Web Services Training and Certification",
+                "entities": [
+                    {
+                        "label": "Issued by",
+                        "primary": true,
+                        "entity": {
+                            "type": "Organization",
+                            "id": "7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "name": "Amazon Web Services Training and Certification",
+                            "url": "https://www.credly.com/api/v1/organizations/7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "vanity_url": "https://www.credly.com/org/amazon-web-services",
+                            "internationalize_badge_templates": false,
+                            "share_to_ziprecruiter": true,
+                            "twitter_url": "https://twitter.com/awscloud",
+                            "verified": false
+                        }
+                    }
+                ]
+            },
+            "related_badge_templates": [
+                {
+                    "id": "ead5b6ed-3850-43b8-9703-6ce29c812c91",
+                    "name": "AWS Knowledge: Cloud Essentials",
+                    "image": {
+                        "id": "ec621e2a-c8f0-4459-806c-ae11829d372a",
+                        "url": "https://images.credly.com/images/ec621e2a-c8f0-4459-806c-ae11829d372a/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/ec621e2a-c8f0-4459-806c-ae11829d372a/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-cloud-essentials"
+                },
+                {
+                    "id": "da15094a-7aba-4e05-884e-74c067174d57",
+                    "name": "AWS Knowledge: Compute",
+                    "image": {
+                        "id": "eba18772-5ecf-471b-b8af-dda79815b544",
+                        "url": "https://images.credly.com/images/eba18772-5ecf-471b-b8af-dda79815b544/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/eba18772-5ecf-471b-b8af-dda79815b544/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-compute"
+                },
+                {
+                    "id": "fcfb21f0-33a1-446a-ba76-875342079c9f",
+                    "name": "AWS Cloud Quest: Networking",
+                    "image": {
+                        "id": "c483e5e6-580a-4ed8-b4b6-91219526a326",
+                        "url": "https://images.credly.com/images/c483e5e6-580a-4ed8-b4b6-91219526a326/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/c483e5e6-580a-4ed8-b4b6-91219526a326/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-cloud-quest-networking"
+                }
+            ],
+            "alignments": [],
+            "badge_template_activities": [
+                {
+                    "id": "8ec9ff78-aed0-44b3-a928-8c27de32fb3d",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For customers and AWS Partners, use this link and successfully pass the Solution Architect Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/1044/solutions-architect-learning-plan"
+                },
+                {
+                    "id": "d8f5d994-5c9e-41b8-887a-fd1fd521ee62",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For Amazon employees, use this link and successfully pass the Solution Architect Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/learning_plan/view/1045/solutions-architect-learning-plan-amazon"
+                }
+            ],
+            "endorsements": [],
+            "skills": [
+                {
+                    "id": "71fefbab-eb2d-46bd-add8-18eb5c6ae51e",
+                    "name": "Amazon Web Services (AWS)",
+                    "vanity_slug": "amazon-web-services-aws"
+                },
+                {
+                    "id": "682d4927-14e7-490c-96d3-c8f3ef0995de",
+                    "name": "AWS",
+                    "vanity_slug": "aws"
+                },
+                {
+                    "id": "918edc32-0894-4957-a91f-d96300b8b8d3",
+                    "name": "AWS Cloud",
+                    "vanity_slug": "aws-cloud"
+                },
+                {
+                    "id": "b1b039a0-13e7-492d-b357-0502ba27171d",
+                    "name": "AWS Compute",
+                    "vanity_slug": "aws-compute"
+                },
+                {
+                    "id": "d9f254ce-21a1-4683-ab66-d0cecab09392",
+                    "name": "AWS Core Services",
+                    "vanity_slug": "aws-core-services"
+                },
+                {
+                    "id": "f7c3a793-855c-4a84-9856-2e4a588f3fa1",
+                    "name": "AWS database",
+                    "vanity_slug": "aws-database"
+                },
+                {
+                    "id": "ae665388-1433-4bba-8da6-ca4671c1f9fb",
+                    "name": "AWS Networking",
+                    "vanity_slug": "aws-networking"
+                },
+                {
+                    "id": "5b62abbb-b0d4-4941-bcb0-3d290ef3690d",
+                    "name": "AWS storage",
+                    "vanity_slug": "aws-storage"
+                }
+            ]
+        },
+        {
+            "id": "b38ee2a9-1b10-4d46-81d6-c779c7076fdb",
+            "description": "Earners of this badge have developed technical skills and knowledge of AWS serverless concepts and services with a focus on AWS Lambda and Amazon API Gateway.",
+            "global_activity_url": "https://aws.amazon.com/training/badges/",
+            "earn_this_badge_url": null,
+            "enable_earn_this_badge": false,
+            "enable_detail_attribute_visibility": true,
+            "name": "AWS Knowledge: Serverless",
+            "public": true,
+            "recipient_type": "User",
+            "vanity_slug": "aws-knowledge-serverless",
+            "show_badge_lmi": true,
+            "show_skill_tag_links": true,
+            "settings_enable_related_badges": true,
+            "translatable": false,
+            "level": null,
+            "time_to_earn": null,
+            "cost": null,
+            "type_category": "Learning",
+            "badge_template_interest_id": null,
+            "earned": true,
+            "image": {
+                "id": "e07c6cc4-b737-4d7e-8ce8-66b6b7a60367",
+                "url": "https://images.credly.com/images/e07c6cc4-b737-4d7e-8ce8-66b6b7a60367/image.png"
+            },
+            "image_url": "https://images.credly.com/images/e07c6cc4-b737-4d7e-8ce8-66b6b7a60367/image.png",
+            "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-serverless",
+            "owner_vanity_slug": "amazon-web-services",
+            "badge_template_earnable": false,
+            "recommendable": true,
+            "issuer": {
+                "summary": "issued by Amazon Web Services Training and Certification",
+                "entities": [
+                    {
+                        "label": "Issued by",
+                        "primary": true,
+                        "entity": {
+                            "type": "Organization",
+                            "id": "7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "name": "Amazon Web Services Training and Certification",
+                            "url": "https://www.credly.com/api/v1/organizations/7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "vanity_url": "https://www.credly.com/org/amazon-web-services",
+                            "internationalize_badge_templates": false,
+                            "share_to_ziprecruiter": true,
+                            "twitter_url": "https://twitter.com/awscloud",
+                            "verified": false
+                        }
+                    }
+                ]
+            },
+            "related_badge_templates": [
+                {
+                    "id": "bffeaee3-cc79-491b-8ad3-706683e70308",
+                    "name": "AWS Cloud Quest: Serverless Developer",
+                    "image": {
+                        "id": "9a2fd02b-52ab-448d-9d19-fd9b68efe1f6",
+                        "url": "https://images.credly.com/images/9a2fd02b-52ab-448d-9d19-fd9b68efe1f6/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/9a2fd02b-52ab-448d-9d19-fd9b68efe1f6/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-cloud-quest-serverless-developer"
+                },
+                {
+                    "id": "a123b0c9-8bbe-4755-bd81-753a505fb90a",
+                    "name": "AWS Industry Quest: Financial Services",
+                    "image": {
+                        "id": "ac4918fd-87d6-4283-b896-52314f703327",
+                        "url": "https://images.credly.com/images/ac4918fd-87d6-4283-b896-52314f703327/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/ac4918fd-87d6-4283-b896-52314f703327/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-industry-quest-financial-services"
+                },
+                {
+                    "id": "8e20d3e5-930a-40f6-8025-836f08102192",
+                    "name": "AWS Knowledge: AWS for Games: Cloud Game Development",
+                    "image": {
+                        "id": "1e1e332c-cbe5-4358-9491-748cc5c5d15f",
+                        "url": "https://images.credly.com/images/1e1e332c-cbe5-4358-9491-748cc5c5d15f/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/1e1e332c-cbe5-4358-9491-748cc5c5d15f/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-aws-for-games-cloud-game-development"
+                }
+            ],
+            "alignments": [],
+            "badge_template_activities": [
+                {
+                    "id": "0cb82f1a-057e-4ec7-adb9-58456e522bd0",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For customers and AWS Partners, use this link and successfully pass the Serverless Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/92/serverless-learning-plan"
+                },
+                {
+                    "id": "96e2300a-93c5-45be-b10b-8724217c33fb",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For Amazon employees, use this link and successfully pass the Serverless Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/learning_plan/view/128/serverless-learning-plan-amazon"
+                }
+            ],
+            "endorsements": [],
+            "skills": [
+                {
+                    "id": "533df364-cd76-442e-a13d-10fbb1709147",
+                    "name": "Amazon API Gateway",
+                    "vanity_slug": "amazon-api-gateway"
+                },
+                {
+                    "id": "71fefbab-eb2d-46bd-add8-18eb5c6ae51e",
+                    "name": "Amazon Web Services (AWS)",
+                    "vanity_slug": "amazon-web-services-aws"
+                },
+                {
+                    "id": "682d4927-14e7-490c-96d3-c8f3ef0995de",
+                    "name": "AWS",
+                    "vanity_slug": "aws"
+                },
+                {
+                    "id": "918edc32-0894-4957-a91f-d96300b8b8d3",
+                    "name": "AWS Cloud",
+                    "vanity_slug": "aws-cloud"
+                },
+                {
+                    "id": "b326464a-d5a9-4d69-bff4-ae8a2aa540e1",
+                    "name": "AWS Lambda",
+                    "vanity_slug": "aws-lambda"
+                },
+                {
+                    "id": "2e92cd90-3277-4564-be90-a0f4fbc74b46",
+                    "name": "Serverless Computing",
+                    "vanity_slug": "serverless-computing"
+                }
+            ]
+        },
+        {
+            "id": "bbe05f1a-919d-4282-bc71-9bd8adca78ad",
+            "description": "Earners of this badge have developed knowledge of running microservices and container workloads with Amazon Elastic Kubernetes Service (Amazon EKS).",
+            "global_activity_url": "https://aws.amazon.com/training/badges/",
+            "earn_this_badge_url": null,
+            "enable_earn_this_badge": false,
+            "enable_detail_attribute_visibility": true,
+            "name": "AWS Knowledge: Amazon EKS",
+            "public": true,
+            "recipient_type": "User",
+            "vanity_slug": "aws-knowledge-amazon-eks",
+            "show_badge_lmi": true,
+            "show_skill_tag_links": true,
+            "settings_enable_related_badges": true,
+            "translatable": false,
+            "level": null,
+            "time_to_earn": null,
+            "cost": null,
+            "type_category": "Learning",
+            "badge_template_interest_id": null,
+            "earned": false,
+            "image": {
+                "id": "9bcbde6d-1754-4617-9337-124f7b10a6c2",
+                "url": "https://images.credly.com/images/9bcbde6d-1754-4617-9337-124f7b10a6c2/image.png"
+            },
+            "image_url": "https://images.credly.com/images/9bcbde6d-1754-4617-9337-124f7b10a6c2/image.png",
+            "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-amazon-eks",
+            "owner_vanity_slug": "amazon-web-services",
+            "badge_template_earnable": false,
+            "recommendable": true,
+            "issuer": {
+                "summary": "issued by Amazon Web Services Training and Certification",
+                "entities": [
+                    {
+                        "label": "Issued by",
+                        "primary": true,
+                        "entity": {
+                            "type": "Organization",
+                            "id": "7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "name": "Amazon Web Services Training and Certification",
+                            "url": "https://www.credly.com/api/v1/organizations/7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "vanity_url": "https://www.credly.com/org/amazon-web-services",
+                            "internationalize_badge_templates": false,
+                            "share_to_ziprecruiter": true,
+                            "twitter_url": "https://twitter.com/awscloud",
+                            "verified": false
+                        }
+                    }
+                ]
+            },
+            "related_badge_templates": [
+                {
+                    "id": "1b73171f-2425-4937-b2c4-fd938b0687e9",
+                    "name": "AWS Knowledge: Migration Foundations",
+                    "image": {
+                        "id": "4163dc96-eec3-49c2-87b3-6a98172e160c",
+                        "url": "https://images.credly.com/images/4163dc96-eec3-49c2-87b3-6a98172e160c/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/4163dc96-eec3-49c2-87b3-6a98172e160c/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-migration-foundations"
+                },
+                {
+                    "id": "05d90430-f3b8-4e70-ba81-925d1386ff8d",
+                    "name": "AWS Knowledge: Architecting",
+                    "image": {
+                        "id": "519a6dba-f145-4c1a-85a2-1d173d6898d9",
+                        "url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-architecting"
+                }
+            ],
+            "alignments": [],
+            "badge_template_activities": [
+                {
+                    "id": "ac41c4f5-9f32-4dd3-ad5e-354c51463da2",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "Successfully pass the Amazon EKS Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/1931/amazon-eks-knowledge-badge-readiness-path"
+                }
+            ],
+            "endorsements": [],
+            "skills": [
+                {
+                    "id": "08b0e7bb-d1e8-4446-8231-76c16fce8718",
+                    "name": "Amazon EKS",
+                    "vanity_slug": "amazon-eks"
+                },
+                {
+                    "id": "5365ddca-b412-44ba-9b57-44b8cb5078db",
+                    "name": "Amazon Elastic Kubernetes Service",
+                    "vanity_slug": "amazon-elastic-kubernetes-service"
+                },
+                {
+                    "id": "71fefbab-eb2d-46bd-add8-18eb5c6ae51e",
+                    "name": "Amazon Web Services (AWS)",
+                    "vanity_slug": "amazon-web-services-aws"
+                },
+                {
+                    "id": "682d4927-14e7-490c-96d3-c8f3ef0995de",
+                    "name": "AWS",
+                    "vanity_slug": "aws"
+                },
+                {
+                    "id": "918edc32-0894-4957-a91f-d96300b8b8d3",
+                    "name": "AWS Cloud",
+                    "vanity_slug": "aws-cloud"
+                },
+                {
+                    "id": "be66d763-bcff-4ee0-b1fb-07bdab4a7777",
+                    "name": "Containerization",
+                    "vanity_slug": "containerization"
+                },
+                {
+                    "id": "f2777485-8f70-497b-9fc4-2ed5c74c1c1f",
+                    "name": "Kubernetes",
+                    "vanity_slug": "kubernetes"
+                }
+            ]
+        },
+        {
+            "id": "5919793d-df3b-4b0c-92ee-cabe3a19c6ce",
+            "description": "Earners of this badge have developed technical skills and knowledge of AWS storage services with a focus on data protection and disaster recovery.",
+            "global_activity_url": "http://aws.amazon.com/training/badges",
+            "earn_this_badge_url": null,
+            "enable_earn_this_badge": false,
+            "enable_detail_attribute_visibility": true,
+            "name": "AWS Knowledge: Data Protection \u0026 Disaster Recovery",
+            "public": true,
+            "recipient_type": "User",
+            "vanity_slug": "aws-knowledge-data-protection-disaster-recovery",
+            "show_badge_lmi": true,
+            "show_skill_tag_links": true,
+            "settings_enable_related_badges": true,
+            "translatable": false,
+            "level": null,
+            "time_to_earn": null,
+            "cost": null,
+            "type_category": "Learning",
+            "badge_template_interest_id": null,
+            "earned": false,
+            "image": {
+                "id": "b8766b97-8362-4948-a08c-d4fbd2cda57c",
+                "url": "https://images.credly.com/images/b8766b97-8362-4948-a08c-d4fbd2cda57c/image.png"
+            },
+            "image_url": "https://images.credly.com/images/b8766b97-8362-4948-a08c-d4fbd2cda57c/image.png",
+            "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-data-protection-disaster-recovery",
+            "owner_vanity_slug": "amazon-web-services",
+            "badge_template_earnable": false,
+            "recommendable": true,
+            "issuer": {
+                "summary": "issued by Amazon Web Services Training and Certification",
+                "entities": [
+                    {
+                        "label": "Issued by",
+                        "primary": true,
+                        "entity": {
+                            "type": "Organization",
+                            "id": "7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "name": "Amazon Web Services Training and Certification",
+                            "url": "https://www.credly.com/api/v1/organizations/7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "vanity_url": "https://www.credly.com/org/amazon-web-services",
+                            "internationalize_badge_templates": false,
+                            "share_to_ziprecruiter": true,
+                            "twitter_url": "https://twitter.com/awscloud",
+                            "verified": false
+                        }
+                    }
+                ]
+            },
+            "related_badge_templates": [
+                {
+                    "id": "ee53c509-d16b-4a5e-a76d-f905cfc34816",
+                    "name": "AWS Knowledge: Data Migration",
+                    "image": {
+                        "id": "d7c2b294-d08e-4795-a342-88fc34df7e01",
+                        "url": "https://images.credly.com/images/d7c2b294-d08e-4795-a342-88fc34df7e01/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/d7c2b294-d08e-4795-a342-88fc34df7e01/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-data-migration"
+                },
+                {
+                    "id": "5a670c70-bbc1-4fdd-a425-3d3f407ecbe8",
+                    "name": "AWS Knowledge: File Storage",
+                    "image": {
+                        "id": "a894153e-1762-4870-83b9-150ff294d7fb",
+                        "url": "https://images.credly.com/images/a894153e-1762-4870-83b9-150ff294d7fb/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/a894153e-1762-4870-83b9-150ff294d7fb/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-file-storage"
+                }
+            ],
+            "alignments": [],
+            "badge_template_activities": [
+                {
+                    "id": "988ff7d6-0f0e-4e54-be5b-1b96e57b10fe",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "Successfully pass the Data Protection \u0026 Disaster Recovery Storage Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/54/storage-learning-plan-data-protection-and-disaster-recovery"
+                }
+            ],
+            "endorsements": [],
+            "skills": [
+                {
+                    "id": "71fefbab-eb2d-46bd-add8-18eb5c6ae51e",
+                    "name": "Amazon Web Services (AWS)",
+                    "vanity_slug": "amazon-web-services-aws"
+                },
+                {
+                    "id": "682d4927-14e7-490c-96d3-c8f3ef0995de",
+                    "name": "AWS",
+                    "vanity_slug": "aws"
+                },
+                {
+                    "id": "918edc32-0894-4957-a91f-d96300b8b8d3",
+                    "name": "AWS Cloud",
+                    "vanity_slug": "aws-cloud"
+                },
+                {
+                    "id": "37ec84cc-d6e7-400e-a841-5864dff2402e",
+                    "name": "AWS Data Migration",
+                    "vanity_slug": "aws-data-migration"
+                },
+                {
+                    "id": "5d55db02-7076-4a5e-ae14-52ddeeb08006",
+                    "name": "AWS Storage Services",
+                    "vanity_slug": "aws-storage-services"
+                },
+                {
+                    "id": "37229bc7-1a4e-478d-b834-17402ba02862",
+                    "name": "Cloud Data",
+                    "vanity_slug": "cloud-data"
+                }
+            ]
+        },
+        {
+            "id": "5a670c70-bbc1-4fdd-a425-3d3f407ecbe8",
+            "description": "Earners of this badge have developed technical skills and knowledge of AWS storage services with a focus on Amazon Elastic File System (EFS) and Amazon FSx.",
+            "global_activity_url": "http://aws.amazon.com/training/badges",
+            "earn_this_badge_url": null,
+            "enable_earn_this_badge": false,
+            "enable_detail_attribute_visibility": true,
+            "name": "AWS Knowledge: File Storage",
+            "public": true,
+            "recipient_type": "User",
+            "vanity_slug": "aws-knowledge-file-storage",
+            "show_badge_lmi": true,
+            "show_skill_tag_links": true,
+            "settings_enable_related_badges": true,
+            "translatable": false,
+            "level": null,
+            "time_to_earn": null,
+            "cost": null,
+            "type_category": "Learning",
+            "badge_template_interest_id": null,
+            "earned": false,
+            "image": {
+                "id": "a894153e-1762-4870-83b9-150ff294d7fb",
+                "url": "https://images.credly.com/images/a894153e-1762-4870-83b9-150ff294d7fb/image.png"
+            },
+            "image_url": "https://images.credly.com/images/a894153e-1762-4870-83b9-150ff294d7fb/image.png",
+            "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-file-storage",
+            "owner_vanity_slug": "amazon-web-services",
+            "badge_template_earnable": false,
+            "recommendable": true,
+            "issuer": {
+                "summary": "issued by Amazon Web Services Training and Certification",
+                "entities": [
+                    {
+                        "label": "Issued by",
+                        "primary": true,
+                        "entity": {
+                            "type": "Organization",
+                            "id": "7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "name": "Amazon Web Services Training and Certification",
+                            "url": "https://www.credly.com/api/v1/organizations/7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "vanity_url": "https://www.credly.com/org/amazon-web-services",
+                            "internationalize_badge_templates": false,
+                            "share_to_ziprecruiter": true,
+                            "twitter_url": "https://twitter.com/awscloud",
+                            "verified": false
+                        }
+                    }
+                ]
+            },
+            "related_badge_templates": [
+                {
+                    "id": "5919793d-df3b-4b0c-92ee-cabe3a19c6ce",
+                    "name": "AWS Knowledge: Data Protection \u0026 Disaster Recovery",
+                    "image": {
+                        "id": "b8766b97-8362-4948-a08c-d4fbd2cda57c",
+                        "url": "https://images.credly.com/images/b8766b97-8362-4948-a08c-d4fbd2cda57c/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/b8766b97-8362-4948-a08c-d4fbd2cda57c/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-data-protection-disaster-recovery"
+                }
+            ],
+            "alignments": [],
+            "badge_template_activities": [
+                {
+                    "id": "adb21b21-3cc6-4b9c-accd-20e5aa525c42",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For customers and AWS Partners, use this link and successfully pass the File Storage Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/95/storage-learning-plan-file-storage"
+                },
+                {
+                    "id": "145d91c2-f2eb-4251-a25d-326bbd51631a",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For Amazon employees, use this link and successfully pass the File Storage Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/lp/131/Storage-Learning-Plan-File-Storage-Amazon"
+                }
+            ],
+            "endorsements": [],
+            "skills": [
+                {
+                    "id": "630bf00e-14d2-450e-878b-bf56f6843f17",
+                    "name": "Amazon Elastic File System",
+                    "vanity_slug": "amazon-elastic-file-system"
+                },
+                {
+                    "id": "1ac295a6-3fc4-4ac6-a798-511bed937010",
+                    "name": "Amazon FSx",
+                    "vanity_slug": "amazon-fsx"
+                },
+                {
+                    "id": "71fefbab-eb2d-46bd-add8-18eb5c6ae51e",
+                    "name": "Amazon Web Services (AWS)",
+                    "vanity_slug": "amazon-web-services-aws"
+                },
+                {
+                    "id": "682d4927-14e7-490c-96d3-c8f3ef0995de",
+                    "name": "AWS",
+                    "vanity_slug": "aws"
+                },
+                {
+                    "id": "918edc32-0894-4957-a91f-d96300b8b8d3",
+                    "name": "AWS Cloud",
+                    "vanity_slug": "aws-cloud"
+                },
+                {
+                    "id": "5d55db02-7076-4a5e-ae14-52ddeeb08006",
+                    "name": "AWS Storage Services",
+                    "vanity_slug": "aws-storage-services"
+                },
+                {
+                    "id": "20e722e4-38a7-499c-8fe6-dc646fcd5f2c",
+                    "name": "Cloud File Storage",
+                    "vanity_slug": "cloud-file-storage"
+                }
+            ]
+        },
+        {
+            "id": "619ecd42-33ac-46c5-956e-d020c7a3dfa0",
+            "description": "Earners of this badge have developed technical knowledge of AWS networking concepts and services with a focus on Amazon VPC, AWS Cloud WAN and Amazon Route 53.",
+            "global_activity_url": "https://aws.amazon.com/training/badges/",
+            "earn_this_badge_url": null,
+            "enable_earn_this_badge": false,
+            "enable_detail_attribute_visibility": true,
+            "name": "AWS Knowledge: Networking Core",
+            "public": true,
+            "recipient_type": "User",
+            "vanity_slug": "aws-knowledge-networking-core",
+            "show_badge_lmi": true,
+            "show_skill_tag_links": true,
+            "settings_enable_related_badges": true,
+            "translatable": false,
+            "level": null,
+            "time_to_earn": null,
+            "cost": null,
+            "type_category": "Learning",
+            "badge_template_interest_id": null,
+            "earned": true,
+            "image": {
+                "id": "e75f222b-7f75-4d7b-8a6a-67d68aa59d62",
+                "url": "https://images.credly.com/images/e75f222b-7f75-4d7b-8a6a-67d68aa59d62/image.png"
+            },
+            "image_url": "https://images.credly.com/images/e75f222b-7f75-4d7b-8a6a-67d68aa59d62/image.png",
+            "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-networking-core",
+            "owner_vanity_slug": "amazon-web-services",
+            "badge_template_earnable": false,
+            "recommendable": true,
+            "issuer": {
+                "summary": "issued by Amazon Web Services Training and Certification",
+                "entities": [
+                    {
+                        "label": "Issued by",
+                        "primary": true,
+                        "entity": {
+                            "type": "Organization",
+                            "id": "7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "name": "Amazon Web Services Training and Certification",
+                            "url": "https://www.credly.com/api/v1/organizations/7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "vanity_url": "https://www.credly.com/org/amazon-web-services",
+                            "internationalize_badge_templates": false,
+                            "share_to_ziprecruiter": true,
+                            "twitter_url": "https://twitter.com/awscloud",
+                            "verified": false
+                        }
+                    }
+                ]
+            },
+            "related_badge_templates": [
+                {
+                    "id": "1b73171f-2425-4937-b2c4-fd938b0687e9",
+                    "name": "AWS Knowledge: Migration Foundations",
+                    "image": {
+                        "id": "4163dc96-eec3-49c2-87b3-6a98172e160c",
+                        "url": "https://images.credly.com/images/4163dc96-eec3-49c2-87b3-6a98172e160c/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/4163dc96-eec3-49c2-87b3-6a98172e160c/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-migration-foundations"
+                },
+                {
+                    "id": "05d90430-f3b8-4e70-ba81-925d1386ff8d",
+                    "name": "AWS Knowledge: Architecting",
+                    "image": {
+                        "id": "519a6dba-f145-4c1a-85a2-1d173d6898d9",
+                        "url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-architecting"
+                }
+            ],
+            "alignments": [],
+            "badge_template_activities": [
+                {
+                    "id": "2950f2b1-9ced-4257-adb9-6198417bfaec",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For customers and AWS Partners, use this link and successfully pass the Networking Core Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/1944/networking-core-knowledge-badge-readiness-path"
+                },
+                {
+                    "id": "77d7ca25-a228-41b7-9039-7b2a789bc992",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For Amazon employees, use this link and successfully pass the Networking Core Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/learning_plan/view/125/networking-core-learning-plan-amazon"
+                }
+            ],
+            "endorsements": [],
+            "skills": [
+                {
+                    "id": "2fbc9bf8-f9ba-4f09-81da-8c3c66d271b9",
+                    "name": "Amazon Route 53",
+                    "vanity_slug": "amazon-route-53"
+                },
+                {
+                    "id": "792f8b8c-cfa7-493f-99c6-ab737d40ce85",
+                    "name": "Amazon VPC",
+                    "vanity_slug": "amazon-vpc"
+                },
+                {
+                    "id": "71fefbab-eb2d-46bd-add8-18eb5c6ae51e",
+                    "name": "Amazon Web Services (AWS)",
+                    "vanity_slug": "amazon-web-services-aws"
+                },
+                {
+                    "id": "682d4927-14e7-490c-96d3-c8f3ef0995de",
+                    "name": "AWS",
+                    "vanity_slug": "aws"
+                },
+                {
+                    "id": "918edc32-0894-4957-a91f-d96300b8b8d3",
+                    "name": "AWS Cloud",
+                    "vanity_slug": "aws-cloud"
+                },
+                {
+                    "id": "71871d06-4d27-4677-9755-ffe4d737aee8",
+                    "name": "AWS Cloud WAN",
+                    "vanity_slug": "aws-cloud-wan"
+                },
+                {
+                    "id": "121ecd21-d004-4d13-8a86-45807f062419",
+                    "name": "Networking Basics",
+                    "vanity_slug": "networking-basics"
+                }
+            ]
+        },
+        {
+            "id": "1b73171f-2425-4937-b2c4-fd938b0687e9",
+            "description": "Earners of this badge have developed technical knowledge on AWS migration concepts and services with a focus on AWS Migration Evaluator, AWS Migration Hub, and AWS Application Migration Service.",
+            "global_activity_url": "https://aws.amazon.com/training/badges/",
+            "earn_this_badge_url": null,
+            "enable_earn_this_badge": false,
+            "enable_detail_attribute_visibility": true,
+            "name": "AWS Knowledge: Migration Foundations",
+            "public": true,
+            "recipient_type": "User",
+            "vanity_slug": "aws-knowledge-migration-foundations",
+            "show_badge_lmi": true,
+            "show_skill_tag_links": true,
+            "settings_enable_related_badges": true,
+            "translatable": false,
+            "level": null,
+            "time_to_earn": null,
+            "cost": null,
+            "type_category": "Learning",
+            "badge_template_interest_id": null,
+            "earned": false,
+            "image": {
+                "id": "4163dc96-eec3-49c2-87b3-6a98172e160c",
+                "url": "https://images.credly.com/images/4163dc96-eec3-49c2-87b3-6a98172e160c/image.png"
+            },
+            "image_url": "https://images.credly.com/images/4163dc96-eec3-49c2-87b3-6a98172e160c/image.png",
+            "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-migration-foundations",
+            "owner_vanity_slug": "amazon-web-services",
+            "badge_template_earnable": false,
+            "recommendable": true,
+            "issuer": {
+                "summary": "issued by Amazon Web Services Training and Certification",
+                "entities": [
+                    {
+                        "label": "Issued by",
+                        "primary": true,
+                        "entity": {
+                            "type": "Organization",
+                            "id": "7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "name": "Amazon Web Services Training and Certification",
+                            "url": "https://www.credly.com/api/v1/organizations/7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "vanity_url": "https://www.credly.com/org/amazon-web-services",
+                            "internationalize_badge_templates": false,
+                            "share_to_ziprecruiter": true,
+                            "twitter_url": "https://twitter.com/awscloud",
+                            "verified": false
+                        }
+                    }
+                ]
+            },
+            "related_badge_templates": [
+                {
+                    "id": "ee53c509-d16b-4a5e-a76d-f905cfc34816",
+                    "name": "AWS Knowledge: Data Migration",
+                    "image": {
+                        "id": "d7c2b294-d08e-4795-a342-88fc34df7e01",
+                        "url": "https://images.credly.com/images/d7c2b294-d08e-4795-a342-88fc34df7e01/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/d7c2b294-d08e-4795-a342-88fc34df7e01/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-data-migration"
+                },
+                {
+                    "id": "05d90430-f3b8-4e70-ba81-925d1386ff8d",
+                    "name": "AWS Knowledge: Architecting",
+                    "image": {
+                        "id": "519a6dba-f145-4c1a-85a2-1d173d6898d9",
+                        "url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-architecting"
+                }
+            ],
+            "alignments": [],
+            "badge_template_activities": [
+                {
+                    "id": "04158ccd-5369-49aa-a4a5-ac1412743b53",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For customers and AWS Partners, use this link and successfully pass the Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/1991/migration-foundations-knowledge-badge-readiness-path"
+                },
+                {
+                    "id": "993cdb33-2385-4649-85d8-43d62b92fd4b",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For Amazon employees, use this link and successfully pass the Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/learning_plan/view/1993/migration-foundations-knowledge-badge-readiness-path-amazon"
+                }
+            ],
+            "endorsements": [],
+            "skills": [
+                {
+                    "id": "71fefbab-eb2d-46bd-add8-18eb5c6ae51e",
+                    "name": "Amazon Web Services (AWS)",
+                    "vanity_slug": "amazon-web-services-aws"
+                },
+                {
+                    "id": "682d4927-14e7-490c-96d3-c8f3ef0995de",
+                    "name": "AWS",
+                    "vanity_slug": "aws"
+                },
+                {
+                    "id": "7b1bdfe8-c231-4b5b-9e33-5823341c39f8",
+                    "name": "AWS Application Migration Service",
+                    "vanity_slug": "aws-application-migration-service"
+                },
+                {
+                    "id": "918edc32-0894-4957-a91f-d96300b8b8d3",
+                    "name": "AWS Cloud",
+                    "vanity_slug": "aws-cloud"
+                },
+                {
+                    "id": "86d6d4b1-feff-4519-8581-5e3941ac079f",
+                    "name": "AWS Database Migration Service",
+                    "vanity_slug": "aws-database-migration-service"
+                },
+                {
+                    "id": "ba659d89-e5b2-4dc8-b768-1acd8cf2354e",
+                    "name": "AWS DataSync",
+                    "vanity_slug": "aws-datasync"
+                },
+                {
+                    "id": "a37255f6-5666-4d9e-880f-30f8b7f3fb9c",
+                    "name": "AWS Migration Evaluator",
+                    "vanity_slug": "aws-migration-evaluator"
+                },
+                {
+                    "id": "8c4b424b-b6ec-4d43-9dd4-7d64521f8678",
+                    "name": "AWS Migration Hub",
+                    "vanity_slug": "aws-migration-hub"
+                },
+                {
+                    "id": "756d62b0-4465-46e2-8a4f-db5252e077b9",
+                    "name": "AWS SnowFamily",
+                    "vanity_slug": "aws-snowfamily"
+                }
+            ]
+        },
+        {
+            "id": "da15094a-7aba-4e05-884e-74c067174d57",
+            "description": "Earners of this badge have developed knowledge of AWS Compute concepts and services with a focus on Amazon EC2.",
+            "global_activity_url": "https://aws.amazon.com/training/badges/",
+            "earn_this_badge_url": null,
+            "enable_earn_this_badge": false,
+            "enable_detail_attribute_visibility": true,
+            "name": "AWS Knowledge: Compute",
+            "public": true,
+            "recipient_type": "User",
+            "vanity_slug": "aws-knowledge-compute",
+            "show_badge_lmi": true,
+            "show_skill_tag_links": true,
+            "settings_enable_related_badges": true,
+            "translatable": false,
+            "level": null,
+            "time_to_earn": null,
+            "cost": null,
+            "type_category": "Learning",
+            "badge_template_interest_id": null,
+            "earned": false,
+            "image": {
+                "id": "eba18772-5ecf-471b-b8af-dda79815b544",
+                "url": "https://images.credly.com/images/eba18772-5ecf-471b-b8af-dda79815b544/image.png"
+            },
+            "image_url": "https://images.credly.com/images/eba18772-5ecf-471b-b8af-dda79815b544/image.png",
+            "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-compute",
+            "owner_vanity_slug": "amazon-web-services",
+            "badge_template_earnable": false,
+            "recommendable": true,
+            "issuer": {
+                "summary": "issued by Amazon Web Services Training and Certification",
+                "entities": [
+                    {
+                        "label": "Issued by",
+                        "primary": true,
+                        "entity": {
+                            "type": "Organization",
+                            "id": "7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "name": "Amazon Web Services Training and Certification",
+                            "url": "https://www.credly.com/api/v1/organizations/7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "vanity_url": "https://www.credly.com/org/amazon-web-services",
+                            "internationalize_badge_templates": false,
+                            "share_to_ziprecruiter": true,
+                            "twitter_url": "https://twitter.com/awscloud",
+                            "verified": false
+                        }
+                    }
+                ]
+            },
+            "related_badge_templates": [
+                {
+                    "id": "ead5b6ed-3850-43b8-9703-6ce29c812c91",
+                    "name": "AWS Knowledge: Cloud Essentials",
+                    "image": {
+                        "id": "ec621e2a-c8f0-4459-806c-ae11829d372a",
+                        "url": "https://images.credly.com/images/ec621e2a-c8f0-4459-806c-ae11829d372a/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/ec621e2a-c8f0-4459-806c-ae11829d372a/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-cloud-essentials"
+                },
+                {
+                    "id": "05d90430-f3b8-4e70-ba81-925d1386ff8d",
+                    "name": "AWS Knowledge: Architecting",
+                    "image": {
+                        "id": "519a6dba-f145-4c1a-85a2-1d173d6898d9",
+                        "url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-architecting"
+                },
+                {
+                    "id": "1b73171f-2425-4937-b2c4-fd938b0687e9",
+                    "name": "AWS Knowledge: Migration Foundations",
+                    "image": {
+                        "id": "4163dc96-eec3-49c2-87b3-6a98172e160c",
+                        "url": "https://images.credly.com/images/4163dc96-eec3-49c2-87b3-6a98172e160c/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/4163dc96-eec3-49c2-87b3-6a98172e160c/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-migration-foundations"
+                }
+            ],
+            "alignments": [],
+            "badge_template_activities": [
+                {
+                    "id": "bd2e005d-9ee9-486d-9e01-3ae3a36ba391",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For customers and AWS Partners, use this link and successfully pass the Compute Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/1985/compute-knowledge-badge-readiness-path"
+                },
+                {
+                    "id": "0207904b-9258-4452-a60a-2ab73a7b4f92",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For Amazon employees, use this link and successfully pass the Compute Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/learning_plan/view/1956/compute-knowledge-badge-readiness-path-amazon"
+                }
+            ],
+            "endorsements": [],
+            "skills": [
+                {
+                    "id": "0541287a-63d3-4810-9700-c1f1b1278122",
+                    "name": "Amazon Elastic Compute Cloud",
+                    "vanity_slug": "amazon-elastic-compute-cloud"
+                },
+                {
+                    "id": "71fefbab-eb2d-46bd-add8-18eb5c6ae51e",
+                    "name": "Amazon Web Services (AWS)",
+                    "vanity_slug": "amazon-web-services-aws"
+                },
+                {
+                    "id": "682d4927-14e7-490c-96d3-c8f3ef0995de",
+                    "name": "AWS",
+                    "vanity_slug": "aws"
+                },
+                {
+                    "id": "918edc32-0894-4957-a91f-d96300b8b8d3",
+                    "name": "AWS Cloud",
+                    "vanity_slug": "aws-cloud"
+                },
+                {
+                    "id": "b1b039a0-13e7-492d-b357-0502ba27171d",
+                    "name": "AWS Compute",
+                    "vanity_slug": "aws-compute"
+                }
+            ]
+        },
+        {
+            "id": "ee53c509-d16b-4a5e-a76d-f905cfc34816",
+            "description": "Earners of this badge have developed technical skills and knowledge of AWS storage services with a focus on data migration and AWS DataSync.",
+            "global_activity_url": "http://aws.amazon.com/training/badges",
+            "earn_this_badge_url": null,
+            "enable_earn_this_badge": false,
+            "enable_detail_attribute_visibility": true,
+            "name": "AWS Knowledge: Data Migration",
+            "public": true,
+            "recipient_type": "User",
+            "vanity_slug": "aws-knowledge-data-migration",
+            "show_badge_lmi": true,
+            "show_skill_tag_links": true,
+            "settings_enable_related_badges": true,
+            "translatable": false,
+            "level": null,
+            "time_to_earn": null,
+            "cost": null,
+            "type_category": "Learning",
+            "badge_template_interest_id": null,
+            "earned": false,
+            "image": {
+                "id": "d7c2b294-d08e-4795-a342-88fc34df7e01",
+                "url": "https://images.credly.com/images/d7c2b294-d08e-4795-a342-88fc34df7e01/image.png"
+            },
+            "image_url": "https://images.credly.com/images/d7c2b294-d08e-4795-a342-88fc34df7e01/image.png",
+            "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-data-migration",
+            "owner_vanity_slug": "amazon-web-services",
+            "badge_template_earnable": false,
+            "recommendable": true,
+            "issuer": {
+                "summary": "issued by Amazon Web Services Training and Certification",
+                "entities": [
+                    {
+                        "label": "Issued by",
+                        "primary": true,
+                        "entity": {
+                            "type": "Organization",
+                            "id": "7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "name": "Amazon Web Services Training and Certification",
+                            "url": "https://www.credly.com/api/v1/organizations/7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "vanity_url": "https://www.credly.com/org/amazon-web-services",
+                            "internationalize_badge_templates": false,
+                            "share_to_ziprecruiter": true,
+                            "twitter_url": "https://twitter.com/awscloud",
+                            "verified": false
+                        }
+                    }
+                ]
+            },
+            "related_badge_templates": [
+                {
+                    "id": "5919793d-df3b-4b0c-92ee-cabe3a19c6ce",
+                    "name": "AWS Knowledge: Data Protection \u0026 Disaster Recovery",
+                    "image": {
+                        "id": "b8766b97-8362-4948-a08c-d4fbd2cda57c",
+                        "url": "https://images.credly.com/images/b8766b97-8362-4948-a08c-d4fbd2cda57c/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/b8766b97-8362-4948-a08c-d4fbd2cda57c/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-data-protection-disaster-recovery"
+                }
+            ],
+            "alignments": [],
+            "badge_template_activities": [
+                {
+                    "id": "a5e2ccaa-3181-40b4-a49f-13dcc6050eed",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For customers and AWS Partners, use this link and successfully pass the Data Migration Storage Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/94/storage-learning-plan-data-migration"
+                },
+                {
+                    "id": "16cb4f8e-cbec-43b9-a128-6abf5167d2de",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For Amazon employees, use this link and successfully pass the Data Migration Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/learning_plan/view/130/storage-learning-plan-data-migration-amazon"
+                }
+            ],
+            "endorsements": [],
+            "skills": [
+                {
+                    "id": "71fefbab-eb2d-46bd-add8-18eb5c6ae51e",
+                    "name": "Amazon Web Services (AWS)",
+                    "vanity_slug": "amazon-web-services-aws"
+                },
+                {
+                    "id": "682d4927-14e7-490c-96d3-c8f3ef0995de",
+                    "name": "AWS",
+                    "vanity_slug": "aws"
+                },
+                {
+                    "id": "918edc32-0894-4957-a91f-d96300b8b8d3",
+                    "name": "AWS Cloud",
+                    "vanity_slug": "aws-cloud"
+                },
+                {
+                    "id": "37ec84cc-d6e7-400e-a841-5864dff2402e",
+                    "name": "AWS Data Migration",
+                    "vanity_slug": "aws-data-migration"
+                },
+                {
+                    "id": "ba659d89-e5b2-4dc8-b768-1acd8cf2354e",
+                    "name": "AWS DataSync",
+                    "vanity_slug": "aws-datasync"
+                },
+                {
+                    "id": "5d55db02-7076-4a5e-ae14-52ddeeb08006",
+                    "name": "AWS Storage Services",
+                    "vanity_slug": "aws-storage-services"
+                },
+                {
+                    "id": "37229bc7-1a4e-478d-b834-17402ba02862",
+                    "name": "Cloud Data",
+                    "vanity_slug": "cloud-data"
+                }
+            ]
+        },
+        {
+            "id": "8e20d3e5-930a-40f6-8025-836f08102192",
+            "description": "Earners of this badge have developed technical skills and knowledge of AWS for Games concepts and services with a focus on building game development pipelines for distributed teams.",
+            "global_activity_url": "https://aws.amazon.com/training/badges/",
+            "earn_this_badge_url": null,
+            "enable_earn_this_badge": false,
+            "enable_detail_attribute_visibility": true,
+            "name": "AWS Knowledge: AWS for Games: Cloud Game Development",
+            "public": true,
+            "recipient_type": "User",
+            "vanity_slug": "aws-knowledge-aws-for-games-cloud-game-development",
+            "show_badge_lmi": true,
+            "show_skill_tag_links": true,
+            "settings_enable_related_badges": true,
+            "translatable": false,
+            "level": null,
+            "time_to_earn": null,
+            "cost": null,
+            "type_category": "Learning",
+            "badge_template_interest_id": null,
+            "earned": false,
+            "image": {
+                "id": "1e1e332c-cbe5-4358-9491-748cc5c5d15f",
+                "url": "https://images.credly.com/images/1e1e332c-cbe5-4358-9491-748cc5c5d15f/image.png"
+            },
+            "image_url": "https://images.credly.com/images/1e1e332c-cbe5-4358-9491-748cc5c5d15f/image.png",
+            "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-aws-for-games-cloud-game-development",
+            "owner_vanity_slug": "amazon-web-services",
+            "badge_template_earnable": false,
+            "recommendable": true,
+            "issuer": {
+                "summary": "issued by Amazon Web Services Training and Certification",
+                "entities": [
+                    {
+                        "label": "Issued by",
+                        "primary": true,
+                        "entity": {
+                            "type": "Organization",
+                            "id": "7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "name": "Amazon Web Services Training and Certification",
+                            "url": "https://www.credly.com/api/v1/organizations/7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "vanity_url": "https://www.credly.com/org/amazon-web-services",
+                            "internationalize_badge_templates": false,
+                            "share_to_ziprecruiter": true,
+                            "twitter_url": "https://twitter.com/awscloud",
+                            "verified": false
+                        }
+                    }
+                ]
+            },
+            "related_badge_templates": [
+                {
+                    "id": "b38ee2a9-1b10-4d46-81d6-c779c7076fdb",
+                    "name": "AWS Knowledge: Serverless",
+                    "image": {
+                        "id": "e07c6cc4-b737-4d7e-8ce8-66b6b7a60367",
+                        "url": "https://images.credly.com/images/e07c6cc4-b737-4d7e-8ce8-66b6b7a60367/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/e07c6cc4-b737-4d7e-8ce8-66b6b7a60367/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-serverless"
+                },
+                {
+                    "id": "bffeaee3-cc79-491b-8ad3-706683e70308",
+                    "name": "AWS Cloud Quest: Serverless Developer",
+                    "image": {
+                        "id": "9a2fd02b-52ab-448d-9d19-fd9b68efe1f6",
+                        "url": "https://images.credly.com/images/9a2fd02b-52ab-448d-9d19-fd9b68efe1f6/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/9a2fd02b-52ab-448d-9d19-fd9b68efe1f6/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-cloud-quest-serverless-developer"
+                },
+                {
+                    "id": "05d90430-f3b8-4e70-ba81-925d1386ff8d",
+                    "name": "AWS Knowledge: Architecting",
+                    "image": {
+                        "id": "519a6dba-f145-4c1a-85a2-1d173d6898d9",
+                        "url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-architecting"
+                }
+            ],
+            "alignments": [],
+            "badge_template_activities": [
+                {
+                    "id": "ab1486e3-1169-4a86-8108-26972260e5e1",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "Successfully pass the AWS for Games: Cloud Game Development Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/1570/aws-for-games-learning-plan-cloud-game-development"
+                }
+            ],
+            "endorsements": [],
+            "skills": [
+                {
+                    "id": "71fefbab-eb2d-46bd-add8-18eb5c6ae51e",
+                    "name": "Amazon Web Services (AWS)",
+                    "vanity_slug": "amazon-web-services-aws"
+                },
+                {
+                    "id": "682d4927-14e7-490c-96d3-c8f3ef0995de",
+                    "name": "AWS",
+                    "vanity_slug": "aws"
+                },
+                {
+                    "id": "918edc32-0894-4957-a91f-d96300b8b8d3",
+                    "name": "AWS Cloud",
+                    "vanity_slug": "aws-cloud"
+                },
+                {
+                    "id": "1e584d53-deff-40f9-9341-c95b0608c283",
+                    "name": "AWS CodePipeline",
+                    "vanity_slug": "aws-codepipeline"
+                },
+                {
+                    "id": "b326464a-d5a9-4d69-bff4-ae8a2aa540e1",
+                    "name": "AWS Lambda",
+                    "vanity_slug": "aws-lambda"
+                },
+                {
+                    "id": "be09df1b-5554-4136-9396-99ce5be37abf",
+                    "name": "Cloud Development",
+                    "vanity_slug": "cloud-development"
+                },
+                {
+                    "id": "34eeb32f-715a-4a0c-b055-26ff6e67fc03",
+                    "name": "Game Development",
+                    "vanity_slug": "game-development"
+                },
+                {
+                    "id": "00806a89-e617-49e1-b236-cc7704eaf502",
+                    "name": "Game Tech",
+                    "vanity_slug": "game-tech"
+                },
+                {
+                    "id": "faa297cd-d3af-42e5-bd52-6532b1b70057",
+                    "name": "Serverless",
+                    "vanity_slug": "serverless"
+                }
+            ]
+        },
+        {
+            "id": "f417aed8-c267-40dd-939c-3f53555f066c",
+            "description": "Earners of this badge have developed knowledge of event-driven computing and AWS Serverless concepts with a focus on AWS Step Functions, Amazon EventBridge, Amazon SQS and Amazon SNS.",
+            "global_activity_url": "https://aws.amazon.com/training/badges/",
+            "earn_this_badge_url": null,
+            "enable_earn_this_badge": false,
+            "enable_detail_attribute_visibility": true,
+            "name": "AWS Knowledge: Events and Workflows",
+            "public": true,
+            "recipient_type": "User",
+            "vanity_slug": "aws-knowledge-events-and-workflows",
+            "show_badge_lmi": true,
+            "show_skill_tag_links": true,
+            "settings_enable_related_badges": true,
+            "translatable": false,
+            "level": null,
+            "time_to_earn": null,
+            "cost": null,
+            "type_category": "Learning",
+            "badge_template_interest_id": null,
+            "earned": false,
+            "image": {
+                "id": "65b806c9-c09d-4125-bfb0-8fc87f4699ac",
+                "url": "https://images.credly.com/images/65b806c9-c09d-4125-bfb0-8fc87f4699ac/image.png"
+            },
+            "image_url": "https://images.credly.com/images/65b806c9-c09d-4125-bfb0-8fc87f4699ac/image.png",
+            "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-events-and-workflows",
+            "owner_vanity_slug": "amazon-web-services",
+            "badge_template_earnable": false,
+            "recommendable": true,
+            "issuer": {
+                "summary": "issued by Amazon Web Services Training and Certification",
+                "entities": [
+                    {
+                        "label": "Issued by",
+                        "primary": true,
+                        "entity": {
+                            "type": "Organization",
+                            "id": "7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "name": "Amazon Web Services Training and Certification",
+                            "url": "https://www.credly.com/api/v1/organizations/7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "vanity_url": "https://www.credly.com/org/amazon-web-services",
+                            "internationalize_badge_templates": false,
+                            "share_to_ziprecruiter": true,
+                            "twitter_url": "https://twitter.com/awscloud",
+                            "verified": false
+                        }
+                    }
+                ]
+            },
+            "related_badge_templates": [
+                {
+                    "id": "a123b0c9-8bbe-4755-bd81-753a505fb90a",
+                    "name": "AWS Industry Quest: Financial Services",
+                    "image": {
+                        "id": "ac4918fd-87d6-4283-b896-52314f703327",
+                        "url": "https://images.credly.com/images/ac4918fd-87d6-4283-b896-52314f703327/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/ac4918fd-87d6-4283-b896-52314f703327/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-industry-quest-financial-services"
+                },
+                {
+                    "id": "b38ee2a9-1b10-4d46-81d6-c779c7076fdb",
+                    "name": "AWS Knowledge: Serverless",
+                    "image": {
+                        "id": "e07c6cc4-b737-4d7e-8ce8-66b6b7a60367",
+                        "url": "https://images.credly.com/images/e07c6cc4-b737-4d7e-8ce8-66b6b7a60367/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/e07c6cc4-b737-4d7e-8ce8-66b6b7a60367/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-serverless"
+                },
+                {
+                    "id": "bffeaee3-cc79-491b-8ad3-706683e70308",
+                    "name": "AWS Cloud Quest: Serverless Developer",
+                    "image": {
+                        "id": "9a2fd02b-52ab-448d-9d19-fd9b68efe1f6",
+                        "url": "https://images.credly.com/images/9a2fd02b-52ab-448d-9d19-fd9b68efe1f6/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/9a2fd02b-52ab-448d-9d19-fd9b68efe1f6/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-cloud-quest-serverless-developer"
+                }
+            ],
+            "alignments": [],
+            "badge_template_activities": [
+                {
+                    "id": "5b813045-603f-4ae2-bc10-2033ff15650c",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For customers and AWS Partners, use this link and successfully pass the Events and Workflows Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/1927/events-and-workflows-knowledge-badge-readiness-path"
+                },
+                {
+                    "id": "e3e49368-2cad-471c-ab3e-88ec667b4c2d",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For Amazon employees, use this link and successfully pass the Events and Workflows Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/learning_plan/view/1928/events-and-workflows-knowledge-badge-readiness-path-amazon"
+                }
+            ],
+            "endorsements": [],
+            "skills": [
+                {
+                    "id": "84515591-304b-4153-b2e4-6e3e044fb745",
+                    "name": "Amazon EventBridge",
+                    "vanity_slug": "amazon-eventbridge"
+                },
+                {
+                    "id": "10fb3bb0-6545-4d98-a0a5-181cfb392576",
+                    "name": "Amazon Simple Notification Service (SNS)",
+                    "vanity_slug": "amazon-simple-notification-service-sns"
+                },
+                {
+                    "id": "e01a5620-3504-4e30-a143-ca12cdb892d7",
+                    "name": "Amazon Simple Queue Service (SQS)",
+                    "vanity_slug": "amazon-simple-queue-service-sqs"
+                },
+                {
+                    "id": "71fefbab-eb2d-46bd-add8-18eb5c6ae51e",
+                    "name": "Amazon Web Services (AWS)",
+                    "vanity_slug": "amazon-web-services-aws"
+                },
+                {
+                    "id": "682d4927-14e7-490c-96d3-c8f3ef0995de",
+                    "name": "AWS",
+                    "vanity_slug": "aws"
+                },
+                {
+                    "id": "918edc32-0894-4957-a91f-d96300b8b8d3",
+                    "name": "AWS Cloud",
+                    "vanity_slug": "aws-cloud"
+                },
+                {
+                    "id": "993a841d-56a0-400f-96e6-fd07c4afc26a",
+                    "name": "AWS Step Functions",
+                    "vanity_slug": "aws-step-functions"
+                },
+                {
+                    "id": "97c78dbd-272d-4a95-8cca-df469e8a97a9",
+                    "name": "Event-driven architectures",
+                    "vanity_slug": "event-driven-architectures.92145dd9"
+                },
+                {
+                    "id": "2e92cd90-3277-4564-be90-a0f4fbc74b46",
+                    "name": "Serverless Computing",
+                    "vanity_slug": "serverless-computing"
+                }
+            ]
+        },
+        {
+            "id": "a1ed5dd7-fc56-48d9-95af-80fcbe619b54",
+            "description": "Earners of this badge have the foundational skills and knowledge to build and operate AWS Direct-to-Consumer or Broadcast workflows using AWS best practices.",
+            "global_activity_url": "https://aws.amazon.com/training/badges/",
+            "earn_this_badge_url": null,
+            "enable_earn_this_badge": false,
+            "enable_detail_attribute_visibility": true,
+            "name": "AWS Knowledge: Media \u0026 Entertainment: Direct-to-Consumer and Broadcast Foundations",
+            "public": true,
+            "recipient_type": "User",
+            "vanity_slug": "aws-knowledge-media-entertainment-direct-to-consume",
+            "show_badge_lmi": true,
+            "show_skill_tag_links": true,
+            "settings_enable_related_badges": true,
+            "translatable": false,
+            "level": null,
+            "time_to_earn": null,
+            "cost": null,
+            "type_category": "Learning",
+            "badge_template_interest_id": null,
+            "earned": false,
+            "image": {
+                "id": "0c6f66be-4cd6-4d98-b132-a9a87dc6ecbe",
+                "url": "https://images.credly.com/images/0c6f66be-4cd6-4d98-b132-a9a87dc6ecbe/image.png"
+            },
+            "image_url": "https://images.credly.com/images/0c6f66be-4cd6-4d98-b132-a9a87dc6ecbe/image.png",
+            "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-media-entertainment-direct-to-consume",
+            "owner_vanity_slug": "amazon-web-services",
+            "badge_template_earnable": false,
+            "recommendable": true,
+            "issuer": {
+                "summary": "issued by Amazon Web Services Training and Certification",
+                "entities": [
+                    {
+                        "label": "Issued by",
+                        "primary": true,
+                        "entity": {
+                            "type": "Organization",
+                            "id": "7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "name": "Amazon Web Services Training and Certification",
+                            "url": "https://www.credly.com/api/v1/organizations/7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "vanity_url": "https://www.credly.com/org/amazon-web-services",
+                            "internationalize_badge_templates": false,
+                            "share_to_ziprecruiter": true,
+                            "twitter_url": "https://twitter.com/awscloud",
+                            "verified": false
+                        }
+                    }
+                ]
+            },
+            "related_badge_templates": [
+                {
+                    "id": "1b73171f-2425-4937-b2c4-fd938b0687e9",
+                    "name": "AWS Knowledge: Migration Foundations",
+                    "image": {
+                        "id": "4163dc96-eec3-49c2-87b3-6a98172e160c",
+                        "url": "https://images.credly.com/images/4163dc96-eec3-49c2-87b3-6a98172e160c/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/4163dc96-eec3-49c2-87b3-6a98172e160c/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-migration-foundations"
+                },
+                {
+                    "id": "05d90430-f3b8-4e70-ba81-925d1386ff8d",
+                    "name": "AWS Knowledge: Architecting",
+                    "image": {
+                        "id": "519a6dba-f145-4c1a-85a2-1d173d6898d9",
+                        "url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-architecting"
+                }
+            ],
+            "alignments": [],
+            "badge_template_activities": [
+                {
+                    "id": "7c90c8ad-6905-481c-a9ff-0a7d8f14757b",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "Successfully pass the Media \u0026 Entertainment: Direct-to-Consumer and Broadcast Foundations Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/1722/media-entertainment-direct-to-consumer-and-broadcast-foundations-learning-plan"
+                }
+            ],
+            "endorsements": [],
+            "skills": [
+                {
+                    "id": "71fefbab-eb2d-46bd-add8-18eb5c6ae51e",
+                    "name": "Amazon Web Services (AWS)",
+                    "vanity_slug": "amazon-web-services-aws"
+                },
+                {
+                    "id": "682d4927-14e7-490c-96d3-c8f3ef0995de",
+                    "name": "AWS",
+                    "vanity_slug": "aws"
+                },
+                {
+                    "id": "918edc32-0894-4957-a91f-d96300b8b8d3",
+                    "name": "AWS Cloud",
+                    "vanity_slug": "aws-cloud"
+                },
+                {
+                    "id": "64286b80-08a7-4766-aa89-8559ae0a8405",
+                    "name": "Broadcast",
+                    "vanity_slug": "broadcast"
+                },
+                {
+                    "id": "3ddb927f-e17f-4833-be01-56891566b8df",
+                    "name": "Media",
+                    "vanity_slug": "media"
+                },
+                {
+                    "id": "6a3bfe49-9ad3-48c2-b7a3-b21b3b1a049d",
+                    "name": "Streaming",
+                    "vanity_slug": "streaming"
+                }
+            ]
+        },
+        {
+            "id": "fa443b05-d1c3-4530-aef4-8ced56c31944",
+            "description": "Earners of this badge have developed knowledge of Quantum Computing with a focus on Amazon Braket.",
+            "global_activity_url": "https://aws.amazon.com/training/badges/",
+            "earn_this_badge_url": null,
+            "enable_earn_this_badge": false,
+            "enable_detail_attribute_visibility": true,
+            "name": "AWS Knowledge: Amazon Braket",
+            "public": true,
+            "recipient_type": "User",
+            "vanity_slug": "aws-knowledge-amazon-braket",
+            "show_badge_lmi": true,
+            "show_skill_tag_links": true,
+            "settings_enable_related_badges": true,
+            "translatable": false,
+            "level": null,
+            "time_to_earn": null,
+            "cost": null,
+            "type_category": "Learning",
+            "badge_template_interest_id": null,
+            "earned": false,
+            "image": {
+                "id": "cb9ef1ba-f010-4a39-881b-65dce3e5df68",
+                "url": "https://images.credly.com/images/cb9ef1ba-f010-4a39-881b-65dce3e5df68/image.png"
+            },
+            "image_url": "https://images.credly.com/images/cb9ef1ba-f010-4a39-881b-65dce3e5df68/image.png",
+            "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-amazon-braket",
+            "owner_vanity_slug": "amazon-web-services",
+            "badge_template_earnable": false,
+            "recommendable": true,
+            "issuer": {
+                "summary": "issued by Amazon Web Services Training and Certification",
+                "entities": [
+                    {
+                        "label": "Issued by",
+                        "primary": true,
+                        "entity": {
+                            "type": "Organization",
+                            "id": "7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "name": "Amazon Web Services Training and Certification",
+                            "url": "https://www.credly.com/api/v1/organizations/7b741b5c-231d-4925-8041-c64b6846f1c8",
+                            "vanity_url": "https://www.credly.com/org/amazon-web-services",
+                            "internationalize_badge_templates": false,
+                            "share_to_ziprecruiter": true,
+                            "twitter_url": "https://twitter.com/awscloud",
+                            "verified": false
+                        }
+                    }
+                ]
+            },
+            "related_badge_templates": [
+                {
+                    "id": "1b73171f-2425-4937-b2c4-fd938b0687e9",
+                    "name": "AWS Knowledge: Migration Foundations",
+                    "image": {
+                        "id": "4163dc96-eec3-49c2-87b3-6a98172e160c",
+                        "url": "https://images.credly.com/images/4163dc96-eec3-49c2-87b3-6a98172e160c/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/4163dc96-eec3-49c2-87b3-6a98172e160c/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-migration-foundations"
+                },
+                {
+                    "id": "05d90430-f3b8-4e70-ba81-925d1386ff8d",
+                    "name": "AWS Knowledge: Architecting",
+                    "image": {
+                        "id": "519a6dba-f145-4c1a-85a2-1d173d6898d9",
+                        "url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png"
+                    },
+                    "image_url": "https://images.credly.com/images/519a6dba-f145-4c1a-85a2-1d173d6898d9/image.png",
+                    "url": "https://www.credly.com/org/amazon-web-services/badge/aws-knowledge-architecting"
+                }
+            ],
+            "alignments": [],
+            "badge_template_activities": [
+                {
+                    "id": "ca382e68-6ff6-410b-a352-acb7b263c230",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For customers and AWS Partners, use this link and successfully pass the Amazon Braket Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/1986/amazon-braket-badge-knowledge-badge-readiness-path"
+                },
+                {
+                    "id": "82a482c5-eb8d-4f0f-9478-b494ab1265f5",
+                    "activity_type": "Assessment",
+                    "required_badge_template_id": null,
+                    "title": "For Amazon employees, use this link and successfully pass the Amazon Braket Knowledge Badge Assessment.",
+                    "url": "https://explore.skillbuilder.aws/learn/learning_plan/view/1990/amazon-braket-knowledge-badge-readiness-path-amazon"
+                }
+            ],
+            "endorsements": [],
+            "skills": [
+                {
+                    "id": "347ba809-c3ee-4935-99f4-ab08730e210b",
+                    "name": "Amazon Braket",
+                    "vanity_slug": "amazon-braket"
+                },
+                {
+                    "id": "71fefbab-eb2d-46bd-add8-18eb5c6ae51e",
+                    "name": "Amazon Web Services (AWS)",
+                    "vanity_slug": "amazon-web-services-aws"
+                },
+                {
+                    "id": "682d4927-14e7-490c-96d3-c8f3ef0995de",
+                    "name": "AWS",
+                    "vanity_slug": "aws"
+                },
+                {
+                    "id": "918edc32-0894-4957-a91f-d96300b8b8d3",
+                    "name": "AWS Cloud",
+                    "vanity_slug": "aws-cloud"
+                },
+                {
+                    "id": "87ede18f-8efb-4f5b-bebb-aa748275c5b9",
+                    "name": "Quantum Computing",
+                    "vanity_slug": "quantum-computing"
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "count": 14,
+        "current_page": 1,
+        "total_count": 14,
+        "total_pages": 1,
+        "per": 48,
+        "previous_page_url": null,
+        "next_page_url": null
+    }
+}

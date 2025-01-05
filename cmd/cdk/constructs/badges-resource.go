@@ -17,7 +17,16 @@ func newBadgesResource(scope constructs.Construct, id string, props *ResourcePro
 
 	badges := props.Rest.Root().AddResource(jsii.String("badges"), &awsapigateway.ResourceOptions{})
 
+	badgesCrawl := props.Rest.Root().AddResource(jsii.String("crawl"), &awsapigateway.ResourceOptions{
+		DefaultCorsPreflightOptions: &awsapigateway.CorsOptions{
+			AllowOrigins: awsapigateway.Cors_ALL_ORIGINS(),
+			AllowHeaders: awsapigateway.Cors_DEFAULT_HEADERS(),
+			AllowMethods: awsapigateway.Cors_ALL_METHODS(),
+		},
+	})
+
 	addGetAllBadgesHandler(this, badges, props)
+	crawlBadgesCredly(this, badgesCrawl, props)
 }
 
 func addGetAllBadgesHandler(this constructs.Construct, badges awsapigateway.Resource, props *ResourceProps) {
@@ -30,4 +39,17 @@ func addGetAllBadgesHandler(this constructs.Construct, badges awsapigateway.Reso
 		Proxy: jsii.Bool(true),
 	})
 	badges.AddMethod(jsii.String("GET"), getAllBadgesIntegration, &awsapigateway.MethodOptions{})
+}
+
+func crawlBadgesCredly(this constructs.Construct, badgesCrawl awsapigateway.Resource, props *ResourceProps) {
+	crawlBadgesCredly := newFunctionHandler(this, "crawl-badges-credly-handler", &FunctionHandlerProps{
+		Entry:            "functions/crawl-badges-credly",
+		TimeoutAsSeconds: 10,
+	})
+
+	crawlBadgesCredlyIntegration := awsapigateway.NewLambdaIntegration(crawlBadgesCredly.Handler(), &awsapigateway.LambdaIntegrationOptions{
+		Proxy: jsii.Bool(true),
+	})
+
+	badgesCrawl.AddMethod(jsii.String("POST"), crawlBadgesCredlyIntegration, &awsapigateway.MethodOptions{})
 }

@@ -31,12 +31,22 @@ func init() {
 }
 
 func main() {
-	c := getCertificationProgramBadges()
-	seedCertificationProgamBadges(c)
+	seedCertificationProgamBadges()
+	seedKnowledgeBadges()
 }
 
-func seedCertificationProgamBadges(c *badgeCollection) {
-	for _, badge := range c.Data {
+func seedCertificationProgamBadges() {
+	c := getCertificationProgramBadges()
+	seedBadges(c, "certification-program/")
+}
+
+func seedKnowledgeBadges() {
+	c := getKnowledgeBadges()
+	seedBadges(c, "knowledge/")
+}
+
+func seedBadges(c *badgeCollection, prefix string) {
+	for i, badge := range c.Data {
 		response, err := http.Get(badge.ImageUrl)
 		if err != nil {
 			log.Fatalf("failed to download image, %v", err)
@@ -47,7 +57,7 @@ func seedCertificationProgamBadges(c *badgeCollection) {
 
 		_, err = S3Client.PutObject(context.TODO(), &s3.PutObjectInput{
 			Bucket:        aws.String(constructs.GetBucketName()),
-			Key:           aws.String("certification-program/" + badge.VanitySlug + ext),
+			Key:           aws.String(prefix + badge.VanitySlug + ext),
 			Body:          response.Body,
 			ContentLength: aws.Int64(response.ContentLength),
 		})
@@ -55,6 +65,6 @@ func seedCertificationProgamBadges(c *badgeCollection) {
 			log.Fatalf("failed to put object, %v", err)
 		}
 
-		fmt.Printf("seeded %v\n", badge.Name)
+		fmt.Printf("%d. seeded %v\n", i+1, badge.Name)
 	}
 }
