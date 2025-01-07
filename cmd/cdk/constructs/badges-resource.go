@@ -17,7 +17,7 @@ func newBadgesResource(scope constructs.Construct, id string, props *ResourcePro
 
 	badges := props.Rest.Root().AddResource(jsii.String("badges"), &awsapigateway.ResourceOptions{})
 
-	badgesCrawl := props.Rest.Root().AddResource(jsii.String("crawl"), &awsapigateway.ResourceOptions{
+	badgesCrawl := badges.AddResource(jsii.String("crawl"), &awsapigateway.ResourceOptions{
 		DefaultCorsPreflightOptions: &awsapigateway.CorsOptions{
 			AllowOrigins: awsapigateway.Cors_ALL_ORIGINS(),
 			AllowHeaders: awsapigateway.Cors_DEFAULT_HEADERS(),
