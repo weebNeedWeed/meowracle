@@ -23,7 +23,11 @@ Meowracle is a tool designed to help you create stunning LinkedIn cover images t
 
 ![Architecture](assets/architecture.png)
 
-The Meowracle application follows a serverless architecture pattern, leveraging AWS services for scalability and reliability. The frontend communicates with the backend through API Gateway endpoints, while Lambda functions handle business logic and DynamoDB manages data persistence. This architecture ensures high availability and cost-effectiveness by utilizing no-idle-cost AWS services. Amplify, API Gateway Edge Optimized are all use CloudFront behind the scenes, which helps provide low-latency content to user over the world.
+The Meowracle application follows a serverless architecture pattern, leveraging AWS services for scalability and reliability. The frontend communicates with the backend through API Gateway endpoints, while Lambda functions handle business logic and DynamoDB manages data persistence. This architecture ensures high availability and cost-effectiveness by utilizing no-idle-cost AWS services. Amplify, API Gateway Edge Optimized are all use CloudFront behind the scenes, which helps provide low-latency content to users worldwide.
+
+### DynamoDB Table Design
+
+![Table Design](assets/table-design.png)
 
 ### Backend
 

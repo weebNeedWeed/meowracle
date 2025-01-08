@@ -13,16 +13,6 @@ import (
 	"github.com/weebNeedWeed/meowracle/internal/utils"
 )
 
-type badgeCollection struct {
-	Data []badge `json:"data"`
-}
-
-type badge struct {
-	Name       string `json:"name"`
-	ImageUrl   string `json:"image_url"`
-	VanitySlug string `json:"vanity_slug"`
-}
-
 var S3Client *s3.Client
 
 func init() {
@@ -45,6 +35,8 @@ func seedKnowledgeBadges() {
 	seedBadges(c, "knowledge/")
 }
 
+// prefix is the folder into which we put badges image
+// E.g: prefix: knowledge/
 func seedBadges(c *badgeCollection, prefix string) {
 	for i, badge := range c.Data {
 		response, err := http.Get(badge.ImageUrl)
@@ -53,12 +45,15 @@ func seedBadges(c *badgeCollection, prefix string) {
 		}
 		defer response.Body.Close()
 
+		// get extension of the image (png, jpeg, etc)
 		ext := filepath.Ext(badge.ImageUrl)
 
 		_, err = S3Client.PutObject(context.TODO(), &s3.PutObjectInput{
-			Bucket:        aws.String(constructs.GetBucketName()),
-			Key:           aws.String(prefix + badge.VanitySlug + ext),
-			Body:          response.Body,
+			Bucket: aws.String(constructs.GetBucketName()),
+			Key:    aws.String(prefix + badge.VanitySlug + ext),
+			Body:   response.Body,
+
+			// must define it, because putobject requires
 			ContentLength: aws.Int64(response.ContentLength),
 		})
 		if err != nil {

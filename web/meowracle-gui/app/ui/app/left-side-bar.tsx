@@ -8,17 +8,20 @@ import { IoSearchSharp } from "react-icons/io5";
 import { LuLayoutTemplate } from "react-icons/lu";
 import { TbHexagonPlus2 } from "react-icons/tb";
 import Image from "next/image";
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import clsx from "clsx";
+import { motion } from "motion/react";
 
 const tabs = [
   {
     name: "Templates",
     icon: LuLayoutTemplate,
+    Component: TemplatesMenuSection,
   },
   {
     name: "Badges",
     icon: TbHexagonPlus2,
+    Component: TemplatesMenuSection,
   },
 ];
 
@@ -56,14 +59,32 @@ export default function LeftSideBar() {
         ))}
       </nav>
 
-      {active !== -1 && <ChildMenu />}
+      {tabs.map(
+        (tab, index) =>
+          index === active && (
+            <tab.Component key={index} onClose={() => setActive(-1)} />
+          )
+      )}
     </>
   );
 }
 
-function ChildMenu() {
+function MenuSection({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-[#27272F] w-80 h-full relative shrink-0">
+    <motion.section
+      initial={{ opacity: 0.5, scale: 0.6 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ type: "spring", duration: 0.2 }}
+      className="bg-[#27272F] w-80 h-full relative shrink-0"
+    >
+      {children}
+    </motion.section>
+  );
+}
+
+function TemplatesMenuSection({ onClose }: { onClose: () => void }) {
+  return (
+    <MenuSection>
       <div className="flex flex-col overflow-hidden h-full gap-y-4">
         <div className="px-4 pt-4">
           <Input
@@ -123,9 +144,12 @@ function ChildMenu() {
         </div>
       </div>
 
-      <button className="absolute top-5 -right-10 bg-[#27272F] hover:bg-[#323239] text-[#8F8FA1] p-2 rounded-full transition-all duration-100 ease-in-out">
+      <button
+        onClick={onClose}
+        className="absolute top-5 -right-10 bg-[#27272F] hover:bg-[#323239] text-[#8F8FA1] p-2 rounded-full transition-all duration-100 ease-in-out"
+      >
         <IoMdClose />
       </button>
-    </div>
+    </MenuSection>
   );
 }

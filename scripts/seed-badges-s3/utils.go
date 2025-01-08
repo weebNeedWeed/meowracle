@@ -6,6 +6,17 @@ import (
 	"os"
 )
 
+type badgeCollection struct {
+	Data []badge `json:"data"`
+}
+
+type badge struct {
+	Name       string `json:"name"`
+	ImageUrl   string `json:"image_url"`
+	VanitySlug string `json:"vanity_slug"`
+}
+
+// get cert program badges from predefined json file
 func getCertificationProgramBadges() *badgeCollection {
 	r, err := os.ReadFile("./assets/aws-certification-program.json")
 	if err != nil {
@@ -21,6 +32,7 @@ func getCertificationProgramBadges() *badgeCollection {
 	return c
 }
 
+// get knowledge badges from predefined json file
 func getKnowledgeBadges() *badgeCollection {
 	r, err := os.ReadFile("./assets/aws-knowledge.json")
 	if err != nil {
