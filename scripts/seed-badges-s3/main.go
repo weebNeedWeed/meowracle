@@ -26,12 +26,12 @@ func main() {
 }
 
 func seedCertificationProgamBadges() {
-	c := getCertificationProgramBadges()
+	c := utils.GetCertificationProgramBadges()
 	seedBadges(c, "certification-program/")
 }
 
 func seedKnowledgeBadges() {
-	c := getKnowledgeBadges()
+	c := utils.GetKnowledgeBadges()
 	seedBadges(c, "knowledge/")
 }
 

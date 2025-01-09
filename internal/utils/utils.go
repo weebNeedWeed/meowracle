@@ -8,8 +8,11 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/go-playground/validator/v10"
 	"github.com/weebNeedWeed/meowracle/internal/env"
 )
+
+var Validate = validator.New(validator.WithRequiredStructEnabled())
 
 func GetAWSConfig() aws.Config {
 	profile := env.GetString("AWS_PROFILE", "default")

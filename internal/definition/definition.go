@@ -10,7 +10,7 @@ import (
 
 type Badge struct {
 	Id    string `json:"id"`
-	Title string `json:"title"`
+	Name  string `json:"name"`
 	Path  string `json:"path"`
 	Level int    `json:"level"`
 }
@@ -32,11 +32,13 @@ type Slot struct {
 }
 
 type DynamoDBBadge struct {
-	Pk    string `dynamodbav:"pk"`
-	Sk    string `dynamodbav:"sk"`
-	Title string `dynamodbav:"title"`
-	Path  string `dynamodbav:"path"`
-	Level int    `dynamodbav:"level"`
+	Pk     string `dynamodbav:"pk"`
+	Sk     string `dynamodbav:"sk"`
+	Name   string `dynamodbav:"title"`
+	Path   string `dynamodbav:"path"`
+	Level  int    `dynamodbav:"level"`
+	Gsi1pk string `dynamodbav:"gsi1pk"`
+	Gsi1sk string `dynamodbav:"gsi1sk"`
 }
 
 type DynamoDBTemplate struct {
@@ -60,7 +62,7 @@ func (b *DynamoDBBadge) ToBadge() Badge {
 
 	return Badge{
 		Id:    id,
-		Title: b.Title,
+		Name:  b.Name,
 		Path:  b.Path,
 		Level: b.Level,
 	}

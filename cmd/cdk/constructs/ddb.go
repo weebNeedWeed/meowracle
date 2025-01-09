@@ -44,11 +44,26 @@ func NewMeowracleTable(scope constructs.Construct, id string, props *DynamoDBPro
 			Type: awsdynamodb.AttributeType_STRING,
 		},
 		BillingMode:        awsdynamodb.BillingMode_PROVISIONED,
-		ReadCapacity:       jsii.Number(5),
-		WriteCapacity:      jsii.Number(2),
+		ReadCapacity:       jsii.Number(3),
+		WriteCapacity:      jsii.Number(1),
 		TableName:          jsii.String(TableName),
 		DeletionProtection: delProtection,
 		RemovalPolicy:      rmPolicy,
+	})
+
+	table.AddGlobalSecondaryIndex(&awsdynamodb.GlobalSecondaryIndexProps{
+		IndexName:      jsii.String("gsi1"),
+		ProjectionType: awsdynamodb.ProjectionType_ALL,
+		PartitionKey: &awsdynamodb.Attribute{
+			Name: jsii.String("gsi1pk"),
+			Type: awsdynamodb.AttributeType_STRING,
+		},
+		SortKey: &awsdynamodb.Attribute{
+			Name: jsii.String("gsi1sk"),
+			Type: awsdynamodb.AttributeType_STRING,
+		},
+		ReadCapacity:  jsii.Number(2),
+		WriteCapacity: jsii.Number(1),
 	})
 
 	return &meowracleTable{this, table}

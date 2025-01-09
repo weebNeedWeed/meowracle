@@ -4,4 +4,8 @@ seed:
 
 .PHONY: seed-badges-s3
 seed-badges-s3:
-	@go run scripts/seed-badges-s3/main.go scripts/seed-badges-s3/utils.go  
+	@go run scripts/seed-badges-s3/main.go
+
+.PHONY: seed-ddb
+seed-ddb:
+	@go run scripts/seed-dynamodb/main.go scripts/seed-dynamodb/seed-utils.go
