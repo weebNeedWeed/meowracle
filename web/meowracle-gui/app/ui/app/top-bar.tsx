@@ -11,15 +11,15 @@ export default function TopBar() {
         <div className="w-28 justify-center flex items-center">
           <Link
             href="#"
-            className="p-0.5 rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#EC4899]"
+            className="p-0.5 rounded-none bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] clip-path-diamond rotate-45"
           >
-            <div className="bg-[#16161D] rounded-full p-1">
+            <div className="bg-[#16161D] clip-path-diamond p-1">
               <Image
                 src="/logo.png"
                 alt="meowracle.live logo"
                 width={40}
                 height={40}
-                className="w-6 h-6"
+                className="w-6 h-6 -rotate-45"
               />
             </div>
           </Link>

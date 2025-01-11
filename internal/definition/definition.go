@@ -34,7 +34,7 @@ type Slot struct {
 type DynamoDBBadge struct {
 	Pk     string `dynamodbav:"pk"`
 	Sk     string `dynamodbav:"sk"`
-	Name   string `dynamodbav:"title"`
+	Name   string `dynamodbav:"name"`
 	Path   string `dynamodbav:"path"`
 	Level  int    `dynamodbav:"level"`
 	Gsi1pk string `dynamodbav:"gsi1pk"`

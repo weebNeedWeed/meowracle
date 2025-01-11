@@ -1,0 +1,9 @@
+.control {
+  &[data-inactive] {
+    opacity: 0;
+    cursor: default;
+  }
+
+  background-color: transparent;
+  color: white;
+}

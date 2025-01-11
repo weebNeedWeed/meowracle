@@ -17,16 +17,16 @@ func newBadgesResource(scope constructs.Construct, id string, props *ResourcePro
 
 	badges := props.Rest.Root().AddResource(jsii.String("badges"), &awsapigateway.ResourceOptions{})
 
-	badgesCrawl := badges.AddResource(jsii.String("crawl"), &awsapigateway.ResourceOptions{
-		DefaultCorsPreflightOptions: &awsapigateway.CorsOptions{
-			AllowOrigins: awsapigateway.Cors_ALL_ORIGINS(),
-			AllowHeaders: awsapigateway.Cors_DEFAULT_HEADERS(),
-			AllowMethods: awsapigateway.Cors_ALL_METHODS(),
-		},
-	})
+	// badgesCrawl := badges.AddResource(jsii.String("crawl"), &awsapigateway.ResourceOptions{
+	// 	DefaultCorsPreflightOptions: &awsapigateway.CorsOptions{
+	// 		AllowOrigins: awsapigateway.Cors_ALL_ORIGINS(),
+	// 		AllowHeaders: awsapigateway.Cors_DEFAULT_HEADERS(),
+	// 		AllowMethods: awsapigateway.Cors_ALL_METHODS(),
+	// 	},
+	// })
 
 	addGetAllBadgesHandler(this, badges, props)
-	crawlBadgesCredly(this, badgesCrawl, props)
+	// crawlBadgesCredly(this, badgesCrawl, props)
 }
 
 func addGetAllBadgesHandler(this constructs.Construct, badges awsapigateway.Resource, props *ResourceProps) {
