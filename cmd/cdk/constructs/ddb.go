@@ -6,9 +6,8 @@ import (
 	"github.com/aws/constructs-go/constructs/v10"
 	"github.com/aws/jsii-runtime-go"
 	"github.com/weebNeedWeed/meowracle/internal/env"
+	"github.com/weebNeedWeed/meowracle/internal/utils"
 )
-
-var TableName = "meowracle-table"
 
 type DynamoDBProps struct {
 }
@@ -46,7 +45,7 @@ func NewMeowracleTable(scope constructs.Construct, id string, props *DynamoDBPro
 		BillingMode:        awsdynamodb.BillingMode_PROVISIONED,
 		ReadCapacity:       jsii.Number(3),
 		WriteCapacity:      jsii.Number(1),
-		TableName:          jsii.String(TableName),
+		TableName:          jsii.String(utils.TableName),
 		DeletionProtection: delProtection,
 		RemovalPolicy:      rmPolicy,
 	})

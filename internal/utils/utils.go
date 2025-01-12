@@ -10,6 +10,7 @@ import (
 	"github.com/weebNeedWeed/meowracle/internal/env"
 )
 
+var TableName = "meowracle-table"
 var Validate = validator.New(validator.WithRequiredStructEnabled())
 
 func GetAWSConfig() aws.Config {

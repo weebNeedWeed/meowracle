@@ -37,9 +37,6 @@ func newFunctionHandler(scope constructs.Construct, id string, props *FunctionHa
 				jsii.String(`-ldflags "-s -w"`),
 			},
 		},
-		Environment: &map[string]*string{
-			"TABLE_NAME": jsii.String(TableName),
-		},
 		Timeout: awscdk.Duration_Seconds(jsii.Number(timeout)),
 	})
 

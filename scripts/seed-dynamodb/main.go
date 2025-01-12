@@ -101,7 +101,7 @@ func seedBadges(client *dynamodb.Client, c *utils.BadgeCollection, badgeCategory
 
 		_, err := client.BatchWriteItem(context.TODO(), &dynamodb.BatchWriteItemInput{
 			RequestItems: map[string][]types.WriteRequest{
-				meowracleDb.TableName: reqs,
+				utils.TableName: reqs,
 			},
 		})
 
