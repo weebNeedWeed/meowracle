@@ -24,6 +24,9 @@ func main() {
 
 	badgeCat1Id := seedBadgeCategories(dynamodbClient, "AWS Certification Program")
 	seedBadges(dynamodbClient, utils.GetCertificationProgramBadges(), badgeCat1Id, "certification-program/")
+
+	badgeCat2Id := seedBadgeCategories(dynamodbClient, "AWS Knowledge")
+	seedBadges(dynamodbClient, utils.GetKnowledgeBadges(), badgeCat2Id, "knowledge/")
 }
 
 // return: Category's ID

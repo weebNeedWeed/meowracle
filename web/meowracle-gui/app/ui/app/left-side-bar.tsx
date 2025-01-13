@@ -4,14 +4,17 @@ import { Carousel } from "@mantine/carousel";
 import { Input, Button, CloseButton, Loader } from "@mantine/core";
 import { BsThreeDots } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
-import { IoSearchSharp } from "react-icons/io5";
+import {
+  IoChevronBackOutline,
+  IoChevronForwardOutline,
+  IoSearchSharp,
+} from "react-icons/io5";
 import { LuLayoutTemplate } from "react-icons/lu";
 import { TbHexagonPlus2 } from "react-icons/tb";
 import Image from "next/image";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import clsx from "clsx";
 import { motion } from "motion/react";
-import classes from "./left-side-bar.module.css";
 import { Badge, useBadges } from "@/app/lib/api/badges";
 import { useDebouncedValue } from "@mantine/hooks";
 import { useBadgeCategories } from "@/app/lib/api/badge-categories";
@@ -169,23 +172,13 @@ function BadgesMenuSection({ onClose }: { onClose: () => void }) {
   const [activeCategory, setActiveCategory] = useState<string>("");
   const [debouncedActiveCategory] = useDebouncedValue(activeCategory, 500);
   const { data: getBadges, isLoading: isGetBadgesLoading } = useBadges({
-    limit: 40,
+    limit: 20,
     keyword: debouncedKeyword,
     cursor,
     categoryId: debouncedActiveCategory ?? undefined,
   });
 
-  const chunkSize = 3;
-  const badgeCategories = useMemo(() => {
-    if (!getBadgesCat?.data) return [];
-
-    const res = [];
-    for (let i = 0; i < getBadgesCat.data.length; i++) {
-      res.push(getBadgesCat.data.slice(i, i + chunkSize));
-    }
-
-    return res;
-  }, [getBadgesCat?.data]);
+  const badgeCatRef = React.useRef<HTMLDivElement>(null);
 
   const handleLoadMore = () => {
     if (getBadges?.pageInfo?.cursor) {
@@ -207,6 +200,7 @@ function BadgesMenuSection({ onClose }: { onClose: () => void }) {
 
   useEffect(() => {
     setCursor(null);
+    setKeyword("");
     setBadges([]);
   }, [activeCategory]);
 
@@ -239,51 +233,69 @@ function BadgesMenuSection({ onClose }: { onClose: () => void }) {
 
         <div className="grow flex flex-col bg-transparent w-full overflow-y-scroll pl-4 scrollbar pb-4">
           <div className="max-w-full w-full overflow-hidden shrink-0 h-10 mb-5">
-            <Carousel
-              slideSize="60%"
-              height="40"
-              slideGap="xs"
-              controlsOffset="xs"
-              align="start"
-              classNames={classes}
+            <div
+              ref={badgeCatRef}
+              className="overflow-x-scroll h-auto w-full flex justify-between items-center gap-x-2 no-scrollbar relative"
             >
-              {badgeCategories.map((chunk, index) => (
-                <Carousel.Slide key={index}>
-                  <div className="flex gap-x-2">
-                    {chunk.map((category) => (
-                      <Button
-                        key={category.id}
-                        variant="outline"
-                        classNames={{
-                          root: clsx(
-                            "text-[#B7B7CD] border-[#5C5C66] hover:border-[#5C5C66] hover:text-[#B7B7CD] hover:bg-[#2D2D38] font-light transition-all duration-200",
-                            {
-                              "bg-[#2D2D38] border-[#1BE4C9] text-[#1BE4C9] hover:bg-[#353542] hover:border-[#1BE4C9] hover:text-[#1BE4C9]":
-                                category.id === activeCategory,
-                            }
-                          ),
-                        }}
-                        onClick={() => {
-                          if (category.id === activeCategory) {
-                            setActiveCategory("");
-                            return;
-                          }
-                          setActiveCategory(category.id);
-                        }}
-                      >
-                        {category.name}
+              <button
+                onClick={() => {
+                  badgeCatRef.current?.scrollBy({
+                    left: -100,
+                    behavior: "smooth",
+                  });
+                }}
+                className="sticky flex justify-center items-center text-white p-2 rounded-full transition-colors duration-200 left-0 bg-[#27272F]/80 hover:bg-[#27272F] z-10"
+              >
+                <IoChevronBackOutline />
+              </button>
 
-                        {category.id === activeCategory && (
-                          <span className="ml-2 hover:scale-110 transition-transform">
-                            <IoMdClose className="w-4 h-4" />
-                          </span>
-                        )}
-                      </Button>
-                    ))}
-                  </div>
-                </Carousel.Slide>
+              {getBadgesCat?.data.map((category) => (
+                <Button
+                  key={category.id}
+                  variant="outline"
+                  classNames={{
+                    root: clsx(
+                      "font-light transition-all duration-200 w-auto shrink-0",
+                      {
+                        "bg-[#2D2D38] border-[#1BE4C9] text-[#1BE4C9] hover:bg-[#353542] hover:border-[#1BE4C9] hover:text-[#1BE4C9]":
+                          category.id === activeCategory,
+                      },
+                      {
+                        "text-[#B7B7CD] border-[#5C5C66] hover:border-[#5C5C66] hover:text-[#B7B7CD] hover:bg-[#2D2D38] ":
+                          category.id !== activeCategory,
+                      }
+                    ),
+                  }}
+                  onClick={() => {
+                    if (category.id === activeCategory) {
+                      setActiveCategory("");
+                      return;
+                    }
+                    setActiveCategory(category.id);
+                  }}
+                >
+                  {category.name}
+
+                  {category.id === activeCategory && (
+                    <span className="ml-2 hover:scale-110 transition-transform">
+                      <IoMdClose className="w-4 h-4" />
+                    </span>
+                  )}
+                </Button>
               ))}
-            </Carousel>
+
+              <button
+                onClick={() => {
+                  badgeCatRef.current?.scrollBy({
+                    left: 100,
+                    behavior: "smooth",
+                  });
+                }}
+                className="sticky flex justify-center items-center text-white p-2 rounded-full transition-colors duration-200 right-0 bg-[#27272F]/80 hover:bg-[#27272F] z-10"
+              >
+                <IoChevronForwardOutline />
+              </button>
+            </div>
           </div>
 
           {getBadges ? (
