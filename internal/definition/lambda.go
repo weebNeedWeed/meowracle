@@ -1,6 +1,7 @@
 package definition
 
 import (
+	"encoding/json"
 	"net/http"
 	"time"
 
@@ -28,7 +29,7 @@ type APIError struct {
 
 type Response[T any] struct {
 	Data     T         `json:"data"`
-	PageInfo *PageInfo `json:"pageInfo"`
+	PageInfo *PageInfo `json:"pageInfo,omitempty"`
 	Status   int       `json:"status"`
 }
 
@@ -86,6 +87,20 @@ func NewAPIErrorFromValidationErrors(vErrs validator.ValidationErrors) APIError 
 	}
 
 	return e
+}
+
+func NewCursorFromQueryString(query string) Cursor {
+	if query == "" {
+		return nil
+	}
+
+	c := Cursor{}
+	err := json.Unmarshal([]byte(query), &c)
+	if err != nil {
+		return nil
+	}
+
+	return c
 }
 
 func NewResponse[T any](data T, status int) Response[T] {

@@ -9,8 +9,20 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 	"github.com/weebNeedWeed/meowracle/internal/definition"
 )
+
+type LambdaHandlerConfig struct {
+	DynamodbClient *dynamodb.Client
+}
+
+func NewLambdaHandlerConfig() *LambdaHandlerConfig {
+	cfg, _ := GetAWSConfigForLambda()
+	dynamodbClient := dynamodb.NewFromConfig(cfg)
+
+	return &LambdaHandlerConfig{dynamodbClient}
+}
 
 func LogError(err error, ctx string, code definition.ErrorCode, severity definition.AppErrorSeverity) *definition.AppError {
 	e := &definition.AppError{

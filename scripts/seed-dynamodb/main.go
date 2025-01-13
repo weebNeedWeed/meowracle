@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"log"
 	"path"
+	"strconv"
 
-	meowracleDb "github.com/weebNeedWeed/meowracle/cmd/cdk/constructs"
 	"github.com/weebNeedWeed/meowracle/internal/utils"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -44,7 +44,7 @@ func seedBadgeCategories(client *dynamodb.Client, badgeName string) string {
 	}
 
 	_, err = client.PutItem(context.TODO(), &dynamodb.PutItemInput{
-		TableName: aws.String(meowracleDb.TableName),
+		TableName: aws.String(utils.TableName),
 		Item:      m,
 	})
 	if err != nil {
@@ -61,14 +61,15 @@ func seedBadges(client *dynamodb.Client, c *utils.BadgeCollection, badgeCategory
 	ddbBadges := make([]definition.DynamoDBBadge, 0)
 	for index, d := range c.Data {
 		path := prefix + d.VanitySlug + path.Ext(d.ImageUrl)
+		level := getBadgeLevelByName(d.Name)
 		ddbBadge := definition.DynamoDBBadge{
 			Pk:     "BADGECAT#" + badgeCategoryId,
 			Sk:     "BADGE#" + ids[index],
 			Name:   d.Name,
 			Path:   path,
-			Level:  getBadgeLevelByName(d.Name),
+			Level:  level,
 			Gsi1pk: "BADGE",
-			Gsi1sk: "BADGE",
+			Gsi1sk: "BADGE#" + strconv.Itoa(level),
 		}
 		ddbBadges = append(ddbBadges, ddbBadge)
 	}
@@ -96,7 +97,7 @@ func seedBadges(client *dynamodb.Client, c *utils.BadgeCollection, badgeCategory
 
 			reqs = append(reqs, req)
 
-			fmt.Printf("inserted %s", b.Name)
+			fmt.Printf("inserted %s\n", b.Name)
 		}
 
 		_, err := client.BatchWriteItem(context.TODO(), &dynamodb.BatchWriteItemInput{

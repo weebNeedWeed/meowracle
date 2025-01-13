@@ -51,5 +51,11 @@ func NewApi(scope constructs.Construct, id string, props *ApiProps) Api {
 		Table: props.Table,
 	})
 
+	// badge categories
+	newBadgeCategoriesResource(this, "badge-categories-resource", &ResourceProps{
+		Rest:  rest,
+		Table: props.Table,
+	})
+
 	return api{this}
 }

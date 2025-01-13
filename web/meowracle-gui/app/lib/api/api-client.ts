@@ -68,3 +68,15 @@ export const noCacheSettings: any = {
   staleTime: 1000 * 60 * 60,
   refetchOnWindowFocus: false,
 };
+
+export type ApiResponse<Type> = {
+  data: Type;
+  status: number;
+  pageInfo?: PageInfo;
+};
+
+export type PageInfo = {
+  totalRows: number;
+  hasMore: boolean;
+  cursor?: any;
+};

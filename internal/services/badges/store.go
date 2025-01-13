@@ -41,7 +41,7 @@ func (s *Store) CountNumberOfBadges(keyword string, categoryId string) (int, err
 		keyEx = expression.Key("gsi1pk").Equal(expression.Value("BADGE"))
 		indexName = aws.String("gsi1")
 	} else {
-		keyEx = expression.Key("pk").Equal(expression.Value("BADGECAT#" + categoryId))
+		keyEx = expression.Key("pk").Equal(expression.Value("BADGECAT#" + categoryId)).And(expression.Key("sk").BeginsWith("BADGE#"))
 	}
 	exprBuilder = exprBuilder.WithKeyCondition(keyEx)
 
@@ -72,7 +72,7 @@ func (s *Store) GetAllBadges(limit int, keyword string, categoryId string, curso
 		keyEx = expression.Key("gsi1pk").Equal(expression.Value("BADGE"))
 		indexName = aws.String("gsi1")
 	} else {
-		keyEx = expression.Key("pk").Equal(expression.Value("BADGECAT#" + categoryId))
+		keyEx = expression.Key("pk").Equal(expression.Value("BADGECAT#" + categoryId)).And(expression.Key("sk").BeginsWith("BADGE#"))
 	}
 
 	exprBuilder := expression.NewBuilder().WithKeyCondition(keyEx)
