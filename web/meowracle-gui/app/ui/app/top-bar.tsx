@@ -1,10 +1,17 @@
-import { Select } from "@mantine/core";
+"use client";
+
+import { Button, Select } from "@mantine/core";
 import Link from "next/link";
 import { FaPen } from "react-icons/fa6";
 import { RiDownloadLine } from "react-icons/ri";
 import Image from "next/image";
+import { MdFullscreen, MdFullscreenExit } from "react-icons/md";
+import { useFullscreen } from "@mantine/hooks";
+import clsx from "clsx";
 
 export default function TopBar() {
+  const { toggle, fullscreen } = useFullscreen();
+
   return (
     <nav className="bg-[#16161D] h-20 w-full flex items-center shrink-0">
       <div className="flex items-center h-full shrink-0">
@@ -64,8 +71,34 @@ export default function TopBar() {
         />
       </div>
 
-      <div className="mr-9">
-        <button className="bg-[#1BE4C9] shrink-0 text-[#1B1B22] rounded-md hover:bg-[#17B89D] px-5 py-2 font-bold cursor-pointer transition-colors duration-300 ease-in-out active:translate-y-0.5 uppercase text-xs flex items-center gap-x-2">
+      <div className="mr-9 flex items-stretch gap-x-4">
+        <Button
+          onClick={toggle}
+          size="compact-md"
+          classNames={{
+            root: clsx(
+              "bg-transparent shrink-0 text-[#B7B7CD] rounded-md px-4 font-bold cursor-pointer transition-colors duration-300 ease-in-out active:translate-y-0.5 uppercase flex border",
+              {
+                "border-[#5C5C66] hover:bg-[#2D2D38]/10": !fullscreen,
+                "border-[#EF4444] hover:bg-[#EF4444]/10 hover:text-[#EF4444] text-[#EF4444]":
+                  fullscreen,
+              }
+            ),
+          }}
+        >
+          {!fullscreen && (
+            <>
+              <MdFullscreen className="h-5 w-5" />
+            </>
+          )}
+
+          {fullscreen && (
+            <>
+              <MdFullscreenExit className="h-5 w-5" />
+            </>
+          )}
+        </Button>
+        <button className="bg-[#1BE4C9] shrink-0 text-[#1B1B22] rounded-md hover:bg-[#17B89D] px-5 font-bold cursor-pointer transition-colors duration-300 ease-in-out active:translate-y-0.5 uppercase text-xs flex items-center gap-x-2">
           <RiDownloadLine className="h-4 w-4" /> Export
         </button>
       </div>

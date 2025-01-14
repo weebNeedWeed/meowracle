@@ -1,7 +1,6 @@
 "use client";
 
-import { Carousel } from "@mantine/carousel";
-import { Input, Button, CloseButton, Loader } from "@mantine/core";
+import { Input, Button } from "@mantine/core";
 import { BsThreeDots } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
 import {
@@ -12,12 +11,10 @@ import {
 import { LuLayoutTemplate } from "react-icons/lu";
 import { TbHexagonPlus2 } from "react-icons/tb";
 import Image from "next/image";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import clsx from "clsx";
-import { motion } from "motion/react";
-import { Badge, useBadges } from "@/app/lib/api/badges";
-import { useDebouncedValue } from "@mantine/hooks";
-import { useBadgeCategories } from "@/app/lib/api/badge-categories";
+import MenuSection from "./menu-section";
+import BadgesMenuSection from "./badges-menu-section";
 
 const tabs = [
   {
@@ -76,23 +73,10 @@ export default function LeftSideBar() {
   );
 }
 
-function MenuSection({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.section
-      initial={{ opacity: 0.5, scale: 0.6 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ type: "spring", duration: 0.2 }}
-      className="bg-[#27272F] w-80 h-full relative shrink-0"
-    >
-      {children}
-    </motion.section>
-  );
-}
-
 function TemplatesMenuSection({ onClose }: { onClose: () => void }) {
   return (
-    <MenuSection>
-      <div className="flex flex-col overflow-hidden h-full gap-y-4">
+    <MenuSection onClose={onClose}>
+      <div className="flex flex-col overflow-hidden h-full gap-y-3">
         <div className="px-4 pt-4">
           <Input
             type="text"
@@ -109,254 +93,76 @@ function TemplatesMenuSection({ onClose }: { onClose: () => void }) {
 
         <div className="grow flex flex-col bg-transparent w-full overflow-y-scroll pl-4 scrollbar">
           <div className="max-w-full w-full overflow-hidden shrink-0 h-10 mb-5">
-            <Carousel
-              slideSize="60%"
-              height="40"
-              slideGap="xs"
-              controlsOffset="xs"
-              align="start"
-              classNames={{
-                control:
-                  "data-[inactive=true]:opacity-0 data-[inactive=true]:cursor-default",
-              }}
-            >
-              <Carousel.Slide>
-                <div className="flex gap-x-2">
-                  <Button
-                    variant="outline"
-                    classNames={{
-                      root: "text-[#B7B7CD] border-[#5C5C66] hover:border-[#5C5C66] hover:text-[#B7B7CD] hover:bg-[#2D2D38]",
-                    }}
-                  >
-                    hello1
-                  </Button>
-                </div>
-              </Carousel.Slide>
-            </Carousel>
-          </div>
-
-          <div className="relative shadow-md">
-            <button className="absolute top-1 right-1 text-xs bg-[#1B1B22]/50 text-white p-1 rounded-md hover:bg-[#1B1B22]/80 transition-colors duration-100">
-              <BsThreeDots />
-            </button>
-
-            <Image
-              src={"/templates/example-template.png"}
-              alt={"Example template preview"}
-              width={1584}
-              height={396}
-              className="w-full h-auto cursor-pointer"
-            />
-          </div>
-        </div>
-      </div>
-
-      <button
-        onClick={onClose}
-        className="absolute top-5 -right-10 bg-[#27272F] hover:bg-[#323239] text-[#8F8FA1] p-2 rounded-full transition-all duration-100 ease-in-out"
-      >
-        <IoMdClose />
-      </button>
-    </MenuSection>
-  );
-}
-
-function BadgesMenuSection({ onClose }: { onClose: () => void }) {
-  const bucketUrl =
-    "https://meowracle-bucket-b4922fdf-57d1-4ef8-9971-953640730c71.s3.ap-southeast-1.amazonaws.com/";
-  const [keyword, setKeyword] = useState("");
-  const [debouncedKeyword] = useDebouncedValue(keyword, 500);
-  const [cursor, setCursor] = useState<any>(null);
-  const [badges, setBadges] = useState<Badge[]>([]);
-  const { data: getBadgesCat } = useBadgeCategories();
-  const [activeCategory, setActiveCategory] = useState<string>("");
-  const [debouncedActiveCategory] = useDebouncedValue(activeCategory, 500);
-  const { data: getBadges, isLoading: isGetBadgesLoading } = useBadges({
-    limit: 20,
-    keyword: debouncedKeyword,
-    cursor,
-    categoryId: debouncedActiveCategory ?? undefined,
-  });
-
-  const badgeCatRef = React.useRef<HTMLDivElement>(null);
-
-  const handleLoadMore = () => {
-    if (getBadges?.pageInfo?.cursor) {
-      setCursor(JSON.stringify(getBadges.pageInfo.cursor));
-    }
-  };
-
-  useEffect(() => {
-    if (getBadges?.data) {
-      setBadges((prev) => [...prev, ...getBadges.data]);
-      return;
-    }
-  }, [getBadges?.data]);
-
-  useEffect(() => {
-    setCursor(null);
-    setBadges([]);
-  }, [keyword]);
-
-  useEffect(() => {
-    setCursor(null);
-    setKeyword("");
-    setBadges([]);
-  }, [activeCategory]);
-
-  return (
-    <MenuSection>
-      <div className="flex flex-col overflow-hidden h-full gap-y-3">
-        <div className="px-4 pt-4">
-          <Input
-            onChange={(e) => setKeyword(e.currentTarget.value)}
-            value={keyword}
-            type="text"
-            rightSectionPointerEvents="all"
-            placeholder="Find badge..."
-            leftSection={<IoSearchSharp />}
-            rightSection={
-              <CloseButton
-                aria-label="Clear input"
-                onClick={() => setKeyword("")}
-                className="bg-transparent text-[#B7B7CD] hover:bg-transparent"
-                style={{ display: keyword ? undefined : "none" }}
-              />
-            }
-            classNames={{
-              input:
-                "bg-transparent text-[#B7B7CD] border-[#5C5C66] hover:border-[#5C5C66] focus:border-[#5C5C66]",
-              wrapper: "bg-transparent",
-            }}
-          />
-        </div>
-
-        <div className="grow flex flex-col bg-transparent w-full overflow-y-scroll pl-4 scrollbar pb-4">
-          <div className="max-w-full w-full overflow-hidden shrink-0 h-10 mb-5">
-            <div
-              ref={badgeCatRef}
-              className="overflow-x-scroll h-auto w-full flex justify-between items-center gap-x-2 no-scrollbar relative"
-            >
-              <button
-                onClick={() => {
-                  badgeCatRef.current?.scrollBy({
-                    left: -100,
-                    behavior: "smooth",
-                  });
-                }}
-                className="sticky flex justify-center items-center text-white p-2 rounded-full transition-colors duration-200 left-0 bg-[#27272F]/80 hover:bg-[#27272F] z-10"
-              >
+            <div className="overflow-x-scroll h-auto w-full flex justify-between items-center gap-x-2 no-scrollbar relative">
+              <button className="sticky flex justify-center items-center text-white p-2 rounded-full transition-colors duration-200 left-0 bg-[#27272F]/80 hover:bg-[#27272F] z-10">
                 <IoChevronBackOutline />
               </button>
 
-              {getBadgesCat?.data.map((category) => (
-                <Button
-                  key={category.id}
-                  variant="outline"
-                  classNames={{
-                    root: clsx(
-                      "font-light transition-all duration-200 w-auto shrink-0",
-                      {
-                        "bg-[#2D2D38] border-[#1BE4C9] text-[#1BE4C9] hover:bg-[#353542] hover:border-[#1BE4C9] hover:text-[#1BE4C9]":
-                          category.id === activeCategory,
-                      },
-                      {
-                        "text-[#B7B7CD] border-[#5C5C66] hover:border-[#5C5C66] hover:text-[#B7B7CD] hover:bg-[#2D2D38] ":
-                          category.id !== activeCategory,
-                      }
-                    ),
-                  }}
-                  onClick={() => {
-                    if (category.id === activeCategory) {
-                      setActiveCategory("");
-                      return;
+              <Button
+                variant="outline"
+                classNames={{
+                  root: clsx(
+                    "font-light transition-all duration-200 w-auto shrink-0",
+                    {
+                      "bg-[#2D2D38] border-[#1BE4C9] text-[#1BE4C9] hover:bg-[#353542] hover:border-[#1BE4C9] hover:text-[#1BE4C9]":
+                        true,
+                    },
+                    {
+                      "text-[#B7B7CD] border-[#5C5C66] hover:border-[#5C5C66] hover:text-[#B7B7CD] hover:bg-[#2D2D38] ":
+                        false,
                     }
-                    setActiveCategory(category.id);
-                  }}
-                >
-                  {category.name}
-
-                  {category.id === activeCategory && (
-                    <span className="ml-2 hover:scale-110 transition-transform">
-                      <IoMdClose className="w-4 h-4" />
-                    </span>
-                  )}
-                </Button>
-              ))}
-
-              <button
-                onClick={() => {
-                  badgeCatRef.current?.scrollBy({
-                    left: 100,
-                    behavior: "smooth",
-                  });
+                  ),
                 }}
-                className="sticky flex justify-center items-center text-white p-2 rounded-full transition-colors duration-200 right-0 bg-[#27272F]/80 hover:bg-[#27272F] z-10"
               >
+                {"category.name"}
+
+                {true && (
+                  <span className="ml-2 hover:scale-110 transition-transform">
+                    <IoMdClose className="w-4 h-4" />
+                  </span>
+                )}
+              </Button>
+
+              <button className="sticky flex justify-center items-center text-white p-2 rounded-full transition-colors duration-200 right-0 bg-[#27272F]/80 hover:bg-[#27272F] z-10">
                 <IoChevronForwardOutline />
               </button>
             </div>
           </div>
 
-          {getBadges ? (
-            <div className="text-[#8F8FA1] text-sm mb-4">
-              {getBadges.pageInfo!.totalRows}{" "}
-              {getBadges.pageInfo!.totalRows === 1 ? "result" : "results"} found
-            </div>
-          ) : (
-            <div className="text-[#8F8FA1] text-sm mb-4">0 results found</div>
-          )}
+          <div className="text-[#8F8FA1] text-sm mb-4">0 results found</div>
 
-          {isGetBadgesLoading && (
-            <div className="flex justify-center items-center">
-              <Loader color="#B7B7CD" />;
-            </div>
-          )}
-
-          {badges
-            .sort((a, b) => a.level - b.level)
-            .map((badge, index) => (
-              <div
-                key={index}
-                className="relative group p-2 hover:bg-[#2D2D38] rounded-lg transition-colors duration-200 flex items-center"
-              >
-                <button className="absolute top-3 right-3 text-xs bg-[#1B1B22]/50 text-white p-1.5 rounded-md hover:bg-[#1B1B22]/80 transition-colors duration-100 hidden group-hover:block z-10">
-                  <BsThreeDots />
+          <div className="grid grid-cols-1 gap-4">
+            <div className="bg-[#2D2D38] p-3 rounded-xl hover:bg-[#353542] transition-all duration-200">
+              <div className="flex items-center justify-between mb-2">
+                <h4 className="text-[#EAEAF6] text-sm">Example Template</h4>
+                <button className="text-[#8F8FA1] hover:text-[#EAEAF6] p-1.5 rounded-lg transition-colors duration-200">
+                  <BsThreeDots className="w-3 h-3" />
                 </button>
-
-                <Image
-                  src={bucketUrl + badge.path}
-                  alt={"meowracle.live | " + badge.name}
-                  width={1584}
-                  height={396}
-                  className="w-16 h-auto cursor-pointer rounded-md hover:opacity-90 transition-opacity duration-200"
-                />
-                <div className="text-[#B7B7CD] text-sm flex-1 pl-3">
-                  {badge.name}
-                </div>
               </div>
-            ))}
-
-          {getBadges &&
-            getBadges.pageInfo?.hasMore &&
-            getBadges.pageInfo!.totalRows - badges.length > 0 && (
-              <button
-                className="w-full py-2 mt-2 text-sm text-[#8F8FA1] hover:text-[#B7B7CD] hover:bg-[#2D2D38] active:scale-95 rounded-lg transition-all duration-200"
-                onClick={handleLoadMore}
-              >
-                Load more ({getBadges.pageInfo!.totalRows - badges.length}{" "}
-                remaining)
-              </button>
-            )}
+              <div className="relative w-full aspect-[4/1] mb-2">
+                <Image
+                  src={"/templates/example-template.png"}
+                  alt={"Example template preview"}
+                  fill
+                  className="rounded-lg object-cover hover:opacity-90 transition-opacity"
+                />
+              </div>
+              <div className="flex justify-between items-center mb-2 text-sm">
+                <span className="text-[#8F8FA1]">Slots</span>
+                <span className="text-[#1BE4C9]">4</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="px-2 py-1 text-xs rounded-md bg-[#1B1B22] text-[#B7B7CD]">
+                  Default
+                </span>
+                <span className="px-2 py-1 text-xs rounded-md bg-[#1B1B22] text-[#B7B7CD]">
+                  Basic
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <button
-        onClick={onClose}
-        className="absolute top-5 -right-10 bg-[#27272F] hover:bg-[#323239] text-[#8F8FA1] p-2 rounded-full transition-all duration-100 ease-in-out"
-      >
-        <IoMdClose />
-      </button>
     </MenuSection>
   );
 }
