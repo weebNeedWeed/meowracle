@@ -14,6 +14,9 @@ export default function MenuSection({
   const { hovered, ref } = useHover();
   const [actualHovered, setActualHovered] = useState(false);
 
+  // add a close button effect like canva
+  // when users hover the menu, show the close button immediately
+  // when users leave the menu, wait for 1s before hiding the close button
   useEffect(() => {
     if (hovered) {
       setActualHovered(hovered);
@@ -31,7 +34,7 @@ export default function MenuSection({
       initial={{ opacity: 0.5, scale: 0.6 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ type: "spring", duration: 0.2 }}
-      className="bg-[#27272F] w-80 h-full relative shrink-0"
+      className="bg-[#27272F] w-80 max-h-full relative shrink-0"
       ref={ref}
     >
       {children}

@@ -83,7 +83,11 @@ func (s *Store) GetAllBadges(limit int, keyword string, categoryId string, curso
 
 	var lastEvalKey map[string]types.AttributeValue
 	if cursor != nil {
-		lastEvalKey, _ = attributevalue.MarshalMap(cursor)
+		var err error
+		lastEvalKey, err = attributevalue.MarshalMap(cursor)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	expr, _ := exprBuilder.Build()

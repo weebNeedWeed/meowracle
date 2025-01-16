@@ -7,12 +7,12 @@ import (
 )
 
 func newTemplatesResource(scope constructs.Construct, id string, props *ResourceProps) {
-	// this := constructs.NewConstruct(scope, &id)
+	this := constructs.NewConstruct(scope, &id)
 
-	// templates := props.Rest.Root().AddResource(jsii.String("templates"), &awsapigateway.ResourceOptions{})
+	templates := props.Rest.Root().AddResource(jsii.String("templates"), &awsapigateway.ResourceOptions{})
 	// templatesWithId := templates.AddResource(jsii.String("{templateId}"), &awsapigateway.ResourceOptions{})
 
-	// addGetAllTemplatesHandler(this, templates, props)
+	addGetAllTemplatesHandler(this, templates, props)
 	// addGetTemplateByIdHandler(this, templatesWithId, props)
 }
 

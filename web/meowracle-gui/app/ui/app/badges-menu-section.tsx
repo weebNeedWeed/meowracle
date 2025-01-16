@@ -19,12 +19,18 @@ export default function BadgesMenuSection({
 }: {
   onClose: () => void;
 }) {
+  // temporary bucket url TODO: move to env
   const bucketUrl =
     "https://meowracle-bucket-b4922fdf-57d1-4ef8-9971-953640730c71.s3.ap-southeast-1.amazonaws.com/";
+
   const [keyword, setKeyword] = useState("");
   const [debouncedKeyword] = useDebouncedValue(keyword, 500);
   const [cursor, setCursor] = useState<any>(null);
+
+  // store all badges in the state, so we can load more (because we are using cursor-based pagination)
+  // each time we load more, we append the new badges to the existing badges
   const [badges, setBadges] = useState<Badge[]>([]);
+
   const { data: getBadgesCat } = useBadgeCategories();
   const [activeCategory, setActiveCategory] = useState<string>("");
   const { data: getBadges, isLoading: isGetBadgesLoading } = useBadges({
@@ -34,14 +40,18 @@ export default function BadgesMenuSection({
     categoryId: activeCategory === "" ? undefined : activeCategory,
   });
 
+  // ref for the badge categories scroll
   const badgeCatRef = React.useRef<HTMLDivElement>(null);
 
+  // each time the user clicks the load more button, we set the cursor to the last cursor
+  // so the next query will fetch the next page
   const handleLoadMore = () => {
     if (getBadges?.pageInfo?.cursor) {
       setCursor(JSON.stringify(getBadges.pageInfo.cursor));
     }
   };
 
+  // append the new badges to the existing badges when loading more
   useEffect(() => {
     if (getBadges?.data) {
       setBadges((prev) => [...prev, ...getBadges.data]);
@@ -49,11 +59,15 @@ export default function BadgesMenuSection({
     }
   }, [getBadges?.data]);
 
+  // reset the cursor and badges when the keyword changes
+  // so we can fetch the new badges based on the new keyword
   useEffect(() => {
     setCursor(null);
     setBadges([]);
   }, [keyword]);
 
+  // reset the cursor and badges when the category changes
+  // so we can fetch the new badges based on the new category
   useEffect(() => {
     setCursor(null);
     setKeyword("");
@@ -62,7 +76,7 @@ export default function BadgesMenuSection({
 
   return (
     <MenuSection onClose={onClose}>
-      <div className="flex flex-col overflow-hidden h-full gap-y-3">
+      <div className="flex flex-col h-full gap-y-3">
         <div className="px-4 pt-4">
           <Input
             onChange={(e) => setKeyword(e.currentTarget.value)}
@@ -87,7 +101,7 @@ export default function BadgesMenuSection({
           />
         </div>
 
-        <div className="grow flex flex-col bg-transparent w-full overflow-y-scroll pl-4 scrollbar pb-4">
+        <div className="flex flex-col bg-transparent w-full overflow-y-scroll pl-4 scrollbar pb-4">
           <div className="max-w-full w-full overflow-hidden shrink-0 h-10 mb-5">
             <div
               ref={badgeCatRef}
