@@ -17,7 +17,7 @@ type GetAllBadgesRequest struct {
 func GetAllBadges(p *GetAllBadgesRequest, store *Store) (*definition.Response[[]definition.Badge], error) {
 	getAllBadgesRes, err := store.GetAllBadges(p.Limit, p.Keyword, p.CategoryId, p.Cursor)
 	if err != nil {
-		utils.LogError(err, "Get all badges", definition.ErrInternalServer, definition.AppError_Error_Severity)
+		utils.LogError(err, "Get all badges", definition.ErrDatabaseOperation, definition.AppError_Error_Severity)
 		return nil, err
 	}
 
@@ -28,7 +28,7 @@ func GetAllBadges(p *GetAllBadgesRequest, store *Store) (*definition.Response[[]
 
 	totalRows, err := store.CountNumberOfBadges(p.Keyword, p.CategoryId)
 	if err != nil {
-		utils.LogError(err, "Get number of rows", definition.ErrInternalServer, definition.AppError_Error_Severity)
+		utils.LogError(err, "Get number of rows", definition.ErrDatabaseOperation, definition.AppError_Error_Severity)
 		return nil, err
 	}
 

@@ -6,6 +6,10 @@ seed:
 seed-badges-s3:
 	@go run scripts/seed-badges-s3/main.go
 
-.PHONY: seed-ddb
-seed-ddb:
-	@go run scripts/seed-dynamodb/main.go scripts/seed-dynamodb/seed-utils.go
+.PHONY: seed-badges-ddb
+seed-badges-ddb:
+	@go run scripts/seed-badges-dynamodb/main.go scripts/seed-badges-dynamodb/seed-utils.go
+
+.PHONY: seed-temps-ddb
+seed-temps-ddb:
+	@go run scripts/seed-templates-dynamodb/main.go
