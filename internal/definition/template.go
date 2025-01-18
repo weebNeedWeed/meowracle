@@ -12,6 +12,7 @@ type Template struct {
 	Id               string `json:"id"`
 	Name             string `json:"name"`
 	MaxNumberOfSlots int    `json:"maxNumberOfSlots"`
+	PreviewPath      string `json:"previewPath"`
 }
 
 type TemplatePath struct {
@@ -39,6 +40,7 @@ type DynamoDBTemplate struct {
 	Sk               string `dynamodbav:"sk"`
 	Name             string `dynamodbav:"name"`
 	MaxNumberOfSlots int    `dynamodbav:"maxNumberOfSlots"`
+	PreviewPath      string `dynamodbav:"previewPath"`
 	Gsi1pk           string `dynamodbav:"gsi1pk"`
 	Gsi1sk           string `dynamodbav:"gsi1sk"`
 }
@@ -74,6 +76,7 @@ func (d *DynamoDBTemplate) ToTemplate() Template {
 		Id:               id,
 		Name:             d.Name,
 		MaxNumberOfSlots: d.MaxNumberOfSlots,
+		PreviewPath:      d.PreviewPath,
 	}
 }
 

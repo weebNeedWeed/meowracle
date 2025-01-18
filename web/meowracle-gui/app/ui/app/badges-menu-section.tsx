@@ -4,7 +4,6 @@ import { Input, CloseButton, Button, Loader } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
 import clsx from "clsx";
 import React, { useState, useEffect } from "react";
-import { BsThreeDots } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
 import {
   IoSearchSharp,
@@ -42,6 +41,7 @@ export default function BadgesMenuSection({
 
   // ref for the badge categories scroll
   const badgeCatRef = React.useRef<HTMLDivElement>(null);
+  const [catScrollLeft, setCatScrollLeft] = useState(0);
 
   // each time the user clicks the load more button, we set the cursor to the last cursor
   // so the next query will fetch the next page
@@ -103,10 +103,7 @@ export default function BadgesMenuSection({
 
         <div className="flex flex-col bg-transparent w-full overflow-y-scroll pl-4 scrollbar pb-4">
           <div className="max-w-full w-full overflow-hidden shrink-0 h-10 mb-5">
-            <div
-              ref={badgeCatRef}
-              className="overflow-x-scroll h-auto w-full flex justify-between items-center gap-x-2 no-scrollbar relative"
-            >
+            <div className="relative h-9 flex w-full">
               <button
                 onClick={() => {
                   badgeCatRef.current?.scrollBy({
@@ -114,45 +111,56 @@ export default function BadgesMenuSection({
                     behavior: "smooth",
                   });
                 }}
-                className="sticky flex justify-center items-center text-white p-2 rounded-full transition-colors duration-200 left-0 bg-[#27272F]/80 hover:bg-[#27272F] z-10"
+                className={clsx(
+                  "sticky justify-center items-center text-white py-3 transition-colors duration-200 left-0 bg-[#27272F] z-10 flex",
+                  {
+                    hidden: catScrollLeft === 0,
+                  }
+                )}
               >
                 <IoChevronBackOutline />
               </button>
 
-              {getBadgesCat?.data.map((category) => (
-                <Button
-                  key={category.id}
-                  variant="outline"
-                  classNames={{
-                    root: clsx(
-                      "font-light transition-all duration-200 w-auto shrink-0",
-                      {
-                        "bg-[#2D2D38] border-[#1BE4C9] text-[#1BE4C9] hover:bg-[#353542] hover:border-[#1BE4C9] hover:text-[#1BE4C9]":
-                          category.id === activeCategory,
-                      },
-                      {
-                        "text-[#B7B7CD] border-[#5C5C66] hover:border-[#5C5C66] hover:text-[#B7B7CD] hover:bg-[#2D2D38] ":
-                          category.id !== activeCategory,
+              <div
+                ref={badgeCatRef}
+                onScroll={(e) => setCatScrollLeft(e.currentTarget.scrollLeft)}
+                className="grow flex w-full gap-x-2 absolute top-0 left-0 h-full items-center overflow-x-scroll no-scrollbar"
+              >
+                {getBadgesCat?.data.map((category) => (
+                  <Button
+                    key={category.id}
+                    variant="outline"
+                    classNames={{
+                      root: clsx(
+                        "font-light transition-all duration-200 w-auto shrink-0",
+                        {
+                          "bg-[#2D2D38] border-[#1BE4C9] text-[#1BE4C9] hover:bg-[#353542] hover:border-[#1BE4C9] hover:text-[#1BE4C9]":
+                            category.id === activeCategory,
+                        },
+                        {
+                          "text-[#B7B7CD] border-[#5C5C66] hover:border-[#5C5C66] hover:text-[#B7B7CD] hover:bg-[#2D2D38] ":
+                            category.id !== activeCategory,
+                        }
+                      ),
+                    }}
+                    onClick={() => {
+                      if (category.id === activeCategory) {
+                        setActiveCategory("");
+                        return;
                       }
-                    ),
-                  }}
-                  onClick={() => {
-                    if (category.id === activeCategory) {
-                      setActiveCategory("");
-                      return;
-                    }
-                    setActiveCategory(category.id);
-                  }}
-                >
-                  {category.name}
+                      setActiveCategory(category.id);
+                    }}
+                  >
+                    {category.name}
 
-                  {category.id === activeCategory && (
-                    <span className="ml-2 hover:scale-110 transition-transform">
-                      <IoMdClose className="w-4 h-4" />
-                    </span>
-                  )}
-                </Button>
-              ))}
+                    {category.id === activeCategory && (
+                      <span className="ml-2 hover:scale-110 transition-transform">
+                        <IoMdClose className="w-4 h-4" />
+                      </span>
+                    )}
+                  </Button>
+                ))}
+              </div>
 
               <button
                 onClick={() => {
@@ -161,7 +169,15 @@ export default function BadgesMenuSection({
                     behavior: "smooth",
                   });
                 }}
-                className="sticky flex justify-center items-center text-white p-2 rounded-full transition-colors duration-200 right-0 bg-[#27272F]/80 hover:bg-[#27272F] z-10"
+                className={clsx(
+                  "ml-auto sticky justify-center items-center text-white py-3 transition-colors duration-200 right-0 bg-[#27272F] z-10 flex",
+                  {
+                    hidden:
+                      badgeCatRef.current &&
+                      badgeCatRef.current.scrollWidth - catScrollLeft ===
+                        badgeCatRef.current.clientWidth,
+                  }
+                )}
               >
                 <IoChevronForwardOutline />
               </button>
@@ -190,9 +206,9 @@ export default function BadgesMenuSection({
                 key={index}
                 className="relative group p-2 hover:bg-[#2D2D38] rounded-lg transition-colors duration-200 flex items-center"
               >
-                <button className="absolute top-3 right-3 text-xs bg-[#1B1B22]/50 text-white p-1.5 rounded-md hover:bg-[#1B1B22]/80 transition-colors duration-100 hidden group-hover:block z-10">
+                {/* <button className="absolute top-3 right-3 text-xs bg-[#1B1B22]/50 text-white p-1.5 rounded-md hover:bg-[#1B1B22]/80 transition-colors duration-100 hidden group-hover:block z-10">
                   <BsThreeDots />
-                </button>
+                </button> */}
 
                 <Image
                   src={bucketUrl + badge.path}

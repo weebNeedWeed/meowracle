@@ -9,7 +9,7 @@ import (
 
 type GetAllBadgesRequest struct {
 	Limit      int               `validate:"required,gte=1,lte=40"`
-	Keyword    string            `validate:"omitempty,alphanum"`
+	Keyword    string            `validate:"omitempty,ascii"`
 	CategoryId string            `validate:"omitempty,ascii"`
 	Cursor     definition.Cursor `validate:"omitnil"`
 }

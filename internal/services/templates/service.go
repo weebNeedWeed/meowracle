@@ -9,8 +9,8 @@ import (
 
 type GetAllTemplatesRequest struct {
 	Limit      int               `validate:"required,gte=1,lte=40"`
-	Keyword    string            `validate:"omitempty,alphanum"`
-	CategoryId string            `validate:"omitempty,alphanum"`
+	Keyword    string            `validate:"omitempty,ascii"`
+	CategoryId string            `validate:"omitempty,ascii"`
 	Slots      *int              `validate:"omitnil,gte=0,lte=12"`
 	Cursor     definition.Cursor `validate:"omitnil"`
 }

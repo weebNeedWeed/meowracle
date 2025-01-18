@@ -28,12 +28,7 @@ func NewStore(c *dynamodb.Client) *Store {
 func (s *Store) CountAllTemplates(keyword, categoryId string, slots *int) (int, error) {
 	exprBuilder := expression.NewBuilder()
 
-	var filterExpr expression.ConditionBuilder
-	if keyword != "" {
-		filterExpr = expression.Contains(expression.Name("name"), keyword)
-	}
-
-	keyExpr := expression.Key("gsi1pk").Equal(expression.Value("TEMPCAT"))
+	keyExpr := expression.Key("gsi1pk").Equal(expression.Value("TEMP"))
 	indexName := aws.String("gsi1")
 	if categoryId != "" {
 		indexName = nil
@@ -41,9 +36,22 @@ func (s *Store) CountAllTemplates(keyword, categoryId string, slots *int) (int, 
 	}
 	exprBuilder = exprBuilder.WithKeyCondition(keyExpr)
 
+	var filterExpr expression.ConditionBuilder
+	if keyword != "" {
+		filterExpr = expression.Contains(expression.Name("name"), keyword)
+	}
+
 	if slots != nil {
 		expr := expression.Name("maxNumberOfSlots").Equal(expression.Value(*slots))
-		filterExpr = filterExpr.And(expr)
+		if filterExpr.IsSet() {
+			filterExpr = filterExpr.And(expr)
+		} else {
+			filterExpr = expr
+		}
+	}
+
+	if filterExpr.IsSet() {
+		exprBuilder = exprBuilder.WithFilter(filterExpr)
 	}
 
 	finalExpr, _ := exprBuilder.Build()
@@ -66,22 +74,30 @@ func (s *Store) CountAllTemplates(keyword, categoryId string, slots *int) (int, 
 func (s *Store) GetAllTemplates(limit int, keyword, categoryId string, slots *int, cursor definition.Cursor) (*GetAllTemplatesResult, error) {
 	exprBuilder := expression.NewBuilder()
 
+	keyExpr := expression.Key("gsi1pk").Equal(expression.Value("TEMP"))
+	indexName := aws.String("gsi1")
+	if categoryId != "" {
+		indexName = nil
+		keyExpr = expression.Key("pk").Equal(expression.Value("TEMPCAT#" + categoryId)).And(expression.Key("sk").BeginsWith("TEMP#"))
+	}
+
+	exprBuilder = exprBuilder.WithKeyCondition(keyExpr)
 	var filterExpr expression.ConditionBuilder
 	if keyword != "" {
 		filterExpr = expression.Contains(expression.Name("name"), keyword)
 	}
 
-	keyExpr := expression.Key("gsi1pk").Equal(expression.Value("TEMPCAT"))
-	indexName := aws.String("gsi1")
-	if categoryId != "" {
-		indexName = nil
-		keyExpr = expression.Key("pk").Equal(expression.Value("TEMPCAT#" + categoryId)).And(expression.Key("sk").BeginsWith("TEMP"))
-	}
-	exprBuilder = exprBuilder.WithKeyCondition(keyExpr)
-
 	if slots != nil {
 		expr := expression.Name("maxNumberOfSlots").Equal(expression.Value(*slots))
-		filterExpr = filterExpr.And(expr)
+		if filterExpr.IsSet() {
+			filterExpr = filterExpr.And(expr)
+		} else {
+			filterExpr = expr
+		}
+	}
+
+	if filterExpr.IsSet() {
+		exprBuilder = exprBuilder.WithFilter(filterExpr)
 	}
 
 	var lastEvalKey map[string]types.AttributeValue

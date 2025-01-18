@@ -1,40 +1,52 @@
 import { useQuery } from "react-query";
-import { apiClient } from "./api-client";
-import { Slot } from "../definitions";
+import { apiClient, ApiResponse } from "./api-client";
 
 export type Template = {
   id: string;
-  title: string;
-  path: string;
-  slots: Slot[];
+  name: string;
+  maxNumberOfSlots: number;
+  previewPath: string;
 };
 
-const fetchTemplates = async () => {
-  const data = await apiClient.get<Template[]>("/templates");
+export type GetTemplatesRequest = {
+  limit: number;
+  keyword?: string;
+  cursor?: any;
+  categoryId?: string;
+  slots?: number;
+};
+
+const fetchTemplates = async (req: GetTemplatesRequest) => {
+  const data = await apiClient.get<ApiResponse<Template[]>>("/templates", {
+    params: req,
+  });
   return data;
 };
 
-export const useTemplates = () => {
-  return useQuery<Template[], Error>(["templates"], () => fetchTemplates(), {
-    cacheTime: 1000 * 60 * 60,
-    staleTime: 1000 * 60 * 60,
-    refetchOnWindowFocus: false,
-  });
+export const useTemplates = (req: GetTemplatesRequest) => {
+  return useQuery<ApiResponse<Template[]>, Error>(
+    [
+      "templates",
+      req.limit,
+      req.keyword,
+      req.cursor,
+      req.categoryId,
+      req.slots,
+    ],
+    () => fetchTemplates(req),
+    { cacheTime: 0 }
+  );
 };
 
 const fetchTemplateById = async (id: string) => {
-  const data = await apiClient.get<Template>(`/templates/${id}`);
+  const data = await apiClient.get<ApiResponse<Template[]>>(`/templates/${id}`);
   return data;
 };
 
 export const useTemplate = (id: string) => {
-  return useQuery<Template, Error>(
+  return useQuery<ApiResponse<Template[]>, Error>(
     ["template", id],
     () => fetchTemplateById(id),
-    {
-      cacheTime: 1000 * 60 * 60,
-      staleTime: 1000 * 60 * 60,
-      refetchOnWindowFocus: false,
-    }
+    { cacheTime: 0 }
   );
 };

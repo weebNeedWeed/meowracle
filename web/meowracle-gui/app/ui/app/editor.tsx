@@ -1,7 +1,11 @@
 "use client";
 
-import { Layer, Rect, Stage } from "react-konva";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { Layer, Image, Stage } from "react-konva";
+import {
+  TransformWrapper,
+  TransformComponent,
+  useControls,
+} from "react-zoom-pan-pinch";
 import EditorControlBottom from "./editor-control-bottom";
 import EditorControlTop from "./editor-control-top";
 import { useEffect, useRef } from "react";
@@ -9,16 +13,20 @@ import { useEditorContext } from "@/app/contexts/editor";
 import { Stage as StageType } from "konva/lib/Stage";
 import { downloadURI } from "@/app/lib/utils";
 import { Container } from "@mantine/core";
+import useImage from "use-image";
+import { useElementSize } from "@mantine/hooks";
+import { FaLock, FaLockOpen, FaPen } from "react-icons/fa6";
 
 const defaultWidth = 1584;
 const defaultHeight = 396;
 
 export default function Editor() {
   const {
-    state: { isExporting },
+    state: { isExporting, editing },
     dispatch: editorDispatch,
   } = useEditorContext();
 
+  const { ref, width } = useElementSize();
   const stageRef = useRef<StageType>(null);
 
   // handle when isExporting is true
@@ -38,6 +46,7 @@ export default function Editor() {
 
   return (
     <Container
+      ref={ref}
       size="xl"
       className="grow bg-transparent shrink overflow-hidden h-full flex flex-col items-center justify-center relative"
     >
@@ -48,40 +57,47 @@ export default function Editor() {
         wheel={{ disabled: true }}
         doubleClick={{ disabled: true }}
       >
-        <div className="text-sm self-start mb-1 text-[#6A6A79]">
-          Linkedin 1584x396
+        <ContainerResizeCenterView width={width} />
+
+        <div className="mb-1 flex items-center justify-between w-full">
+          <span className="text-sm text-[#6A6A79]">Linkedin 1584x396</span>
+
+          {editing && (
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => {
+                  editorDispatch({ type: "TOGGLE_LOCK_TEMPLATE" });
+                }}
+                className="text-sm text-[#6A6A79] hover:text-[#8A8A99] flex gap-x-2 items-center"
+              >
+                {editing?.locked ? (
+                  <FaLock className="w-3 h-3 text-[#1BE4C9]" />
+                ) : (
+                  <FaLockOpen className="w-3 h-3" />
+                )}
+                {editing?.locked ? (
+                  <span className="text-[#1BE4C9]">Locked</span>
+                ) : (
+                  "Lock"
+                )}
+              </button>
+
+              <span className="text-md text-[#6A6A79]">|</span>
+
+              <button className="text-sm text-[#6A6A79] hover:text-[#8A8A99] flex gap-x-2 items-center">
+                <FaPen className="w-3 h-3" />
+                Edit template&apos;s properties
+              </button>
+            </div>
+          )}
         </div>
+
         <div className="w-full flex bg-[#26262E] mb-10 h-[396px]">
           <TransformComponent>
             <Stage ref={stageRef} width={defaultWidth} height={defaultHeight}>
-              <Layer>
-                <Rect
-                  x={20}
-                  y={20}
-                  width={100}
-                  height={50}
-                  fill="#4ade80"
-                  stroke="#1e293b"
-                  strokeWidth={4}
-                />
-                <Rect
-                  x={150}
-                  y={40}
-                  width={100}
-                  height={50}
-                  fill="#f87171"
-                  shadowBlur={10}
-                  cornerRadius={10}
-                />
-                <Rect
-                  x={50}
-                  y={120}
-                  width={100}
-                  height={100}
-                  fill="#60a5fa"
-                  cornerRadius={[0, 10, 20, 30]}
-                />
-              </Layer>
+              {editing && (
+                <ImageEditLayer imagePath={"/templates/example-template.png"} />
+              )}
             </Stage>
           </TransformComponent>
         </div>
@@ -90,5 +106,22 @@ export default function Editor() {
         <EditorControlBottom />
       </TransformWrapper>
     </Container>
+  );
+}
+
+function ContainerResizeCenterView({ width }: { width: number }) {
+  const { centerView, instance } = useControls();
+  useEffect(() => {
+    centerView(instance.transformState.previousScale);
+  }, [width, centerView, instance.transformState.previousScale]);
+  return null;
+}
+
+function ImageEditLayer({ imagePath }: { imagePath: string }) {
+  const [image] = useImage(imagePath);
+  return (
+    <Layer>
+      <Image alt="a" x={0} y={0} width={1584} height={396} image={image} />
+    </Layer>
   );
 }

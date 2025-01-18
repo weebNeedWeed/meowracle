@@ -26,7 +26,7 @@ const fetchBadges = async (
 
 export const useBadges = (req: GetBadgesRequest) => {
   return useQuery<ApiResponse<Badge[]>, Error>(
-    ["badges", req.keyword, req.cursor, req.categoryId],
+    ["badges", req.limit, req.keyword, req.cursor, req.categoryId],
     () => fetchBadges(req),
     { cacheTime: 0 }
   );

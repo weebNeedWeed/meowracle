@@ -13,12 +13,13 @@ export default function EditorControlBottom() {
   } = useEditorContext();
 
   const [displayingScale, setDisplayingScale] = useState(1);
-  const { setTransform } = useControls();
+  const { setTransform, centerView } = useControls();
 
   // when the displayingScale changes update the transform(scale)
   useEffect(() => {
     setTransform(0, 0, displayingScale);
-  }, [displayingScale, setTransform]);
+    centerView(displayingScale);
+  }, [displayingScale, setTransform, centerView]);
 
   const handleZoomout = () => {
     if (displayingScale <= 0.70000001) return;

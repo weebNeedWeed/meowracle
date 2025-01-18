@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -20,7 +21,8 @@ func init() {
 }
 
 func main() {
-	seedTemplateCategory("Test")
+	id := seedTemplateCategory("Test")
+	seedTemplate(id)
 }
 
 func seedTemplateCategory(name string) string {
@@ -46,5 +48,60 @@ func seedTemplateCategory(name string) string {
 	return id
 }
 
-func seed() {
+func seedTemplate(tempCatId string) {
+	id := uuid.NewString()
+	t := definition.DynamoDBTemplate{
+		Pk:               "TEMPCAT#" + tempCatId,
+		Sk:               "TEMP#" + id,
+		Name:             "Test template 1",
+		Gsi1pk:           "TEMP",
+		Gsi1sk:           "TEMP",
+		MaxNumberOfSlots: 1,
+		PreviewPath:      "/templates/example-template.png",
+	}
+
+	m, _ := attributevalue.MarshalMap(t)
+
+	_, err := dynamodbClient.PutItem(context.TODO(), &dynamodb.PutItemInput{
+		TableName: aws.String(utils.TableName),
+		Item:      m,
+	})
+	if err != nil {
+		log.Fatalf("error when seeding template, %v", err)
+	}
+
+	p := definition.DynamoDBTemplatePath{
+		Pk:   fmt.Sprintf("TEMP#%s#PATH#%v", id, 1),
+		Sk:   "PATH#1",
+		Path: "/templates/example-template.png",
+	}
+
+	m, _ = attributevalue.MarshalMap(p)
+
+	_, err = dynamodbClient.PutItem(context.TODO(), &dynamodb.PutItemInput{
+		TableName: aws.String(utils.TableName),
+		Item:      m,
+	})
+	if err != nil {
+		log.Fatalf("error when seeding template, %v", err)
+	}
+
+	s := definition.DynamoDBSlot{
+		Pk:     fmt.Sprintf("TEMP#%sPATH%v", id, 1),
+		Sk:     "SLOT#1",
+		X:      1460,
+		Y:      58,
+		Width:  82,
+		Height: 94,
+	}
+
+	m, _ = attributevalue.MarshalMap(s)
+
+	_, err = dynamodbClient.PutItem(context.TODO(), &dynamodb.PutItemInput{
+		TableName: aws.String(utils.TableName),
+		Item:      m,
+	})
+	if err != nil {
+		log.Fatalf("error when seeding template, %v", err)
+	}
 }
