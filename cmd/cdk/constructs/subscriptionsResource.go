@@ -7,17 +7,17 @@ import (
 )
 
 func newSubscriptionsResource(scope constructs.Construct, id string, props *ResourceProps) {
-	// this := constructs.NewConstruct(scope, &id)
+	this := constructs.NewConstruct(scope, &id)
 
-	// subs := props.Rest.Root().AddResource(jsii.String("subscriptions"), &awsapigateway.ResourceOptions{
-	// 	DefaultCorsPreflightOptions: &awsapigateway.CorsOptions{
-	// 		AllowOrigins: awsapigateway.Cors_ALL_ORIGINS(),
-	// 		AllowMethods: awsapigateway.Cors_ALL_METHODS(),
-	// 		AllowHeaders: awsapigateway.Cors_DEFAULT_HEADERS(),
-	// 	},
-	// })
+	subs := props.Rest.Root().AddResource(jsii.String("subscriptions"), &awsapigateway.ResourceOptions{
+		DefaultCorsPreflightOptions: &awsapigateway.CorsOptions{
+			AllowOrigins: awsapigateway.Cors_ALL_ORIGINS(),
+			AllowMethods: awsapigateway.Cors_ALL_METHODS(),
+			AllowHeaders: awsapigateway.Cors_DEFAULT_HEADERS(),
+		},
+	})
 
-	// addSubscribeForLettersHandler(this, subs, props)
+	addSubscribeForLettersHandler(this, subs, props)
 }
 
 func addSubscribeForLettersHandler(this constructs.Construct, subs awsapigateway.Resource, props *ResourceProps) {

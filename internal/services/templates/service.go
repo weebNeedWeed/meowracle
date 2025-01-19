@@ -38,3 +38,38 @@ func GetAllTemplates(req *GetAllTemplatesRequest, store *Store) (*definition.Res
 
 	return &response, nil
 }
+
+type GetTemplatePathResponse struct {
+	Path  definition.TemplatePath `json:"path"`
+	Slots []definition.Slot       `json:"slots"`
+	Texts []definition.Text       `json:"texts"`
+}
+
+func GetTemplatePath(id string, numberOfSlots int, store *Store) (*definition.Response[GetTemplatePathResponse], error) {
+	res, err := store.getTemplatePath(id, numberOfSlots)
+	if err != nil {
+		utils.LogError(err, "get template path", definition.ErrDatabaseOperation, definition.AppError_Error_Severity)
+		return nil, err
+	}
+
+	p := res.Path.ToTemplatePath()
+
+	slots := []definition.Slot{}
+	for _, s := range res.Slots {
+		slots = append(slots, s.ToSlot())
+	}
+
+	texts := []definition.Text{}
+	for _, t := range res.Texts {
+		texts = append(texts, t.ToText())
+	}
+
+	data := GetTemplatePathResponse{
+		Path:  p,
+		Slots: slots,
+		Texts: texts,
+	}
+	response := definition.NewResponse(data, http.StatusOK)
+
+	return &response, nil
+}

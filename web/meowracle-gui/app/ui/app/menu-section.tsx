@@ -1,3 +1,5 @@
+"use client";
+
 import { useHover } from "@mantine/hooks";
 import clsx from "clsx";
 import { motion } from "motion/react";
@@ -7,8 +9,10 @@ import { IoMdClose } from "react-icons/io";
 export default function MenuSection({
   children,
   onClose,
+  leftSide,
 }: {
   children: React.ReactNode;
+  leftSide?: boolean;
   onClose: () => void;
 }) {
   const { hovered, ref } = useHover();
@@ -42,11 +46,12 @@ export default function MenuSection({
       <button
         onClick={onClose}
         className={clsx(
-          "absolute top-5 -right-10 bg-[#27272F] hover:bg-[#323239] text-[#8F8FA1] p-2 rounded-full transition-all duration-100 ease-in-out z-50",
+          "absolute top-5 bg-[#27272F] hover:bg-[#323239] text-[#8F8FA1] p-2 rounded-full transition-all duration-100 ease-in-out z-50",
           {
             block: actualHovered,
             hidden: !actualHovered,
-          }
+          },
+          leftSide ? "-left-10" : "-right-10"
         )}
       >
         <IoMdClose />

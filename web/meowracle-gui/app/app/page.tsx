@@ -5,6 +5,7 @@ import { poppins } from "../ui/fonts";
 import { Metadata } from "next";
 import Editor from "../ui/app/editor";
 import { EditorContextProvider } from "../contexts/editor";
+import RightSideBar from "../ui/app/right-side-bar";
 
 export const metadata: Metadata = {
   title: "Editor",
@@ -22,7 +23,7 @@ export default function Page() {
 
             <Editor />
 
-            {/* <div className="bg-[#27272F] w-80 h-full shrink-0"></div> */}
+            <RightSideBar />
           </main>
         </EditorContextProvider>
       </div>

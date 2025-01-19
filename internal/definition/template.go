@@ -106,3 +106,22 @@ func (d *DynamoDBSlot) ToSlot() Slot {
 		Height: d.Height,
 	}
 }
+
+func (d *DynamoDBText) ToText() Text {
+	index := strings.Split(d.Sk, "#")[1]
+	indexAsInt, _ := strconv.Atoi(index)
+
+	return Text{
+		Index:  indexAsInt,
+		X:      d.X,
+		Y:      d.Y,
+		Width:  d.Width,
+		Height: d.Height,
+	}
+}
+
+func (p *DynamoDBTemplatePath) ToTemplatePath() TemplatePath {
+	return TemplatePath{
+		Path: p.Path,
+	}
+}

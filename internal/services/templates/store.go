@@ -2,6 +2,9 @@ package templates
 
 import (
 	"context"
+	"errors"
+	"fmt"
+	"strings"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue"
@@ -139,4 +142,67 @@ func (s *Store) GetAllTemplates(limit int, keyword, categoryId string, slots *in
 	}
 
 	return &result, nil
+}
+
+type GetTemplatePathResult struct {
+	Path  definition.DynamoDBTemplatePath
+	Slots []definition.DynamoDBSlot
+	Texts []definition.DynamoDBText
+}
+
+var NoTemplatePathError = errors.New("invalid template id or number of slots")
+
+func (s *Store) getTemplatePath(tempId string, numberOfSlots int) (*GetTemplatePathResult, error) {
+	builder := expression.NewBuilder()
+
+	keyExpr := expression.Key("pk").Equal(expression.Value(fmt.Sprintf("TEMP#%v#PATH#%v", tempId, numberOfSlots)))
+	builder = builder.WithKeyCondition(keyExpr)
+
+	expr, err := builder.Build()
+
+	res, err := s.client.Query(context.TODO(), &dynamodb.QueryInput{
+		TableName:                 aws.String(utils.TableName),
+		KeyConditionExpression:    expr.KeyCondition(),
+		ExpressionAttributeValues: expr.Values(),
+		ExpressionAttributeNames:  expr.Names(),
+	})
+	if err != nil {
+		return nil, NoTemplatePathError
+	}
+
+	rawData := []map[string]any{}
+	err = attributevalue.UnmarshalListOfMaps(res.Items, &rawData)
+	if err != nil {
+		utils.LogError(err, "unmarshalling list of maps", definition.ErrInternalServer, definition.AppError_Debug_Severity)
+		return nil, err
+	}
+
+	if len(res.Items) == 0 {
+		return nil, nil
+	}
+
+	result := new(GetTemplatePathResult)
+
+	for index, d := range rawData {
+		sk, _ := d["sk"].(string)
+		if strings.Contains(sk, "PATH") {
+			p := definition.DynamoDBTemplatePath{}
+			attributevalue.UnmarshalMap(res.Items[index], &p)
+			result.Path = p
+		}
+
+		if strings.Contains(sk, "SLOT") {
+			s := definition.DynamoDBSlot{}
+			attributevalue.UnmarshalMap(res.Items[index], &s)
+			result.Slots = append(result.Slots, s)
+		}
+
+		if strings.Contains(sk, "TEXT") {
+			t := definition.DynamoDBText{}
+			attributevalue.UnmarshalMap(res.Items[index], &t)
+			result.Texts = append(result.Texts, t)
+		}
+	}
+
+	return result, nil
 }

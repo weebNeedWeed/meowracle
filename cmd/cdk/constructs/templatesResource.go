@@ -10,10 +10,10 @@ func newTemplatesResource(scope constructs.Construct, id string, props *Resource
 	this := constructs.NewConstruct(scope, &id)
 
 	templates := props.Rest.Root().AddResource(jsii.String("templates"), &awsapigateway.ResourceOptions{})
-	// templatesWithId := templates.AddResource(jsii.String("{templateId}"), &awsapigateway.ResourceOptions{})
+	paths := templates.AddResource(jsii.String("{templateId}"), &awsapigateway.ResourceOptions{}).AddResource(jsii.String("paths"), &awsapigateway.ResourceOptions{}).AddResource(jsii.String("{numberOfSlots}"), &awsapigateway.ResourceOptions{})
 
 	addGetAllTemplatesHandler(this, templates, props)
-	// addGetTemplateByIdHandler(this, templatesWithId, props)
+	addGetTemplatePathHandler(this, paths, props)
 }
 
 func addGetAllTemplatesHandler(this constructs.Construct, templates awsapigateway.Resource, props *ResourceProps) {
@@ -28,14 +28,14 @@ func addGetAllTemplatesHandler(this constructs.Construct, templates awsapigatewa
 	templates.AddMethod(jsii.String("GET"), getAllBadgesIntegration, &awsapigateway.MethodOptions{})
 }
 
-func addGetTemplateByIdHandler(this constructs.Construct, templatesWithId awsapigateway.Resource, props *ResourceProps) {
-	getTemplateById := newFunctionHandler(this, "get-template-by-id-handler", &FunctionHandlerProps{
-		Entry: "functions/get-template-by-id",
+func addGetTemplatePathHandler(this constructs.Construct, paths awsapigateway.Resource, props *ResourceProps) {
+	getPath := newFunctionHandler(this, "get-template-path-handler", &FunctionHandlerProps{
+		Entry: "functions/get-template-path",
 	})
-	props.Table.GrantReadData(getTemplateById.Handler())
+	props.Table.GrantReadData(getPath.Handler())
 
-	getTemplateByIdIntegration := awsapigateway.NewLambdaIntegration(getTemplateById.Handler(), &awsapigateway.LambdaIntegrationOptions{
+	getPathIntegration := awsapigateway.NewLambdaIntegration(getPath.Handler(), &awsapigateway.LambdaIntegrationOptions{
 		Proxy: jsii.Bool(true),
 	})
-	templatesWithId.AddMethod(jsii.String("GET"), getTemplateByIdIntegration, &awsapigateway.MethodOptions{})
+	paths.AddMethod(jsii.String("GET"), getPathIntegration, &awsapigateway.MethodOptions{})
 }

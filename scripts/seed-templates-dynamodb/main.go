@@ -71,7 +71,7 @@ func seedTemplate(tempCatId string) {
 	}
 
 	p := definition.DynamoDBTemplatePath{
-		Pk:   fmt.Sprintf("TEMP#%s#PATH#%v", id, 1),
+		Pk:   fmt.Sprintf("TEMP#%v#PATH#%v", id, 1),
 		Sk:   "PATH#1",
 		Path: "/templates/example-template.png",
 	}
@@ -87,7 +87,7 @@ func seedTemplate(tempCatId string) {
 	}
 
 	s := definition.DynamoDBSlot{
-		Pk:     fmt.Sprintf("TEMP#%sPATH%v", id, 1),
+		Pk:     fmt.Sprintf("TEMP#%v#PATH#%v", id, 1),
 		Sk:     "SLOT#1",
 		X:      1460,
 		Y:      58,

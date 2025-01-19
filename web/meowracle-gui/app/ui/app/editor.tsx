@@ -76,7 +76,9 @@ export default function Editor() {
                   <FaLockOpen className="w-3 h-3" />
                 )}
                 {editing?.locked ? (
-                  <span className="text-[#1BE4C9]">Locked</span>
+                  <span className="text-[#1BE4C9] hover:text-[#30F5DA]">
+                    Locked
+                  </span>
                 ) : (
                   "Lock"
                 )}
