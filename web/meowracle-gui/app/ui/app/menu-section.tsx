@@ -9,10 +9,10 @@ import { IoMdClose } from "react-icons/io";
 export default function MenuSection({
   children,
   onClose,
-  leftSide,
+  closeOnLeftSide,
 }: {
   children: React.ReactNode;
-  leftSide?: boolean;
+  closeOnLeftSide?: boolean;
   onClose: () => void;
 }) {
   const { hovered, ref } = useHover();
@@ -51,7 +51,7 @@ export default function MenuSection({
             block: actualHovered,
             hidden: !actualHovered,
           },
-          leftSide ? "-left-10" : "-right-10"
+          closeOnLeftSide ? "-left-10" : "-right-10"
         )}
       >
         <IoMdClose />

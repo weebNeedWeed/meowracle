@@ -7,7 +7,6 @@ import {
   Loader,
 } from "@mantine/core";
 import clsx from "clsx";
-import { IoMdClose } from "react-icons/io";
 import {
   IoSearchSharp,
   IoChevronBackOutline,
@@ -93,13 +92,13 @@ export default function TemplatesMenuSection({
 
           {openFilter && (
             <motion.div
-              initial={{ scale: 0.7 }}
+              initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               className="absolute top-full left-0 z-50 w-full flex flex-col gap-y-4 p-4 pt-2.5"
             >
               <div className="bg-[#27272F] border border-[#1BE4C9] rounded-md p-4">
                 <div className="flex flex-col gap-y-2">
-                  <h3 className="text-[#B7B7CD] text-sm font-normal">
+                  <h3 className="text-[#8F8FA1] text-sm font-normal">
                     Maximum number of slots
                   </h3>
                   <Select
@@ -193,12 +192,6 @@ export default function TemplatesMenuSection({
                     }}
                   >
                     {category.name}
-
-                    {category.id === activeTempCat && (
-                      <span className="ml-2 hover:scale-110 transition-transform">
-                        <IoMdClose className="w-4 h-4" />
-                      </span>
-                    )}
                   </Button>
                 ))}
               </div>
@@ -256,7 +249,7 @@ function TemplateCard({ template }: { template: Template }) {
     editorDispatch({
       type: "SELECT_TEMPLATE",
       slots: 1,
-      templateId: template.id,
+      template: template,
     });
   };
 
@@ -285,8 +278,8 @@ function TemplateCard({ template }: { template: Template }) {
           <span className="text-[#1BE4C9]">{template.maxNumberOfSlots}</span>
         </div>
         <div className="flex flex-wrap gap-1.5">
-          <span className="px-2 py-1 text-xs rounded-md bg-[#1B1B22] text-[#B7B7CD]">
-            Default
+          <span className="px-2 py-1 text-xs rounded-md bg-gradient-to-r from-yellow-700 to-yellow-800 text-yellow-100">
+            Free
           </span>
           <span className="px-2 py-1 text-xs rounded-md bg-[#1B1B22] text-[#B7B7CD]">
             Basic

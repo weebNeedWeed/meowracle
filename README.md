@@ -1,6 +1,5 @@
 ![GitHub issues](https://img.shields.io/github/issues/weebNeedWeed/meowracle)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/weebNeedWeed/meowracle)
-![GitHub](https://img.shields.io/github/license/weebNeedWeed/meowracle)
 ![GitHub contributors](https://img.shields.io/github/contributors/weebNeedWeed/meowracle)
 ![GitHub stars](https://img.shields.io/github/stars/weebNeedWeed/meowracle)
 

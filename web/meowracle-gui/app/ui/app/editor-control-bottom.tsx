@@ -12,23 +12,30 @@ export default function EditorControlBottom() {
     dispatch: editorDispatch,
   } = useEditorContext();
 
-  const [displayingScale, setDisplayingScale] = useState(1);
+  const [displayingScale, setDisplayingScale] = useState(0.6);
   const { setTransform, centerView } = useControls();
 
   // when the displayingScale changes update the transform(scale)
   useEffect(() => {
-    setTransform(0, 0, displayingScale);
     centerView(displayingScale);
   }, [displayingScale, setTransform, centerView]);
 
   const handleZoomout = () => {
-    if (displayingScale <= 0.70000001) return;
+    if (displayingScale <= 0.5000000001) return;
+    if (displayingScale <= 1.0000001) {
+      setDisplayingScale((prev) => prev - 0.1);
+      return;
+    }
     setDisplayingScale((prev) => prev - 0.25);
   };
 
   const handleZoomin = () => {
-    if (displayingScale >= 2) return;
-    setDisplayingScale((prev) => prev + 0.25);
+    if (displayingScale >= 1.5) return;
+    if (displayingScale > 0.999999888) {
+      setDisplayingScale((prev) => prev + 0.25);
+      return;
+    }
+    setDisplayingScale((prev) => prev + 0.1);
   };
 
   const toggleFullscreen = () => {
@@ -69,7 +76,7 @@ export default function EditorControlBottom() {
           size="xs"
           classNames={{
             root: clsx(
-              "bg-transparent uppercase text-xs font-normal shrink-0 rounded-md px-4 cursor-pointer transition-colors duration-300 ease-in-out active:translate-y-0.5 flex border",
+              "bg-transparent uppercase text-xs font-medium shrink-0 rounded-md px-4 cursor-pointer transition-colors duration-300 ease-in-out active:translate-y-0.5 flex border items-center",
               {
                 "border-[#5C5C66] hover:bg-[#2D2D38]/10 hover:text-[#B7B7CD] text-[#B7B7CD]":
                   !isFullscreen,
@@ -80,9 +87,9 @@ export default function EditorControlBottom() {
           }}
         >
           {isFullscreen ? (
-            <MdFullscreenExit className="h-4 w-4 mr-2" />
+            <MdFullscreenExit className="h-5 w-5 mr-2" />
           ) : (
-            <MdFullscreen className="h-4 w-4 mr-2" />
+            <MdFullscreen className="h-5 w-5 mr-2" />
           )}
           Full Screen
         </Button>

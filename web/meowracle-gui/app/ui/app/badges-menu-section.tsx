@@ -4,7 +4,6 @@ import { Input, CloseButton, Button, Loader } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
 import clsx from "clsx";
 import React, { useState, useEffect } from "react";
-import { IoMdClose } from "react-icons/io";
 import {
   IoSearchSharp,
   IoChevronBackOutline,
@@ -12,16 +11,13 @@ import {
 } from "react-icons/io5";
 import MenuSection from "./menu-section";
 import Image from "next/image";
+import { useEditorContext } from "@/app/contexts/editor";
 
 export default function BadgesMenuSection({
   onClose,
 }: {
   onClose: () => void;
 }) {
-  // temporary bucket url TODO: move to env
-  const bucketUrl =
-    "https://meowracle-bucket-b4922fdf-57d1-4ef8-9971-953640730c71.s3.ap-southeast-1.amazonaws.com/";
-
   const [keyword, setKeyword] = useState("");
   const [debouncedKeyword] = useDebouncedValue(keyword, 500);
   const [cursor, setCursor] = useState<any>(null);
@@ -152,12 +148,6 @@ export default function BadgesMenuSection({
                     }}
                   >
                     {category.name}
-
-                    {category.id === activeCategory && (
-                      <span className="ml-2 hover:scale-110 transition-transform">
-                        <IoMdClose className="w-4 h-4" />
-                      </span>
-                    )}
                   </Button>
                 ))}
               </div>
@@ -202,25 +192,7 @@ export default function BadgesMenuSection({
           {badges
             .sort((a, b) => a.level - b.level)
             .map((badge, index) => (
-              <div
-                key={index}
-                className="relative group p-2 hover:bg-[#2D2D38] rounded-lg transition-colors duration-200 flex items-center"
-              >
-                {/* <button className="absolute top-3 right-3 text-xs bg-[#1B1B22]/50 text-white p-1.5 rounded-md hover:bg-[#1B1B22]/80 transition-colors duration-100 hidden group-hover:block z-10">
-                  <BsThreeDots />
-                </button> */}
-
-                <Image
-                  src={bucketUrl + badge.path}
-                  alt={"meowracle.live | " + badge.name}
-                  width={1584}
-                  height={396}
-                  className="w-16 h-auto cursor-pointer rounded-md hover:opacity-90 transition-opacity duration-200"
-                />
-                <div className="text-[#B7B7CD] text-sm flex-1 pl-3">
-                  {badge.name}
-                </div>
-              </div>
+              <BadgeCard key={index} badge={badge} />
             ))}
 
           {getBadges &&
@@ -237,5 +209,36 @@ export default function BadgesMenuSection({
         </div>
       </div>
     </MenuSection>
+  );
+}
+
+function BadgeCard({ badge }: { badge: Badge }) {
+  const { dispatch } = useEditorContext();
+  const bucketUrl =
+    "https://meowracle-bucket-b4922fdf-57d1-4ef8-9971-953640730c71.s3.ap-southeast-1.amazonaws.com/";
+
+  const handleDragStart = () => {
+    dispatch({
+      type: "SET_DRAGGING",
+      badgeImage: badge.path,
+    });
+  };
+
+  return (
+    <div className="relative group p-2 hover:bg-[#2D2D38] rounded-lg transition-colors duration-200 flex items-center">
+      {/* <button className="absolute top-3 right-3 text-xs bg-[#1B1B22]/50 text-white p-1.5 rounded-md hover:bg-[#1B1B22]/80 transition-colors duration-100 hidden group-hover:block z-10">
+                  <BsThreeDots />
+                </button> */}
+
+      <Image
+        onDragStart={handleDragStart}
+        src={bucketUrl + badge.path}
+        alt={"meowracle.live | " + badge.name}
+        width={1584}
+        height={396}
+        className="w-16 h-auto cursor-pointer rounded-md hover:opacity-90 transition-opacity duration-200"
+      />
+      <div className="text-[#B7B7CD] text-sm flex-1 pl-3">{badge.name}</div>
+    </div>
   );
 }

@@ -54,6 +54,15 @@ func NewBucketDistribution(scope constructs.Construct, id string, props *BucketD
 		}),
 	})
 
+	b.AddCorsRule(&awss3.CorsRule{
+		AllowedMethods: &[]awss3.HttpMethods{
+			awss3.HttpMethods_GET,
+		},
+		AllowedOrigins: &[]*string{
+			jsii.String("*"),
+		},
+	})
+
 	baseUrl := b.BucketDomainName()
 
 	if env.IsProduction() {

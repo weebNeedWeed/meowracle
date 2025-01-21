@@ -19,7 +19,7 @@ export default function EditorControlTop() {
           <Button
             size="xs"
             classNames={{
-              root: "uppercase bg-transparent text-xs font-normal shrink-0 rounded-md px-4 cursor-pointer transition-colors duration-300 ease-in-out active:translate-y-0.5 flex border border-[#5C5C66] hover:bg-[#2D2D38]/10 hover:text-[#B7B7CD] text-[#B7B7CD]",
+              root: "uppercase bg-transparent text-xs font-medium shrink-0 rounded-md px-4 cursor-pointer transition-colors duration-300 ease-in-out active:translate-y-0.5 flex border border-[#5C5C66] hover:bg-[#2D2D38]/10 hover:text-[#B7B7CD] text-[#B7B7CD]",
             }}
           >
             <MdUndo className="h-4 w-4 mr-2" />
@@ -29,7 +29,7 @@ export default function EditorControlTop() {
           <Button
             size="xs"
             classNames={{
-              root: "uppercase bg-transparent text-xs font-normal shrink-0 rounded-md px-4 cursor-pointer transition-colors duration-300 ease-in-out active:translate-y-0.5 flex border border-[#5C5C66] hover:bg-[#2D2D38]/10 hover:text-[#B7B7CD] text-[#B7B7CD]",
+              root: "uppercase bg-transparent text-xs font-medium shrink-0 rounded-md px-4 cursor-pointer transition-colors duration-300 ease-in-out active:translate-y-0.5 flex border border-[#5C5C66] hover:bg-[#2D2D38]/10 hover:text-[#B7B7CD] text-[#B7B7CD]",
             }}
           >
             <MdRedo className="h-4 w-4 mr-2" />
