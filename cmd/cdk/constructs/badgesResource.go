@@ -8,8 +8,9 @@ import (
 )
 
 type ResourceProps struct {
-	Rest  awsapigateway.RestApi
-	Table awsdynamodb.Table
+	Rest         awsapigateway.RestApi
+	Table        awsdynamodb.Table
+	ImageBaseUrl *string
 }
 
 func newBadgesResource(scope constructs.Construct, id string, props *ResourceProps) {
@@ -32,6 +33,9 @@ func newBadgesResource(scope constructs.Construct, id string, props *ResourcePro
 func addGetAllBadgesHandler(this constructs.Construct, badges awsapigateway.Resource, props *ResourceProps) {
 	getAllBadges := newFunctionHandler(this, "get-all-badges-handler", &FunctionHandlerProps{
 		Entry: "functions/get-all-badges",
+		Environment: &map[string]*string{
+			"IMAGE_BASE_URL": props.ImageBaseUrl,
+		},
 	})
 	props.Table.GrantReadData(getAllBadges.Handler())
 

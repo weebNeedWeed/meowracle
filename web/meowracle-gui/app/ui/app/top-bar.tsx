@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useEditorContext } from "@/app/contexts/editor";
 import { Checkbox, Loader, Modal, Select } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { label } from "motion/react-client";
 import { useState } from "react";
 
 export default function TopBar() {

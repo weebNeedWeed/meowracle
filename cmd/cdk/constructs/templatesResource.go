@@ -19,6 +19,9 @@ func newTemplatesResource(scope constructs.Construct, id string, props *Resource
 func addGetAllTemplatesHandler(this constructs.Construct, templates awsapigateway.Resource, props *ResourceProps) {
 	getAllTemplates := newFunctionHandler(this, "get-all-templates-handler", &FunctionHandlerProps{
 		Entry: "functions/get-all-templates",
+		Environment: &map[string]*string{
+			"IMAGE_BASE_URL": props.ImageBaseUrl,
+		},
 	})
 	props.Table.GrantReadData(getAllTemplates.Handler())
 
@@ -31,6 +34,9 @@ func addGetAllTemplatesHandler(this constructs.Construct, templates awsapigatewa
 func addGetTemplatePathHandler(this constructs.Construct, paths awsapigateway.Resource, props *ResourceProps) {
 	getPath := newFunctionHandler(this, "get-template-path-handler", &FunctionHandlerProps{
 		Entry: "functions/get-template-path",
+		Environment: &map[string]*string{
+			"IMAGE_BASE_URL": props.ImageBaseUrl,
+		},
 	})
 	props.Table.GrantReadData(getPath.Handler())
 

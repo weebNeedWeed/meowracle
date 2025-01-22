@@ -214,9 +214,6 @@ export default function BadgesMenuSection({
 
 function BadgeCard({ badge }: { badge: Badge }) {
   const { dispatch } = useEditorContext();
-  const bucketUrl =
-    "https://meowracle-bucket-b4922fdf-57d1-4ef8-9971-953640730c71.s3.ap-southeast-1.amazonaws.com/";
-
   const handleDragStart = () => {
     dispatch({
       type: "SET_DRAGGING",
@@ -232,7 +229,7 @@ function BadgeCard({ badge }: { badge: Badge }) {
 
       <Image
         onDragStart={handleDragStart}
-        src={bucketUrl + badge.path}
+        src={badge.path}
         alt={"meowracle.live | " + badge.name}
         width={1584}
         height={396}

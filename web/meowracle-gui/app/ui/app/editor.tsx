@@ -283,6 +283,6 @@ function EditLayers({
 }
 
 function BackgroundImageDisplay({ imagePath }: { imagePath: string }) {
-  const [image] = useImage(imagePath);
+  const [image] = useImage(imagePath, "anonymous");
   return <Image alt="a" x={0} y={0} width={1584} height={396} image={image} />;
 }

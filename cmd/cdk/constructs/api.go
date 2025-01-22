@@ -8,7 +8,8 @@ import (
 )
 
 type ApiProps struct {
-	Table awsdynamodb.Table
+	Table        awsdynamodb.Table
+	ImageBaseUrl *string
 }
 
 type api struct {
@@ -33,35 +34,26 @@ func NewApi(scope constructs.Construct, id string, props *ApiProps) Api {
 		},
 	})
 
+	rp := &ResourceProps{
+		Rest:         rest,
+		Table:        props.Table,
+		ImageBaseUrl: props.ImageBaseUrl,
+	}
+
 	// badge
-	newBadgesResource(this, "badges-resource", &ResourceProps{
-		Rest:  rest,
-		Table: props.Table,
-	})
+	newBadgesResource(this, "badges-resource", rp)
 
 	// template
-	newTemplatesResource(this, "templates-resource", &ResourceProps{
-		Rest:  rest,
-		Table: props.Table,
-	})
+	newTemplatesResource(this, "templates-resource", rp)
 
 	// subscription
-	newSubscriptionsResource(this, "subscriptions-resource", &ResourceProps{
-		Rest:  rest,
-		Table: props.Table,
-	})
+	newSubscriptionsResource(this, "subscriptions-resource", rp)
 
 	// badge categories
-	newBadgeCategoriesResource(this, "badge-categories-resource", &ResourceProps{
-		Rest:  rest,
-		Table: props.Table,
-	})
+	newBadgeCategoriesResource(this, "badge-categories-resource", rp)
 
 	// template categories
-	newTemplateCategoriesResource(this, "template-categories-resource", &ResourceProps{
-		Rest:  rest,
-		Table: props.Table,
-	})
+	newTemplateCategoriesResource(this, "template-categories-resource", rp)
 
 	return api{this}
 }

@@ -74,9 +74,7 @@ function BadgeImage({
   isSelected: boolean;
   onSelect: () => void;
 }) {
-  const bucketUrl =
-    "https://meowracle-bucket-b4922fdf-57d1-4ef8-9971-953640730c71.s3.ap-southeast-1.amazonaws.com/";
-  const [img] = useImage(bucketUrl + fillImage, "anonymous");
+  const [img] = useImage(fillImage, "anonymous");
 
   const imageRef = useRef<ImageShape>(null);
   const trRef = useRef<TransformerShape>(null);

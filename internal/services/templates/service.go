@@ -15,7 +15,7 @@ type GetAllTemplatesRequest struct {
 	Cursor     definition.Cursor `validate:"omitnil"`
 }
 
-func GetAllTemplates(req *GetAllTemplatesRequest, store *Store) (*definition.Response[[]definition.Template], error) {
+func GetAllTemplates(req *GetAllTemplatesRequest, store *Store, imageBaseUrl string) (*definition.Response[[]definition.Template], error) {
 	res, err := store.GetAllTemplates(req.Limit, req.Keyword, req.CategoryId, req.Slots, req.Cursor)
 	if err != nil {
 		utils.LogError(err, "get all templates", definition.ErrDatabaseOperation, definition.AppError_Error_Severity)
@@ -30,7 +30,9 @@ func GetAllTemplates(req *GetAllTemplatesRequest, store *Store) (*definition.Res
 
 	templates := []definition.Template{}
 	for _, t := range res.Templates {
-		templates = append(templates, t.ToTemplate())
+		nt := t.ToTemplate()
+		nt.PreviewPath = imageBaseUrl + nt.PreviewPath
+		templates = append(templates, nt)
 	}
 
 	response := definition.NewResponse(templates, http.StatusOK)
@@ -45,7 +47,7 @@ type GetTemplatePathResponse struct {
 	Texts []definition.Text       `json:"texts"`
 }
 
-func GetTemplatePath(id string, numberOfSlots int, store *Store) (*definition.Response[GetTemplatePathResponse], error) {
+func GetTemplatePath(id string, numberOfSlots int, store *Store, imageBaseUrl string) (*definition.Response[GetTemplatePathResponse], error) {
 	res, err := store.getTemplatePath(id, numberOfSlots)
 	if err != nil {
 		utils.LogError(err, "get template path", definition.ErrDatabaseOperation, definition.AppError_Error_Severity)
@@ -53,6 +55,7 @@ func GetTemplatePath(id string, numberOfSlots int, store *Store) (*definition.Re
 	}
 
 	p := res.Path.ToTemplatePath()
+	p.Path = imageBaseUrl + p.Path
 
 	slots := []definition.Slot{}
 	for _, s := range res.Slots {

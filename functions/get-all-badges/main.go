@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
+	"strings"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -17,8 +19,13 @@ import (
 
 var config *utils.LambdaHandlerConfig
 var store *badges.Store
+var imageBaseUrl string
 
 func init() {
+	imageBaseUrl = os.Getenv("IMAGE_BASE_URL")
+	if strings.Contains(imageBaseUrl, "cloudfront") {
+		imageBaseUrl = "https://" + imageBaseUrl + "/"
+	}
 	config = utils.NewLambdaHandlerConfig()
 	store = badges.NewStore(config.DynamodbClient)
 }
@@ -57,7 +64,7 @@ func handleRequest(ctx context.Context, event events.APIGatewayProxyRequest) (ev
 		}
 	}
 
-	response, err := badges.GetAllBadges(p, store)
+	response, err := badges.GetAllBadges(p, store, imageBaseUrl)
 	if err != nil {
 		apiErr := definition.NewAPIError(definition.ErrBadRequest, "internal server error", http.StatusInternalServerError)
 		return utils.WriteError(apiErr), nil

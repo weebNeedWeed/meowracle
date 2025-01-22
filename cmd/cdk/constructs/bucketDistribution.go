@@ -1,6 +1,8 @@
 package constructs
 
 import (
+	"strings"
+
 	"github.com/aws/aws-cdk-go/awscdk/v2"
 	"github.com/aws/aws-cdk-go/awscdk/v2/awscloudfront"
 	"github.com/aws/aws-cdk-go/awscdk/v2/awscloudfrontorigins"
@@ -10,9 +12,10 @@ import (
 	"github.com/weebNeedWeed/meowracle/internal/env"
 )
 
-var bucketName = "meowracle-bucket-" + "b4922fdf-57d1-4ef8-9971-953640730c71"
+var bucketName = "meowracle-" + "b4922fdf-57d1"
 
 func GetBucketName() string {
+	bucketName = strings.ToLower(env.GetString("AWS_PROFILE", "default")) + "-" + bucketName
 	if env.IsProduction() {
 		return "prod-" + bucketName
 	} else {
@@ -63,14 +66,27 @@ func NewBucketDistribution(scope constructs.Construct, id string, props *BucketD
 		},
 	})
 
-	baseUrl := b.BucketDomainName()
+	baseUrl := b.UrlForObject(jsii.String(""))
 
 	if env.IsProduction() {
+		cachePolicy := awscloudfront.NewCachePolicy(this, jsii.String("dist-cachepolicy-allow-cors"), &awscloudfront.CachePolicyProps{
+			HeaderBehavior: awscloudfront.CacheHeaderBehavior_AllowList(
+				jsii.String("Access-Control-Request-Method"),
+				jsii.String("Access-Control-Request-Headers"),
+			),
+			EnableAcceptEncodingBrotli: jsii.Bool(true),
+			EnableAcceptEncodingGzip:   jsii.Bool(true),
+		})
+
 		dist := awscloudfront.NewDistribution(this, jsii.String("dist"), &awscloudfront.DistributionProps{
 			DefaultBehavior: &awscloudfront.BehaviorOptions{
-				Origin: awscloudfrontorigins.S3BucketOrigin_WithOriginAccessControl(b, &awscloudfrontorigins.S3BucketOriginWithOACProps{}),
+				Origin:                awscloudfrontorigins.S3BucketOrigin_WithOriginAccessControl(b, &awscloudfrontorigins.S3BucketOriginWithOACProps{}),
+				CachePolicy:           cachePolicy,
+				OriginRequestPolicy:   awscloudfront.OriginRequestPolicy_CORS_S3_ORIGIN(),
+				ResponseHeadersPolicy: awscloudfront.ResponseHeadersPolicy_CORS_ALLOW_ALL_ORIGINS(),
 			},
 		})
+
 		baseUrl = dist.DistributionDomainName()
 	}
 

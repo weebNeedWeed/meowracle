@@ -18,12 +18,13 @@ func NewMeowracleStack(scope constructs.Construct, id string, props *MeowracleSt
 	}
 	stack := awscdk.NewStack(scope, &id, &sprops)
 
-	constructs2.NewBucketDistribution(stack, "bucket-distribution", &constructs2.BucketDistributionProps{})
+	dist := constructs2.NewBucketDistribution(stack, "bucket-distribution", &constructs2.BucketDistributionProps{})
 
 	table := constructs2.NewMeowracleTable(stack, "meowracle-table", &constructs2.DynamoDBProps{})
 
 	constructs2.NewApi(stack, "meowracle-api", &constructs2.ApiProps{
-		Table: table.Table(),
+		Table:        table.Table(),
+		ImageBaseUrl: dist.ImageBaseUrl(),
 	})
 
 	return stack

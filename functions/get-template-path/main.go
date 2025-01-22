@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"os"
 	"strconv"
+	"strings"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -16,8 +18,13 @@ import (
 )
 
 var store *templates.Store
+var imageBaseUrl string
 
 func init() {
+	imageBaseUrl = os.Getenv("IMAGE_BASE_URL")
+	if strings.Contains(imageBaseUrl, "cloudfront") {
+		imageBaseUrl = "https://" + imageBaseUrl + "/"
+	}
 	cfg := utils.NewLambdaHandlerConfig()
 	store = templates.NewStore(cfg.DynamodbClient)
 }
@@ -59,7 +66,7 @@ func handleRequest(ctx context.Context, event events.APIGatewayProxyRequest) (ev
 		}
 	}
 
-	res, err := templates.GetTemplatePath(p.TemplateId, p.NumberOfSlots, store)
+	res, err := templates.GetTemplatePath(p.TemplateId, p.NumberOfSlots, store, imageBaseUrl)
 	if err != nil {
 		if errors.Is(err, templates.NoTemplatePathError) {
 			apiErr := definition.NewAPIError(definition.ErrBadRequest, "no path found with given request parameters", http.StatusBadRequest)

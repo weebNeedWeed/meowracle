@@ -14,6 +14,7 @@ import (
 )
 
 var S3Client *s3.Client
+var bucketName = constructs.GetBucketName()
 
 func init() {
 	cfg := utils.GetAWSConfig()
@@ -37,7 +38,7 @@ func seedKnowledgeBadges() {
 
 // prefix is the folder into which we put badges image
 // E.g: prefix: knowledge/
-func seedBadges(c *badgeCollection, prefix string) {
+func seedBadges(c *utils.BadgeCollection, prefix string) {
 	for i, badge := range c.Data {
 		response, err := http.Get(badge.ImageUrl)
 		if err != nil {
@@ -49,7 +50,7 @@ func seedBadges(c *badgeCollection, prefix string) {
 		ext := filepath.Ext(badge.ImageUrl)
 
 		_, err = S3Client.PutObject(context.TODO(), &s3.PutObjectInput{
-			Bucket: aws.String(constructs.GetBucketName()),
+			Bucket: aws.String(bucketName),
 			Key:    aws.String(prefix + badge.VanitySlug + ext),
 			Body:   response.Body,
 

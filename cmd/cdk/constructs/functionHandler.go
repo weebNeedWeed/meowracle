@@ -10,6 +10,7 @@ import (
 type FunctionHandlerProps struct {
 	Entry            string
 	TimeoutAsSeconds float64
+	Environment      *map[string]*string
 }
 
 type functionHandler struct {
@@ -37,7 +38,8 @@ func newFunctionHandler(scope constructs.Construct, id string, props *FunctionHa
 				jsii.String(`-ldflags "-s -w"`),
 			},
 		},
-		Timeout: awscdk.Duration_Seconds(jsii.Number(timeout)),
+		Environment: props.Environment,
+		Timeout:     awscdk.Duration_Seconds(jsii.Number(timeout)),
 	})
 
 	return &functionHandler{

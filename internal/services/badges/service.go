@@ -14,7 +14,7 @@ type GetAllBadgesRequest struct {
 	Cursor     definition.Cursor `validate:"omitnil"`
 }
 
-func GetAllBadges(p *GetAllBadgesRequest, store *Store) (*definition.Response[[]definition.Badge], error) {
+func GetAllBadges(p *GetAllBadgesRequest, store *Store, imageBaseUrl string) (*definition.Response[[]definition.Badge], error) {
 	getAllBadgesRes, err := store.GetAllBadges(p.Limit, p.Keyword, p.CategoryId, p.Cursor)
 	if err != nil {
 		utils.LogError(err, "Get all badges", definition.ErrDatabaseOperation, definition.AppError_Error_Severity)
@@ -23,7 +23,9 @@ func GetAllBadges(p *GetAllBadgesRequest, store *Store) (*definition.Response[[]
 
 	badges := []definition.Badge{}
 	for _, b := range getAllBadgesRes.Badges {
-		badges = append(badges, b.ToBadge())
+		nb := b.ToBadge()
+		nb.Path = imageBaseUrl + nb.Path
+		badges = append(badges, nb)
 	}
 
 	totalRows, err := store.CountNumberOfBadges(p.Keyword, p.CategoryId)

@@ -5,10 +5,8 @@ import { LuLayoutTemplate } from "react-icons/lu";
 import { TbHexagonPlus2 } from "react-icons/tb";
 import React, { useCallback, useState } from "react";
 import clsx from "clsx";
-import MenuSection from "./menu-section";
 import BadgesMenuSection from "./badges-menu-section";
 import { useEditorContext } from "@/app/contexts/editor";
-import { MdOutlineHelpOutline } from "react-icons/md";
 
 const tabs = [
   {
@@ -21,15 +19,15 @@ const tabs = [
     icon: TbHexagonPlus2,
     Component: BadgesMenuSection,
   },
-  {
-    name: "Help",
-    icon: MdOutlineHelpOutline,
-    Component: () => (
-      <MenuSection onClose={() => {}}>
-        <span></span>
-      </MenuSection>
-    ),
-  },
+  // {
+  //   name: "Help",
+  //   icon: MdOutlineHelpOutline,
+  //   Component: () => (
+  //     <MenuSection onClose={() => {}}>
+  //       <span></span>
+  //     </MenuSection>
+  //   ),
+  // },
 ];
 
 export default function LeftSideBar() {
