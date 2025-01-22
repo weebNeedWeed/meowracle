@@ -108,6 +108,7 @@ The Meowracle application follows a serverless architecture pattern, leveraging 
 - `NEXT_PUBLIC_GA_TRACKING_ID`: Google Analytics tracking ID
 - `AWS_PROFILE`: AWS CLI profile to use
 - `ENVIRONMENT`: Deployment environment (e.g., development, production)
+- `IMAGE_BASE_DOMAIN`: CloudFront domain registered with NextJS
 
 ## License
 
