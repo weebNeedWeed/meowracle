@@ -48,3 +48,4 @@ pnpm start
 
 - `NEXT_PUBLIC_BASE_URL`: Base URL for the application
 - `NEXT_PUBLIC_GA_TRACKING_ID`: Google Analytics tracking ID
+- `IMAGE_BASE_DOMAIN`: CloudFront domain registered with NextJS
