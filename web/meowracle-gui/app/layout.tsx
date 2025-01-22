@@ -1,5 +1,5 @@
-import "@/app/ui/globals.css";
 import "@mantine/core/styles.css";
+import "@/app/ui/globals.css";
 
 import { Metadata } from "next";
 import {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       "%s | meowracle.live | Create Stunning LinkedIn Cover Images To Highlight Your AWS Certifications",
   },
   description:
-    "Effortlessly create stunning banners to showcase your AWS certifications. This application provides templates and tools to design professional-looking banners for social media, LinkedIn, and more, highlighting your AWS accomplishments.",
+    "Effortlessly create stunning LinkedIn Cover Images to showcase your AWS certifications. This application provides templates and tools to design professional-looking banners for social media, LinkedIn, and more, highlighting your AWS accomplishments.",
 };
 
 const gaId = process.env.NEXT_PUBLIC_GA_TRACKING_ID;

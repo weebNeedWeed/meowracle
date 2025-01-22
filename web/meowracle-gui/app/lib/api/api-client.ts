@@ -62,3 +62,21 @@ class ApiClient {
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 export const apiClient = new ApiClient(baseUrl);
+
+export const noCacheSettings: any = {
+  cacheTime: 1000 * 60 * 60,
+  staleTime: 1000 * 60 * 60,
+  refetchOnWindowFocus: false,
+};
+
+export type ApiResponse<Type> = {
+  data: Type;
+  status: number;
+  pageInfo?: PageInfo;
+};
+
+export type PageInfo = {
+  totalRows: number;
+  hasMore: boolean;
+  cursor?: any;
+};

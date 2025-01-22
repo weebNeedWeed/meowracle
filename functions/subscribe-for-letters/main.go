@@ -4,9 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"fmt"
 	"net/http"
-	"os"
 	"regexp"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -15,16 +13,15 @@ import (
 	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
+	"github.com/weebNeedWeed/meowracle/internal/definition"
 	"github.com/weebNeedWeed/meowracle/internal/utils"
 )
 
-var tableName string
 var dynamodbClient *dynamodb.Client
 
 func init() {
-	tableName = os.Getenv("TABLE_NAME")
-	cfg, _ := utils.GetAWSConfigForLambda()
-	dynamodbClient = dynamodb.NewFromConfig(cfg)
+	cfg := utils.NewLambdaHandlerConfig()
+	dynamodbClient = cfg.DynamodbClient
 }
 
 type Body struct {
@@ -35,34 +32,39 @@ func handler(ctx context.Context, event events.APIGatewayProxyRequest) (events.A
 	buf := bytes.NewBuffer([]byte(event.Body))
 
 	b := new(Body)
-	err := json.NewDecoder(buf).Decode(&b)
+	err := json.NewDecoder(buf).Decode(b)
 	if err != nil {
-		return utils.WriteError(fmt.Errorf("invalid body format"), 400), nil
+		apiErr := definition.NewAPIError(definition.ErrBadRequest, "invalid body format", http.StatusBadRequest)
+		return utils.WriteError(apiErr), nil
 	}
 
 	email := b.Email
 	if email == "" {
-		return utils.WriteError(fmt.Errorf("email is required"), 400), nil
+		apiErr := definition.NewAPIError(definition.ErrBadRequest, "email is required", http.StatusBadRequest)
+		return utils.WriteError(apiErr), nil
 	}
 
 	emailRegex := `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
 	matched, err := regexp.MatchString(emailRegex, email)
 	if err != nil || !matched {
-		return utils.WriteError(fmt.Errorf("invalid email format"), 400), nil
+		apiErr := definition.NewAPIError(definition.ErrBadRequest, "invalid email format", http.StatusBadRequest)
+		return utils.WriteError(apiErr), nil
 	}
 
 	pk, _ := attributevalue.Marshal("SUBSCRIPTION")
 	sk, _ := attributevalue.Marshal("EMAIL#" + email)
 
 	_, err = dynamodbClient.PutItem(ctx, &dynamodb.PutItemInput{
-		TableName: aws.String(tableName),
+		TableName: aws.String(utils.TableName),
 		Item: map[string]types.AttributeValue{
 			"pk": pk,
 			"sk": sk,
 		},
 	})
 	if err != nil {
-		return utils.WriteError(err, http.StatusInternalServerError), nil
+		utils.LogError(err, "put item into database", definition.ErrDatabaseOperation, definition.AppError_Error_Severity)
+		apiErr := definition.NewAPIError(definition.ErrInternalServer, "internal server error", http.StatusInternalServerError)
+		return utils.WriteError(apiErr), nil
 	}
 
 	return utils.WriteJson("", http.StatusOK, nil), nil

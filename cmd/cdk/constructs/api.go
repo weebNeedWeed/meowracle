@@ -8,7 +8,8 @@ import (
 )
 
 type ApiProps struct {
-	Table awsdynamodb.Table
+	Table        awsdynamodb.Table
+	ImageBaseUrl *string
 }
 
 type api struct {
@@ -22,7 +23,7 @@ type Api interface {
 func NewApi(scope constructs.Construct, id string, props *ApiProps) Api {
 	this := constructs.NewConstruct(scope, &id)
 
-	rest := awsapigateway.NewRestApi(this, jsii.String(id), &awsapigateway.RestApiProps{
+	rest := awsapigateway.NewRestApi(this, jsii.String("rest-api"), &awsapigateway.RestApiProps{
 		EndpointTypes: &[]awsapigateway.EndpointType{
 			awsapigateway.EndpointType_EDGE,
 		},
@@ -33,23 +34,26 @@ func NewApi(scope constructs.Construct, id string, props *ApiProps) Api {
 		},
 	})
 
+	rp := &ResourceProps{
+		Rest:         rest,
+		Table:        props.Table,
+		ImageBaseUrl: props.ImageBaseUrl,
+	}
+
 	// badge
-	newBadgesResource(this, "badges-resource", &ResourceProps{
-		Rest:  rest,
-		Table: props.Table,
-	})
+	newBadgesResource(this, "badges-resource", rp)
 
 	// template
-	newTemplatesResource(this, "templates-resource", &ResourceProps{
-		Rest:  rest,
-		Table: props.Table,
-	})
+	newTemplatesResource(this, "templates-resource", rp)
 
 	// subscription
-	newSubscriptionsResource(this, "subscriptions-resource", &ResourceProps{
-		Rest:  rest,
-		Table: props.Table,
-	})
+	newSubscriptionsResource(this, "subscriptions-resource", rp)
+
+	// badge categories
+	newBadgeCategoriesResource(this, "badge-categories-resource", rp)
+
+	// template categories
+	newTemplateCategoriesResource(this, "template-categories-resource", rp)
 
 	return api{this}
 }

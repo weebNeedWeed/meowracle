@@ -1,6 +1,5 @@
 ![GitHub issues](https://img.shields.io/github/issues/weebNeedWeed/meowracle)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/weebNeedWeed/meowracle)
-![GitHub](https://img.shields.io/github/license/weebNeedWeed/meowracle)
 ![GitHub contributors](https://img.shields.io/github/contributors/weebNeedWeed/meowracle)
 ![GitHub stars](https://img.shields.io/github/stars/weebNeedWeed/meowracle)
 
@@ -19,14 +18,25 @@ Meowracle is a tool designed to help you create stunning LinkedIn cover images t
 
 ## Tech Stack
 
+### Overall Architecture
+
+![Architecture](assets/architecture.png)
+
+The Meowracle application follows a serverless architecture pattern, leveraging AWS services for scalability and reliability. The frontend communicates with the backend through API Gateway endpoints, while Lambda functions handle business logic and DynamoDB manages data persistence. This architecture ensures high availability and cost-effectiveness by utilizing no-idle-cost AWS services. Amplify, API Gateway Edge Optimized are all use CloudFront behind the scenes, which helps provide low-latency content to users worldwide.
+
+### DynamoDB Table Design
+
+![Table Design](assets/table-design.png)
+
 ### Backend
 
 - Go
 - AWS CDK
 - DynamoDB
 - API Gateway
+- Lambda
 
-### Frontend
+### Frontend (see [Frontend Documentation](web/meowracle-gui))
 
 - Next.js 15
 - React 19
@@ -48,7 +58,7 @@ Meowracle is a tool designed to help you create stunning LinkedIn cover images t
 
 1. Clone the repository:
   ```bash
-  git clone <repository-url>
+  git clone https://github.com/weebNeedWeed/meowracle.git
   ```
 
 2. Install dependencies:
@@ -82,9 +92,9 @@ Meowracle is a tool designed to help you create stunning LinkedIn cover images t
 
 #### Backend
 
-1. Run the CDK application:
+1. Deploy the CDK stack:
   ```bash
-  go mod download && go run cmd/cdk/main.go
+  cdk bootstrap && cdk deploy
   ```
 
 2. Seed the database:
@@ -101,7 +111,7 @@ Meowracle is a tool designed to help you create stunning LinkedIn cover images t
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the Apache 2.0 License.
 
 ## Contact
 

@@ -1,24 +1,33 @@
 import { useQuery } from "react-query";
-import { apiClient } from "./api-client";
+import { apiClient, ApiResponse } from "./api-client";
 
 export type Badge = {
   id: string;
-  title: string;
+  name: string;
   path: string;
   level: number;
 };
 
-const QUERY_KEY = ["badges"];
+export interface GetBadgesRequest {
+  limit: number;
+  keyword?: string;
+  cursor?: any;
+  categoryId?: string;
+}
 
-const fetchBadges = async (): Promise<Badge[]> => {
-  const data = await apiClient.get<Badge[]>("/badges");
+const fetchBadges = async (
+  req: GetBadgesRequest
+): Promise<ApiResponse<Badge[]>> => {
+  const data = await apiClient.get<ApiResponse<Badge[]>>("/badges", {
+    params: req,
+  });
   return data;
 };
 
-export const useBadges = () => {
-  return useQuery<Badge[], Error>(QUERY_KEY, () => fetchBadges(), {
-    cacheTime: 1000 * 60 * 60,
-    staleTime: 1000 * 60 * 60,
-    refetchOnWindowFocus: false,
-  });
+export const useBadges = (req: GetBadgesRequest) => {
+  return useQuery<ApiResponse<Badge[]>, Error>(
+    ["badges", req.limit, req.keyword, req.cursor, req.categoryId],
+    () => fetchBadges(req),
+    { cacheTime: 0 }
+  );
 };

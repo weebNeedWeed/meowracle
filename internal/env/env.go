@@ -18,3 +18,12 @@ func GetString(key, fallback string) string {
 
 	return val
 }
+
+func IsDevelopment() bool {
+	e := GetString("ENVIRONMENT", "development")
+	return e == "development"
+}
+
+func IsProduction() bool {
+	return !IsDevelopment()
+}

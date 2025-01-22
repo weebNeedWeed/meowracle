@@ -6,9 +6,8 @@ import (
 	"github.com/aws/constructs-go/constructs/v10"
 	"github.com/aws/jsii-runtime-go"
 	"github.com/weebNeedWeed/meowracle/internal/env"
+	"github.com/weebNeedWeed/meowracle/internal/utils"
 )
-
-var TableName = "meowracle-table"
 
 type DynamoDBProps struct {
 }
@@ -26,16 +25,15 @@ type MeowracleTable interface {
 func NewMeowracleTable(scope constructs.Construct, id string, props *DynamoDBProps) MeowracleTable {
 	this := constructs.NewConstruct(scope, &id)
 
-	environment := env.GetString("ENVIRONMENT", "development")
 	delProtection := jsii.Bool(false)
 	rmPolicy := awscdk.RemovalPolicy_DESTROY
 
-	if environment == "production" {
+	if env.IsProduction() {
 		delProtection = jsii.Bool(true)
 		rmPolicy = awscdk.RemovalPolicy_RETAIN
 	}
 
-	table := awsdynamodb.NewTable(this, jsii.String(id), &awsdynamodb.TableProps{
+	table := awsdynamodb.NewTable(this, jsii.String("table"), &awsdynamodb.TableProps{
 		PartitionKey: &awsdynamodb.Attribute{
 			Name: jsii.String("pk"),
 			Type: awsdynamodb.AttributeType_STRING,
@@ -45,11 +43,26 @@ func NewMeowracleTable(scope constructs.Construct, id string, props *DynamoDBPro
 			Type: awsdynamodb.AttributeType_STRING,
 		},
 		BillingMode:        awsdynamodb.BillingMode_PROVISIONED,
-		ReadCapacity:       jsii.Number(5),
-		WriteCapacity:      jsii.Number(2),
-		TableName:          jsii.String(TableName),
+		ReadCapacity:       jsii.Number(3),
+		WriteCapacity:      jsii.Number(1),
+		TableName:          jsii.String(utils.TableName),
 		DeletionProtection: delProtection,
 		RemovalPolicy:      rmPolicy,
+	})
+
+	table.AddGlobalSecondaryIndex(&awsdynamodb.GlobalSecondaryIndexProps{
+		IndexName:      jsii.String("gsi1"),
+		ProjectionType: awsdynamodb.ProjectionType_ALL,
+		PartitionKey: &awsdynamodb.Attribute{
+			Name: jsii.String("gsi1pk"),
+			Type: awsdynamodb.AttributeType_STRING,
+		},
+		SortKey: &awsdynamodb.Attribute{
+			Name: jsii.String("gsi1sk"),
+			Type: awsdynamodb.AttributeType_STRING,
+		},
+		ReadCapacity:  jsii.Number(2),
+		WriteCapacity: jsii.Number(1),
 	})
 
 	return &meowracleTable{this, table}

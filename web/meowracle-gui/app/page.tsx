@@ -47,7 +47,7 @@ export default function Page() {
               </a>
               <div className="md:hidden flex flex-col space-y-4 pt-6 border-t border-gray-200">
                 <Link
-                  href="/dashboard"
+                  href="/app"
                   className="bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-900 transition-colors"
                 >
                   Get Started Free
@@ -63,7 +63,7 @@ export default function Page() {
           </div>
           <div className="hidden md:flex items-center space-x-4">
             <Link
-              href="/dashboard"
+              href="/app"
               className="bg-gray-800 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-900 transition-colors"
             >
               Try It Now
@@ -234,7 +234,7 @@ export default function Page() {
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-8">Ready to Get Started?</h2>
           <Link
-            href="/dashboard"
+            href="/app"
             className="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 transition-colors"
           >
             Try It Now

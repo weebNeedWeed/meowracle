@@ -2,15 +2,6 @@
 
 Meowracle's GUI is designed with user-friendliness in mind. It features an intuitive layout that allows users to easily navigate through the application. The drag-and-drop functionality simplifies the process of customizing templates, and real-time previews ensure that users can see their changes instantly. The interface is responsive, ensuring a seamless experience across different devices and screen sizes.
 
-## Features
-
-- Quick and easy banner creation
-- Professional templates optimized for LinkedIn
-- AWS certification badge integration  
-- High quality output in multiple formats
-- Always free to use
-- Real-time preview
-
 ## Tech Stack
 
 - Next.js 15
@@ -31,7 +22,7 @@ Meowracle's GUI is designed with user-friendliness in mind. It features an intui
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/weebNeedWeed/meowracle
 
 # Install dependencies
 pnpm install
@@ -57,11 +48,3 @@ pnpm start
 
 - `NEXT_PUBLIC_BASE_URL`: Base URL for the application
 - `NEXT_PUBLIC_GA_TRACKING_ID`: Google Analytics tracking ID
-
-## License
-
-This project is licensed under the MIT License
-
-## Contact
-
-For any inquiries or support, please open an issue in the repository.

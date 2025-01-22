@@ -3,64 +3,85 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"log"
+	"fmt"
 	"net/http"
 	"os"
+	"strconv"
+	"strings"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue"
-	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/expression"
-	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
+	"github.com/go-playground/validator/v10"
 	"github.com/weebNeedWeed/meowracle/internal/definition"
+	"github.com/weebNeedWeed/meowracle/internal/services/templates"
 	"github.com/weebNeedWeed/meowracle/internal/utils"
 )
 
-var tableName string
-var dynamodbClient *dynamodb.Client
+var store *templates.Store
+var imageBaseUrl string
 
 func init() {
-	tableName = os.Getenv("TABLE_NAME")
-	cfg, _ := utils.GetAWSConfigForLambda()
-	dynamodbClient = dynamodb.NewFromConfig(cfg)
+	imageBaseUrl = os.Getenv("IMAGE_BASE_URL")
+	if strings.Contains(imageBaseUrl, "cloudfront") {
+		imageBaseUrl = "https://" + imageBaseUrl + "/"
+	}
+	config := utils.NewLambdaHandlerConfig()
+	store = templates.NewStore(config.DynamodbClient)
+}
+
+func parseAndValidateParams(queryParamsMap map[string]string) (*templates.GetAllTemplatesRequest, error) {
+	res := new(templates.GetAllTemplatesRequest)
+
+	if limit, ok := queryParamsMap["limit"]; !ok {
+		return nil, fmt.Errorf("limit is required")
+	} else {
+		lAsInt, err := strconv.Atoi(limit)
+		if err != nil {
+			return nil, fmt.Errorf("limit must be int, limit=%v", limit)
+		}
+		res.Limit = lAsInt
+	}
+
+	if slots, ok := queryParamsMap["slots"]; ok {
+		sAsInt, err := strconv.Atoi(slots)
+		if err != nil {
+			return nil, fmt.Errorf("slot must be int, slots=%v", slots)
+		}
+		res.Slots = &sAsInt
+	}
+
+	res.CategoryId = queryParamsMap["categoryId"]
+	res.Cursor = definition.NewCursorFromQueryString(queryParamsMap["cursor"])
+	res.Keyword = queryParamsMap["keyword"]
+
+	err := utils.Validate.Struct(res)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
 }
 
 func handleRequest(ctx context.Context, event events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	// TODO: implement pagination
-
-	fExpr := expression.Name("pk").BeginsWith("TEMPLATE").And(expression.Name("sk").BeginsWith("METADATA"))
-	expr, err := expression.NewBuilder().WithFilter(fExpr).Build()
+	req, err := parseAndValidateParams(event.QueryStringParameters)
 	if err != nil {
-		log.Println("error occurred when building expression", err)
-		return utils.WriteError(err, http.StatusInternalServerError), nil
+		utils.LogError(err, "parse and validate query params", definition.ErrBadRequest, definition.AppError_Debug_Severity)
+		if vErrs, ok := err.(validator.ValidationErrors); ok {
+			apiErr := definition.NewAPIErrorFromValidationErrors(vErrs)
+			return utils.WriteError(apiErr), nil
+		} else {
+			apiErr := definition.NewAPIError(definition.ErrBadRequest, "invalid request parameters", http.StatusBadRequest)
+			return utils.WriteError(apiErr), nil
+		}
 	}
 
-	res, err := dynamodbClient.Scan(ctx, &dynamodb.ScanInput{
-		TableName:                 aws.String(tableName),
-		FilterExpression:          expr.Filter(),
-		ExpressionAttributeNames:  expr.Names(),
-		ExpressionAttributeValues: expr.Values(),
-	})
+	res, err := templates.GetAllTemplates(req, store, imageBaseUrl)
 	if err != nil {
-		log.Println("error occurred when scanning table", err)
-		return utils.WriteError(err, http.StatusInternalServerError), nil
+		apiErr := definition.NewAPIError(definition.ErrInternalServer, "internal server error", http.StatusInternalServerError)
+		return utils.WriteError(apiErr), nil
 	}
 
-	ts := []definition.DynamoDBTemplate{}
-	err = attributevalue.UnmarshalListOfMaps(res.Items, &ts)
-	if err != nil {
-		log.Println("error occurred when unmarshalling items", err)
-		return utils.WriteError(err, http.StatusInternalServerError), nil
-	}
-
-	templates := []definition.Template{}
-	for _, t := range ts {
-		templates = append(templates, t.ToTemplate())
-	}
-
-	j, _ := json.Marshal(templates)
-
+	j, _ := json.Marshal(res)
 	return utils.WriteJson(string(j), http.StatusOK, nil), nil
 }
 

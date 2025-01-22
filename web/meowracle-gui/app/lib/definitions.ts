@@ -1,13 +1,3 @@
-export type Slot = {
-  templateId: string;
-  index: number;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  fillImage?: string;
-};
-
 // utility types
 export type ClipPosition =
   | "left-top"
