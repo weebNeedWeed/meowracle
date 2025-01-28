@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useSubscribeForLetters } from "../lib/api/subscriptions";
+import { motion } from "motion/react";
 
 export default function Subscribe() {
   const [email, setEmail] = useState("");
@@ -22,39 +23,71 @@ export default function Subscribe() {
   };
 
   return (
-    <section className="bg-white py-16" id="subscribe">
-      <div className="container mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold mb-4">
-          Subscribe to Receive Letters
-        </h2>
-        <p className="text-gray-700 mb-8">
-          Stay updated with our latest news and offers. Subscribe to our
-          newsletter.
-        </p>
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+    <section id="subscribe" className="py-24 relative">
+      {/* Gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1BE4C9]/5 to-transparent opacity-30" />
+
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="text-[#F5F5F6]">Stay Updated with </span>
+            <span className="bg-gradient-to-r from-[#1BE4C9] to-[#23f7d9] bg-clip-text text-transparent">
+              New Features
+            </span>
+          </h2>
+          <p className="text-[#5E5E6C] text-lg mb-8">
+            Subscribe to our newsletter for the latest updates and features
+          </p>
+
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
+          >
             <input
               type="email"
-              placeholder="Enter your email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className="flex-grow px-6 py-3 rounded-lg bg-[#27272F] border border-[#575761] focus:border-[#1BE4C9] focus:outline-none text-[#F5F5F6] placeholder-[#5E5E6C]"
             />
-            <button
+            <motion.button
               type="submit"
-              className="bg-gray-800 text-white px-8 py-2 rounded-lg font-semibold hover:bg-gray-900 transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 bg-gradient-to-r from-[#1BE4C9] to-[#23f7d9] text-[#16161D] font-semibold rounded-lg shadow-lg hover:shadow-[#1BE4C9]/20 transition-all duration-200"
             >
               Subscribe
-            </button>
-          </div>
-        </form>
-        {subscribed && (
-          <p className="text-green-600 mt-4">Thank you for subscribing!</p>
-        )}
-        {!subscribed && email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && (
-          <p className="text-red-600 mt-4">Invalid email address.</p>
-        )}
+            </motion.button>
+          </form>
+
+          {subscribed && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-[#1BE4C9] mt-4"
+            >
+              Thank you for subscribing!
+            </motion.p>
+          )}
+          {!subscribed &&
+            email &&
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-red-500 mt-4"
+              >
+                Invalid email address.
+              </motion.p>
+            )}
+        </motion.div>
       </div>
     </section>
   );
